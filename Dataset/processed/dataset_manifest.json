@@ -1,0 +1,14 @@
+{
+    "total_pcaps_processed": 140,
+    "total_pcaps_skipped": 0,
+    "total_flows": 55498,
+    "vpn_flows": 2479,
+    "nonvpn_flows": 53019,
+    "vpn_ratio": 0.0447,
+    "tensor_shape": [
+        55498,
+        2,
+        64
+    ],
+    "execution_time_seconds": 289.36
+}

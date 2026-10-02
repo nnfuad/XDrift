@@ -2,5 +2,7 @@ Papers
 Dataset/ISCX VPN-NonVPN 2016 Dataset
 Dataset/metadata
 LLM_ANALYSIS
+scripts
 scrpts
 .gitignore
+._*
