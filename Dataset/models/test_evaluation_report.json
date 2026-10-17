@@ -1,0 +1,142 @@
+{
+  "full_test_evaluation": {
+    "total_samples": 8325,
+    "vpn_count": 373,
+    "nonvpn_count": 7952,
+    "accuracy": 0.9682882882882883,
+    "balanced_accuracy": 0.9565706909014409,
+    "macro_f1": 0.8552190699238269,
+    "weighted_f1": 0.9717001907589842,
+    "vpn_precision": 0.5915966386554622,
+    "vpn_recall": 0.9436997319034852,
+    "vpn_f1": 0.7272727272727273,
+    "nonvpn_precision": 0.9972833117723157,
+    "nonvpn_recall": 0.9694416498993964,
+    "nonvpn_f1": 0.9831654125749266,
+    "roc_auc": 0.9900181922635006,
+    "pr_auc": 0.8796268439143446,
+    "confusion_matrix": {
+      "TN": 7709,
+      "FP": 243,
+      "FN": 21,
+      "TP": 352
+    },
+    "per_app_performance": {
+      "aim": {
+        "total_samples": 10,
+        "vpn_samples": 2,
+        "nonvpn_samples": 8,
+        "accuracy": 0.6
+      },
+      "bittorrent": {
+        "total_samples": 39,
+        "vpn_samples": 39,
+        "nonvpn_samples": 0,
+        "accuracy": 1.0
+      },
+      "email": {
+        "total_samples": 116,
+        "vpn_samples": 22,
+        "nonvpn_samples": 94,
+        "accuracy": 0.9396551724137931
+      },
+      "facebook": {
+        "total_samples": 2761,
+        "vpn_samples": 37,
+        "nonvpn_samples": 2724,
+        "accuracy": 0.9898587468308584
+      },
+      "ftps": {
+        "total_samples": 65,
+        "vpn_samples": 16,
+        "nonvpn_samples": 49,
+        "accuracy": 0.9230769230769231
+      },
+      "gmailchat": {
+        "total_samples": 50,
+        "vpn_samples": 0,
+        "nonvpn_samples": 50,
+        "accuracy": 0.98
+      },
+      "hangouts": {
+        "total_samples": 2281,
+        "vpn_samples": 74,
+        "nonvpn_samples": 2207,
+        "accuracy": 0.979395002192021
+      },
+      "icq": {
+        "total_samples": 10,
+        "vpn_samples": 2,
+        "nonvpn_samples": 8,
+        "accuracy": 0.6
+      },
+      "netflix": {
+        "total_samples": 54,
+        "vpn_samples": 20,
+        "nonvpn_samples": 34,
+        "accuracy": 0.6481481481481481
+      },
+      "scp": {
+        "total_samples": 232,
+        "vpn_samples": 0,
+        "nonvpn_samples": 232,
+        "accuracy": 0.853448275862069
+      },
+      "sftp": {
+        "total_samples": 19,
+        "vpn_samples": 3,
+        "nonvpn_samples": 16,
+        "accuracy": 0.9473684210526315
+      },
+      "skype": {
+        "total_samples": 2445,
+        "vpn_samples": 97,
+        "nonvpn_samples": 2348,
+        "accuracy": 0.9770961145194274
+      },
+      "spotify": {
+        "total_samples": 30,
+        "vpn_samples": 11,
+        "nonvpn_samples": 19,
+        "accuracy": 0.9
+      },
+      "vimeo": {
+        "total_samples": 58,
+        "vpn_samples": 16,
+        "nonvpn_samples": 42,
+        "accuracy": 0.8620689655172413
+      },
+      "voipbuster": {
+        "total_samples": 69,
+        "vpn_samples": 9,
+        "nonvpn_samples": 60,
+        "accuracy": 0.7246376811594203
+      },
+      "youtube": {
+        "total_samples": 86,
+        "vpn_samples": 25,
+        "nonvpn_samples": 61,
+        "accuracy": 0.6744186046511628
+      }
+    }
+  },
+  "balanced_test_evaluation": {
+    "total_samples": 746,
+    "vpn_count": 373,
+    "nonvpn_count": 373,
+    "accuracy": 0.953083109919571,
+    "balanced_accuracy": 0.953083109919571,
+    "macro_f1": 0.9530789786276634,
+    "vpn_f1": 0.952638700947226,
+    "vpn_recall": 0.9436997319034852,
+    "vpn_precision": 0.9617486338797814,
+    "roc_auc": 0.9909364690323369,
+    "pr_auc": 0.991852306669798,
+    "confusion_matrix": {
+      "TN": 359,
+      "FP": 14,
+      "FN": 21,
+      "TP": 352
+    }
+  }
+}
