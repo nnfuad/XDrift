@@ -1,0 +1,13 @@
+{
+  "evaluated_samples": 50,
+  "ptq_ig_spearman_rho_mean": 0.9171114708626129,
+  "ptq_ig_spearman_rho_vpn": 0.9373093203025484,
+  "ptq_ig_spearman_rho_nonvpn": 0.8969136214226774,
+  "ptq_ig_top5_iou_mean": 0.7673809523809523,
+  "ptq_ig_top5_iou_vpn": 0.7376190476190476,
+  "qat_ig_spearman_rho_mean": 0.9591404563513021,
+  "qat_ig_spearman_rho_vpn": 0.9486070067605245,
+  "qat_ig_top5_iou_mean": 0.82,
+  "qat_ig_top5_iou_vpn": 0.7257142857142856,
+  "conclusion": "Integrated Gradients shows high attribution stability between FP32 and PTQ on VPN flows (mean Spearman rho = 0.9373, Top-5 IoU = 0.7376), revealing a significant divergence from perturbation-based KernelSHAP attributions and underscoring the role of explainer mechanics in attribution drift."
+}

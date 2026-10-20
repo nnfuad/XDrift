@@ -1,0 +1,16 @@
+{
+  "seeds_evaluated": [
+    42,
+    101,
+    2024,
+    777,
+    999
+  ],
+  "flows_evaluated": 20,
+  "mean_seed_spearman_rho": 0.5720755265136092,
+  "std_seed_spearman_rho": 0.3970066138637807,
+  "mean_seed_top5_iou": 0.5359126984126985,
+  "std_seed_top5_iou": 0.4025462134409617,
+  "mean_seed_l2": 0.6036828516826377,
+  "conclusion": "KernelSHAP multi-seed evaluation demonstrates non-trivial sampling jitter across seeds (mean Spearman rho = 0.5721 +/- 0.3970, Top-5 IoU = 0.5359 +/- 0.4025), revealing that perturbation-based explainers exhibit inherent stochasticity on 128-dimensional flow tensors."
+}

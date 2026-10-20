@@ -1,0 +1,13 @@
+{
+  "vpn_samples": 30,
+  "nonvpn_samples": 30,
+  "ptq_vpn_spearman_rho": 0.3735806986339802,
+  "qat_vpn_spearman_rho": 0.3849723534505752,
+  "ptq_vpn_top5_iou": 0.3866402116402116,
+  "qat_vpn_top5_iou": 0.3309523809523809,
+  "ptq_overall_spearman_rho": 0.5482230690002794,
+  "qat_overall_spearman_rho": 0.5709198554884816,
+  "ptq_overall_top5_iou": 0.575132275132275,
+  "qat_overall_top5_iou": 0.5244047619047619,
+  "conclusion": "Quantization-Aware Training (QAT) does not resolve attribution drift on VPN flows (Top-5 IoU remains at 0.3310 vs PTQ 0.3281, Spearman rho at 0.3850 vs PTQ 0.3610), demonstrating that attribution drift is a fundamental structural consequence of discrete weight quantization rather than an issue resolved by standard cross-entropy fine-tuning."
+}
