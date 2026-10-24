@@ -1,0 +1,142 @@
+{
+  "label": "pre_split_correction",
+  "audit_note": "Preserved original experiment containing Train-Val session group leakage (hangouts_chat_4a vs hangout_chat_4b)",
+  "timestamp_iso": "2026-10-24T14:27:30",
+  "git_commit": "da90bac",
+  "python_version": "3.12.7 | packaged by Anaconda, Inc. | (main, Oct  4 2024, 08:22:19) [Clang 14.0.6 ]",
+  "packages": {
+    "torch": "2.10.0",
+    "numpy": "2.0.2",
+    "scipy": "1.18.0"
+  },
+  "seeds": {
+    "split_seed": 42,
+    "model_seed": 42,
+    "ptq_calib_seed": 42,
+    "qat_seed": 42,
+    "shap_explainer_seed": 42
+  },
+  "files_backed_up": 30,
+  "hashes": {
+    "manifests/dataset_manifest.json": {
+      "sha256": "83a61de1698631101099469c8736e93503598d38b5b7a15417a31b813a4ac041",
+      "size": 59178
+    },
+    "manifests/train_manifest.json": {
+      "sha256": "245c274ffe9029a2d7e280e83a401d7c6da68ffd6b9b7478c16d88caa772aedf",
+      "size": 41800
+    },
+    "manifests/val_manifest.json": {
+      "sha256": "e73614d6d7fcf15e0ff2610cca6bfd98187f685881b0858f490d7d4c1f327b52",
+      "size": 8580
+    },
+    "manifests/test_manifest.json": {
+      "sha256": "bf7957fc6e42df77a68e4586aaf070e998fc469f5cb981760f2799f1ce980e70",
+      "size": 8880
+    },
+    "processed_data/train_data.npz": {
+      "sha256": "2602372228ae7d5ef9bd8544fab377dfe63de48850380dd2921f8b29698f308d",
+      "size": 4324882
+    },
+    "processed_data/val_data.npz": {
+      "sha256": "ae138aec00a7df40083986a083db304b7649f492dd293c157d1cd7cabef30e91",
+      "size": 979289
+    },
+    "processed_data/test_data.npz": {
+      "sha256": "af91346abd99003cc19c0e2632f6d2d73a227148f982bf3378858429b109fbc6",
+      "size": 570941
+    },
+    "processed_data/preprocessing_summary.json": {
+      "sha256": "c9c72485d31a82fd81aef1dd7687d250f87dbd1466688f3bdb387aab3bab95ce",
+      "size": 34627
+    },
+    "checkpoints/fp32_seed_42.pt": {
+      "sha256": "83cf42282ad32ad9e1102ff27cd75e931f00d1166ff1a75a3317607f586a8f7b",
+      "size": 188275
+    },
+    "checkpoints/training_summary.json": {
+      "sha256": "3cce21257c445f9e8d5e8a430d8ceeca7d19941451edd4055a59ba41d8d3e451",
+      "size": 196
+    },
+    "quantized_models/ptq_seed_42.pt": {
+      "sha256": "d3a3082357b592d9c8764a3c9d8498501bb7b5d85c8ae4562f93acb37ace85b0",
+      "size": 53009
+    },
+    "quantized_models/qat_seed_42.pt": {
+      "sha256": "75c52191ba42450dfdc98b2fe40d458e2c9f55ca19758cb3411ed61d35914ddd",
+      "size": 53009
+    },
+    "results/predictions/test_predictions.npz": {
+      "sha256": "d8435668740b34610e0e88d9cadc89ba8a8e59f136744ade8552cb8650d9ae1b",
+      "size": 290107
+    },
+    "results/attributions/cohort_attributions.npz": {
+      "sha256": "06f96c868a017c0c06f636be727afaea7de355248a5ae8c6a2097260f1703ddc",
+      "size": 32511
+    },
+    "results/attributions/explainer_repeatability_cohort.npz": {
+      "sha256": "51edf732c24266a475288ed3a04ba7b38c6170119596bd8f52d39fac001fc611",
+      "size": 52492
+    },
+    "results/metrics/predictive_evaluation_summary.json": {
+      "sha256": "0a3755ccb152d4b5be95fae95a2a091549175d989a5c1fe99fe6f6545e29f913",
+      "size": 2232
+    },
+    "results/metrics/hardware_benchmarks.json": {
+      "sha256": "a421fcc240e7b9e3a1707e8b59046eec609c8991cc487b4a72c540d69558771d",
+      "size": 5009
+    },
+    "results/metrics/master_pipeline_summary.json": {
+      "sha256": "2dd86cf54db4088a47b57883f9ede2ab598744ed1a80f466d4f91681269a794a",
+      "size": 57432
+    },
+    "results/metrics/cohort_indices.json": {
+      "sha256": "8e003a00b666d0e9756fa503e604822c701376450e8e578459d5d2e153382284",
+      "size": 18581
+    },
+    "results/figures/figure1_attribution_overlap_distribution.png": {
+      "sha256": "adbbb1cd40965d9de2ffb6dbe2400ed88a869265d5ca3e609bfb16723fba1145",
+      "size": 132774
+    },
+    "results/figures/figure2_tv_and_cosine_distributions.png": {
+      "sha256": "635d436ef92cd90271d94bd70c04334bd316a6a22595c5d8f1f6a2e7cec091f5",
+      "size": 158808
+    },
+    "results/figures/figure3_efficiency_tradeoff.png": {
+      "sha256": "e552f97fd2e26da7cccc5db4a8e23b171adda35bbe0366ba07e40a579cf4daa1",
+      "size": 134042
+    },
+    "results/tables/table1_predictive_performance.md": {
+      "sha256": "ec997ba4ac36ffdf9ca9e9eeb7b633fa6de769eabe54e054c05d92aa9f44fbea",
+      "size": 2566
+    },
+    "results/tables/table2_attribution_drift.md": {
+      "sha256": "58e28e00347ec6a0bc41b83d0a235c40915e8eae54e430f3ae66f09751f7b591",
+      "size": 3345
+    },
+    "results/tables/table3_hardware_benchmarks.md": {
+      "sha256": "dc82eb2a12d30acc52c82be77c0903488dca365e9643cb39898d563b3af237f8",
+      "size": 2547
+    },
+    "results/tables/table4_hypothesis_matrix.md": {
+      "sha256": "e1cd80845a3f0de458c51c2a750f98ff5397293e2f27eb56433fbab5a682dd6b",
+      "size": 2766
+    },
+    "reports/preprocessing_validation_report.md": {
+      "sha256": "a464c5aeb8903f8f064ddbc2882006df2307ecd3434a95eabb9d05c96b2cd5e3",
+      "size": 10040
+    },
+    "reports/final_research_report.md": {
+      "sha256": "89678a3ff474da48028ab5d63d6427ebf2d6dd5ea792366bd9b7127ee4bd0dfd",
+      "size": 33401
+    },
+    "reports/final_consistency_audit.md": {
+      "sha256": "e2c54082d13cb65fb5316eae5ca7e8724e137a1c6b0451d3a3d3faf8eceb297c",
+      "size": 43491
+    },
+    "reports/final_release_checklist.md": {
+      "sha256": "088c0b93d53544c3e4e8e8b11828ca5f9bbfae15a0220d1eccf1bc5e577ade92",
+      "size": 22491
+    }
+  }
+}

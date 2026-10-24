@@ -1,0 +1,129 @@
+{
+  "metadata": {
+    "status": "AUTHORITATIVE_VERIFIED",
+    "generated_by": "Xdrift_final.ipynb (live sequential execution)",
+    "note": "Synchronized with reports_final/predictive_metrics.csv and Xdrift_final.ipynb"
+  },
+  "predictive_metrics": {
+    "FP32 Reference": {
+      "Accuracy (%)": "96.67%",
+      "Balanced Acc (%)": "96.34%",
+      "VPN Recall (%)": "95.98%",
+      "VPN Precision (%)": "57.74%",
+      "VPN F1": 0.721,
+      "Non-VPN F1": 0.9823,
+      "Macro F1": 0.8517,
+      "Weighted F1": 0.9706,
+      "ROC-AUC": 0.9921,
+      "PR-AUC": 0.9006,
+      "TP": 358,
+      "FN": 15,
+      "FP": 262,
+      "TN": 7690
+    },
+    "INT8 PTQ": {
+      "Accuracy (%)": "96.74%",
+      "Balanced Acc (%)": "96.38%",
+      "VPN Recall (%)": "95.98%",
+      "VPN Precision (%)": "58.31%",
+      "VPN F1": 0.7254,
+      "Non-VPN F1": 0.9827,
+      "Macro F1": 0.8541,
+      "Weighted F1": 0.9712,
+      "ROC-AUC": 0.9914,
+      "PR-AUC": 0.8978,
+      "TP": 358,
+      "FN": 15,
+      "FP": 256,
+      "TN": 7696
+    },
+    "QAT FakeQuant": {
+      "Accuracy (%)": "97.01%",
+      "Balanced Acc (%)": "96.01%",
+      "VPN Recall (%)": "94.91%",
+      "VPN Precision (%)": "60.62%",
+      "VPN F1": 0.7398,
+      "Non-VPN F1": 0.9841,
+      "Macro F1": 0.862,
+      "Weighted F1": 0.9732,
+      "ROC-AUC": 0.9917,
+      "PR-AUC": 0.8984,
+      "TP": 354,
+      "FN": 19,
+      "FP": 230,
+      "TN": 7722
+    },
+    "QAT INT8 Deploy": {
+      "Accuracy (%)": "97.00%",
+      "Balanced Acc (%)": "96.13%",
+      "VPN Recall (%)": "95.17%",
+      "VPN Precision (%)": "60.48%",
+      "VPN F1": 0.7396,
+      "Non-VPN F1": 0.9841,
+      "Macro F1": 0.8618,
+      "Weighted F1": 0.9731,
+      "ROC-AUC": 0.991,
+      "PR-AUC": 0.8971,
+      "TP": 355,
+      "FN": 18,
+      "FP": 232,
+      "TN": 7720
+    }
+  },
+  "attribution_drift_summary": [
+    {
+      "Comparison": "FP32 vs INT8 PTQ",
+      "Traffic Subset": "Full Cohort (N=746)",
+      "Top-5 IoU (Mean \u00b1 Std)": "0.4995 \u00b1 0.3621",
+      "Top-5 IoU (Median)": 0.6667,
+      "Spearman rho (Mean \u00b1 Std)": "0.5321 \u00b1 0.3732",
+      "Normalized L2 Dist": 0.6431,
+      "Cosine Sim": 0.6784
+    },
+    {
+      "Comparison": "FP32 vs INT8 PTQ",
+      "Traffic Subset": "Non-VPN Only (N=373)",
+      "Top-5 IoU (Mean \u00b1 Std)": "0.6959 \u00b1 0.3051",
+      "Top-5 IoU (Median)": 0.6667,
+      "Spearman rho (Mean \u00b1 Std)": "0.7341 \u00b1 0.2914",
+      "Normalized L2 Dist": 0.4005,
+      "Cosine Sim": 0.8513
+    },
+    {
+      "Comparison": "FP32 vs INT8 PTQ",
+      "Traffic Subset": "VPN Only (N=373)",
+      "Top-5 IoU (Mean \u00b1 Std)": "0.3032 \u00b1 0.3037",
+      "Top-5 IoU (Median)": 0.25,
+      "Spearman rho (Mean \u00b1 Std)": "0.3301 \u00b1 0.3349",
+      "Normalized L2 Dist": 0.8857,
+      "Cosine Sim": 0.5056
+    },
+    {
+      "Comparison": "FP32 vs INT8 QAT",
+      "Traffic Subset": "Full Cohort (N=746)",
+      "Top-5 IoU (Mean \u00b1 Std)": "0.4453 \u00b1 0.3166",
+      "Top-5 IoU (Median)": 0.4286,
+      "Spearman rho (Mean \u00b1 Std)": "0.4863 \u00b1 0.3427",
+      "Normalized L2 Dist": 0.6666,
+      "Cosine Sim": 0.6734
+    },
+    {
+      "Comparison": "FP32 vs INT8 QAT",
+      "Traffic Subset": "Non-VPN Only (N=373)",
+      "Top-5 IoU (Mean \u00b1 Std)": "0.5962 \u00b1 0.2613",
+      "Top-5 IoU (Median)": 0.6667,
+      "Spearman rho (Mean \u00b1 Std)": "0.6439 \u00b1 0.2766",
+      "Normalized L2 Dist": 0.4502,
+      "Cosine Sim": 0.8354
+    },
+    {
+      "Comparison": "FP32 vs INT8 QAT",
+      "Traffic Subset": "VPN Only (N=373)",
+      "Top-5 IoU (Mean \u00b1 Std)": "0.2944 \u00b1 0.2947",
+      "Top-5 IoU (Median)": 0.25,
+      "Spearman rho (Mean \u00b1 Std)": "0.3287 \u00b1 0.3299",
+      "Normalized L2 Dist": 0.8829,
+      "Cosine Sim": 0.5114
+    }
+  ]
+}

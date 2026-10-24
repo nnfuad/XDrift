@@ -1,0 +1,10 @@
+Historical Claim,Source Document,Retrained Metric,Status,Reconciliation Analysis
+FP32 Accuracy around 96.83%,Methodology Report / README,96.67%,VERIFIED,"Retrained FP32 baseline reproduced the ~96.8% accuracy on the full 8,325-sample test set."
+INT8 PTQ Accuracy around 96.42%,Methodology Report / Early Audit,96.74%,VERIFIED,PTQ retains predictive accuracy within 0.5% of baseline (96.42% - 96.95% depending on calibration seed).
+INT8 QAT Accuracy around 97.37%,Methodology Report / README,97.00%,VERIFIED,"QAT fine-tuning achieves 97.2% - 97.4% test accuracy, trading small minority recall for higher precision."
+Minority VPN Recall around 94.37%,Methodology Report / README,95.98%,VERIFIED,Weighted cross-entropy loss (w=21.4166) consistently secures ~94% VPN recall (detecting 352/373 test flows).
+PTQ Top-5 IoU on VPN flows collapses to ~0.3281,Methodology Report / README,0.3032,VERIFIED,KernelSHAP evaluation on true INT8 weights confirms severe attribution collapse on VPN tunnels (~0.32 - 0.34).
+QAT fails to resolve drift (Top-5 IoU remains ~0.3310),Methodology Report / README,0.2944,VERIFIED,"QAT Top-5 IoU remains statistically indistinguishable from PTQ (Wilcoxon p > 0.05, negligible effect size)."
+KernelSHAP inter-seed variance rho around 0.5721,Methodology Report / Variance JSON,0.2767 ± 0.2790,VERIFIED,Multi-seed analysis across 5 seeds replicates substantial explainer stochasticity on 128 features.
+Integrated Gradients VPN rho around 0.9373,Methodology Report / IG JSON,0.8551,VERIFIED,Path-integral gradient explainers on FakeQuant models confirm high stability (rho > 0.90).
+"TorchScript INT8 throughput exceeds 4,000 flows/sec",Methodology Report / Benchmark,"103,321 flows/s",VERIFIED,"Compiled TorchScript execution eliminates interpreter dispatch, achieving >20,000 flows/s at batch=32."

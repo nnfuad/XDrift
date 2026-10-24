@@ -1,0 +1,2 @@
+Model,Seed,Trainable Parameters,Total Epochs,Best Epoch,Training Duration (s),Best Val Bal Acc (%),Best Val Macro F1,Best Val VPN Recall (%),Checkpoint Path
+FP32 Reference 1D-CNN,42,44129,15,15,63.4,95.72%,0.8439,94.91%,models_final/fp32_reference.pt

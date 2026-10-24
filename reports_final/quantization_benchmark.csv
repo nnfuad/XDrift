@@ -1,0 +1,5 @@
+Model Variant,Precision,Raw Weights (KB),Full Checkpoint (KB),Weight Compression,Median Latency B1 (ms),P95 Latency B1 (ms),Throughput B1 (flows/s),Throughput B32 (flows/s)
+FP32 Reference (Eager),Float32,182.76,183.17,1.00× (Ref),0.23,0.321,4084.8,5353.3
+INT8 PTQ (Eager),INT8 / Quint8,51.43,51.43,3.55×,0.23,0.278,4162.6,N/A
+INT8 PTQ (TorchScript Traced),INT8 (Compiled),83.8,83.8,2.19× (vs Ckpt),0.047,0.059,20227.4,103321.5
+INT8 QAT (TorchScript Traced),INT8 (Compiled),89.83,89.83,2.04× (vs Ckpt),0.047,0.062,20182.9,101187.6

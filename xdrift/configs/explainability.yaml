@@ -1,0 +1,21 @@
+explainer: "KernelSHAP"
+target: "pre_sigmoid_logit"
+
+background:
+  num_samples: 50
+  source: "train"
+  strategy: "stratified_kmeans_or_sample"
+
+evaluation:
+  test_cohort_size: 200  # Feasible prespecified sample for KernelSHAP
+  nsamples: 200          # Perturbation evaluations per instance
+  random_seeds: [42, 101, 202]  # Seeds for explainer stability estimation
+
+metrics:
+  top_k_primary: 5
+  top_k_secondary: 10
+  temporal_bins:
+    early: [0, 5]
+    late: [6, 63]
+
+results_dir: "results/attributions"

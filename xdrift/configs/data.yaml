@@ -1,0 +1,19 @@
+raw_data_dir: "/Volumes/LEXAR/Explainability Drift/Dataset/ISCX VPN-NonVPN 2016 Dataset"
+processed_data_dir: "data/processed"
+manifest_dir: "data/manifests"
+
+flow_construction:
+  max_packets: 64
+  min_packets: 2
+  inactivity_timeout_seconds: 120.0
+  mtu_norm_bytes: 1500.0
+  max_iat_seconds: 5.0
+
+leakage_prevention:
+  grouping_unit: "capture_session"  # Group by PCAP file / collection session
+  split_ratios:
+    train: 0.70
+    val: 0.15
+    test: 0.15
+  random_seed: 42
+  stratify_by_label: true

@@ -1,0 +1,41 @@
+{
+  "train": {
+    "split": "train_data.npz",
+    "total_flows": 60,
+    "vpn_flows": 0,
+    "nonvpn_flows": 60,
+    "vpn_ratio": 0.0,
+    "tensor_shape": [
+      60,
+      2,
+      64
+    ],
+    "duration_seconds": 0.17
+  },
+  "val": {
+    "split": "val_data.npz",
+    "total_flows": 151,
+    "vpn_flows": 0,
+    "nonvpn_flows": 151,
+    "vpn_ratio": 0.0,
+    "tensor_shape": [
+      151,
+      2,
+      64
+    ],
+    "duration_seconds": 0.2
+  },
+  "test": {
+    "split": "test_data.npz",
+    "total_flows": 5727,
+    "vpn_flows": 0,
+    "nonvpn_flows": 5727,
+    "vpn_ratio": 0.0,
+    "tensor_shape": [
+      5727,
+      2,
+      64
+    ],
+    "duration_seconds": 0.81
+  }
+}

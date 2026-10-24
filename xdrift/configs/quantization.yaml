@@ -1,0 +1,13 @@
+backend: "qnnpack"  # macOS ARM64 supported engine
+
+ptq:
+  calibration_samples: 1000
+  calibration_strategy: "balanced"  # inspect balanced vs natural
+  qconfig_name: "get_default_qconfig"
+
+qat:
+  epochs: 10
+  lr: 0.0001
+  qconfig_name: "get_default_qat_qconfig"
+
+artifacts_dir: "artifacts/quantized_models"

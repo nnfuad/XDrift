@@ -1,0 +1,52 @@
+{
+  "audit_metadata": {
+    "framework": "Independent Research Auditor Protocol",
+    "status": "QUALIFIED_EMPIRICAL_AUDIT_COMPLETE",
+    "replaces_blanket_pass": true,
+    "date": "2026-10-21"
+  },
+  "verified_reproducible_components": {
+    "dataset_checksums": {
+      "status": "VERIFIED",
+      "details": "All 3 splits (train, val, test) matched SHA-256 hashes in Croissant metadata exactly. 0 NaN, infinite, or missing values."
+    },
+    "prediction_provenance": {
+      "status": "VERIFIED",
+      "details": "Zero prediction mismatches across all 8,325 test flows when loading disk checkpoints (models_final/fp32_reference.pt, ptq_int8_traced.pt, qat_int8_deploy_traced.pt). Max prob diff = 0.00e+00."
+    },
+    "confusion_matrix_arithmetic": {
+      "status": "VERIFIED",
+      "details": "Independent re-computation from raw prediction arrays reproduces all reported metrics (FP32 Acc 96.67%, PTQ 96.74%, QAT 97.00%) with 100% consistency across CSV, NPZ, and Markdown tables."
+    },
+    "prediction_agreement": {
+      "status": "VERIFIED",
+      "details": "Pairwise agreement is 99.74% (FP32 vs PTQ) and 99.56% (FP32 vs QAT). Exactly 48 test flows exhibit disagreement across the 3 models (44 Non-VPN, 4 VPN)."
+    },
+    "bootstrap_uncertainty_and_tie_correction": {
+      "status": "VERIFIED",
+      "details": "10,000 paired bootstrap resamples with mid-p tie correction (Davison & Hinkley, 1997) and Benjamini-Hochberg FDR multiple testing adjustment. All empirical p-values bounded in [0, 1]."
+    },
+    "attribution_tensor_alignment": {
+      "status": "VERIFIED",
+      "details": "KernelSHAP (746, 128) and Captum IG (50, 2, 64) raw tensors verified with active packet masking (L active features)."
+    }
+  },
+  "unresolved_structural_limitations": {
+    "host_and_session_independence": {
+      "status": "UNVERIFIED_DATASET_LIMITATION",
+      "details": "Raw 5-tuple IP/port addresses and PCAP capture timestamps are not present in processed NPZ files. Evaluation is limited to stratified flow-level partitions; session-level grouping independence cannot be established."
+    },
+    "causal_mechanism_of_drift": {
+      "status": "OBSERVATIONAL_NOT_CAUSAL",
+      "details": "Substantially lower Top-5 attribution overlap on VPN flows (0.3032 vs 0.6959) is strongly confounded by sequence length and combinatorial candidate space expansion (R^2 = 0.448). Integer rounding is not proven as the sole causal driver."
+    },
+    "gradient_explainer_surrogate_assumption": {
+      "status": "METHODOLOGICAL_CONSTRAINT",
+      "details": "Deployed INT8 graphs are non-differentiable; Integrated Gradients requires differentiable FakeQuantize models with Straight-Through Estimators (STE) as continuous proxies, which smooth over discrete thresholds."
+    },
+    "explainer_sampling_budget_sensitivity": {
+      "status": "METHODOLOGICAL_CONSTRAINT",
+      "details": "KernelSHAP uses an idle zero baseline with finite sampling budget (100 perturbations/flow), which exhibits non-trivial sampling stochasticity (rho = 0.2767 +/- 0.2790) on 128 features."
+    }
+  }
+}

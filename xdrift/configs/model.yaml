@@ -1,0 +1,25 @@
+architecture:
+  name: "Compact1DCNN"
+  in_channels: 2
+  sequence_length: 64
+  blocks:
+    block1:
+      conv_out_channels: 32
+      conv_kernel_size: 5
+      conv_padding: 2
+      pool_kernel_size: 2
+    block2:
+      conv_out_channels: 64
+      conv_kernel_size: 5
+      conv_padding: 2
+      pool_kernel_size: 2
+    block3:
+      conv_out_channels: 128
+      conv_kernel_size: 3
+      conv_padding: 1
+      adaptive_avg_pool: 1
+  classifier:
+    dense_units: 64
+    dropout: 0.3
+    num_classes: 1  # Binary logit
+expected_parameter_count: 44129

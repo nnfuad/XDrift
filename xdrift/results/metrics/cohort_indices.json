@@ -1,0 +1,702 @@
+[
+  {
+    "cohort_index": 0,
+    "test_index": 9843,
+    "flow_id": "vpn_bittorrent_10.8.8.130:51413_176.14.246.0:35691_p17_s0",
+    "capture_id": "vpn_bittorrent",
+    "label": 1
+  },
+  {
+    "cohort_index": 1,
+    "test_index": 4517,
+    "flow_id": "email1a_131.202.240.102:59101_224.0.0.252:5355_p17_s0",
+    "capture_id": "email1a",
+    "label": 0
+  },
+  {
+    "cohort_index": 2,
+    "test_index": 8208,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:13468_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 3,
+    "test_index": 12713,
+    "flow_id": "scp1_fe800000000000009897a90bafe17058:53187_ff020000000000000000000000010003:5355_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 4,
+    "test_index": 13942,
+    "flow_id": "scp1_131.202.6.3:53_131.202.240.101:17967_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 5,
+    "test_index": 1278,
+    "flow_id": "email1b_131.202.240.102:59179_224.0.0.252:5355_p17_s0",
+    "capture_id": "email1b",
+    "label": 0
+  },
+  {
+    "cohort_index": 6,
+    "test_index": 9894,
+    "flow_id": "vpn_bittorrent_10.8.8.130:1307_198.7.63.141:53_p17_s0",
+    "capture_id": "vpn_bittorrent",
+    "label": 1
+  },
+  {
+    "cohort_index": 7,
+    "test_index": 14412,
+    "flow_id": "scp1_fe8000000000000021a0b1cea1981da8:56801_ff020000000000000000000000010003:5355_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 8,
+    "test_index": 8052,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:31358_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 9,
+    "test_index": 6084,
+    "flow_id": "email1a_fe80000000000000e47f18527f900e5c:62756_ff020000000000000000000000010003:5355_p17_s0",
+    "capture_id": "email1a",
+    "label": 0
+  },
+  {
+    "cohort_index": 10,
+    "test_index": 433,
+    "flow_id": "email2b_10.0.2.15:49539_64.4.23.153:40033_p17_s1",
+    "capture_id": "email2b",
+    "label": 0
+  },
+  {
+    "cohort_index": 11,
+    "test_index": 13797,
+    "flow_id": "scp1_131.202.6.3:53_131.202.240.101:55904_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 12,
+    "test_index": 16775,
+    "flow_id": "scp1_fe80000000000000950a95f9f115f84a:546_ff020000000000000000000000010002:547_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 13,
+    "test_index": 9214,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:64497_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 14,
+    "test_index": 9778,
+    "flow_id": "vpn_bittorrent_10.8.8.130:43530_207.241.236.176:80_p6_s0",
+    "capture_id": "vpn_bittorrent",
+    "label": 1
+  },
+  {
+    "cohort_index": 15,
+    "test_index": 9933,
+    "flow_id": "vpn_bittorrent_10.8.8.130:52073_207.241.227.82:80_p6_s0",
+    "capture_id": "vpn_bittorrent",
+    "label": 1
+  },
+  {
+    "cohort_index": 16,
+    "test_index": 9385,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:16998_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 17,
+    "test_index": 2555,
+    "flow_id": "email1b_fe800000000000002c5ae25e653f8c01:51178_ff020000000000000000000000010003:5355_p17_s0",
+    "capture_id": "email1b",
+    "label": 0
+  },
+  {
+    "cohort_index": 18,
+    "test_index": 1379,
+    "flow_id": "email1b_131.202.240.242:59251_224.0.0.252:5355_p17_s0",
+    "capture_id": "email1b",
+    "label": 0
+  },
+  {
+    "cohort_index": 19,
+    "test_index": 16149,
+    "flow_id": "scp1_131.202.243.49:54262_224.0.0.252:5355_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 20,
+    "test_index": 12687,
+    "flow_id": "scp1_fe800000000000009897a90bafe17058:56100_ff020000000000000000000000010003:5355_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 21,
+    "test_index": 7712,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:53649_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 22,
+    "test_index": 15953,
+    "flow_id": "scp1_131.202.242.93:59317_224.0.0.252:5355_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 23,
+    "test_index": 9178,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:14136_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 24,
+    "test_index": 2118,
+    "flow_id": "email1b_fe800000000000007d39f86ffc49f07c:49915_ff020000000000000000000000010003:5355_p17_s0",
+    "capture_id": "email1b",
+    "label": 0
+  },
+  {
+    "cohort_index": 25,
+    "test_index": 9514,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:10262_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 26,
+    "test_index": 7601,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:12828_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 27,
+    "test_index": 17417,
+    "flow_id": "scp1_131.202.6.3:53_131.202.240.101:46973_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 28,
+    "test_index": 12798,
+    "flow_id": "scp1_fe800000000000009897a90bafe17058:49996_ff020000000000000000000000010003:5355_p17_s1",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 29,
+    "test_index": 19427,
+    "flow_id": "scp1_131.202.243.9:62401_224.0.0.252:5355_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 30,
+    "test_index": 6571,
+    "flow_id": "icq_chat_3b_131.202.240.242:60260_224.0.0.252:5355_p17_s0",
+    "capture_id": "icq_chat_3b",
+    "label": 0
+  },
+  {
+    "cohort_index": 31,
+    "test_index": 11188,
+    "flow_id": "scp1_fe8000000000000021a0b1cea1981da8:49329_ff020000000000000000000000010003:5355_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 32,
+    "test_index": 5195,
+    "flow_id": "email1a_fe800000000000002c5ae25e653f8c01:54821_ff020000000000000000000000010003:5355_p17_s0",
+    "capture_id": "email1a",
+    "label": 0
+  },
+  {
+    "cohort_index": 33,
+    "test_index": 12454,
+    "flow_id": "scp1_131.202.6.3:53_131.202.240.101:3286_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 34,
+    "test_index": 10867,
+    "flow_id": "scp1_131.202.242.93:52830_224.0.0.252:5355_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 35,
+    "test_index": 8044,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:26226_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 36,
+    "test_index": 9533,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:1054_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 37,
+    "test_index": 9438,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:42745_216.58.219.238:443_p6_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 38,
+    "test_index": 8457,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:9815_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 39,
+    "test_index": 11313,
+    "flow_id": "scp1_fe800000000000009897a90bafe17058:65362_ff020000000000000000000000010003:5355_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 40,
+    "test_index": 8258,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:52921_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 41,
+    "test_index": 13976,
+    "flow_id": "scp1_74.217.78.194:80_131.202.240.101:57673_p6_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 42,
+    "test_index": 8618,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:22817_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 43,
+    "test_index": 8443,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:7733_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 44,
+    "test_index": 7745,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:14032_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 45,
+    "test_index": 9264,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:26556_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 46,
+    "test_index": 1010,
+    "flow_id": "email1b_131.202.243.49:55172_224.0.0.252:5355_p17_s0",
+    "capture_id": "email1b",
+    "label": 0
+  },
+  {
+    "cohort_index": 47,
+    "test_index": 6293,
+    "flow_id": "email1a_131.202.240.185:55700_224.0.0.252:5355_p17_s0",
+    "capture_id": "email1a",
+    "label": 0
+  },
+  {
+    "cohort_index": 48,
+    "test_index": 7798,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:21977_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 49,
+    "test_index": 4679,
+    "flow_id": "email1a_131.202.242.93:51819_224.0.0.252:5355_p17_s0",
+    "capture_id": "email1a",
+    "label": 0
+  },
+  {
+    "cohort_index": 50,
+    "test_index": 7536,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:42610_173.194.123.70:80_p6_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 51,
+    "test_index": 8020,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:28837_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 52,
+    "test_index": 9717,
+    "flow_id": "vpn_bittorrent_10.8.8.130:43462_207.241.236.176:80_p6_s0",
+    "capture_id": "vpn_bittorrent",
+    "label": 1
+  },
+  {
+    "cohort_index": 53,
+    "test_index": 2348,
+    "flow_id": "email1b_78.46.223.24:53_131.202.240.87:55279_p17_s0",
+    "capture_id": "email1b",
+    "label": 0
+  },
+  {
+    "cohort_index": 54,
+    "test_index": 7919,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:62678_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 55,
+    "test_index": 8664,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:16041_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 56,
+    "test_index": 7817,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:2671_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 57,
+    "test_index": 8238,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:64727_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 58,
+    "test_index": 9706,
+    "flow_id": "vpn_bittorrent_10.8.8.130:43463_207.241.236.176:80_p6_s0",
+    "capture_id": "vpn_bittorrent",
+    "label": 1
+  },
+  {
+    "cohort_index": 59,
+    "test_index": 8514,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:23228_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 60,
+    "test_index": 7663,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:51312_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 61,
+    "test_index": 9287,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:5727_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 62,
+    "test_index": 2730,
+    "flow_id": "email1b_fe800000000000009897a90bafe17058:64531_ff020000000000000000000000010003:5355_p17_s0",
+    "capture_id": "email1b",
+    "label": 0
+  },
+  {
+    "cohort_index": 63,
+    "test_index": 10433,
+    "flow_id": "scp1_131.202.6.3:53_131.202.240.101:43550_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 64,
+    "test_index": 216,
+    "flow_id": "email2a_10.0.2.15:15685_109.67.152.59:29566_p17_s0",
+    "capture_id": "email2a",
+    "label": 0
+  },
+  {
+    "cohort_index": 65,
+    "test_index": 4817,
+    "flow_id": "email1a_131.202.240.185:62960_224.0.0.252:5355_p17_s0",
+    "capture_id": "email1a",
+    "label": 0
+  },
+  {
+    "cohort_index": 66,
+    "test_index": 2238,
+    "flow_id": "email1b_131.202.240.102:54190_224.0.0.252:5355_p17_s0",
+    "capture_id": "email1b",
+    "label": 0
+  },
+  {
+    "cohort_index": 67,
+    "test_index": 7435,
+    "flow_id": "vimeo4_131.202.240.150:53192_173.194.123.123:443_p6_s0",
+    "capture_id": "vimeo4",
+    "label": 0
+  },
+  {
+    "cohort_index": 68,
+    "test_index": 9037,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:33846_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 69,
+    "test_index": 15786,
+    "flow_id": "scp1_131.202.6.3:53_131.202.240.101:13891_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 70,
+    "test_index": 15494,
+    "flow_id": "scp1_fe800000000000002c5ae25e653f8c01:51480_ff020000000000000000000000010003:5355_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 71,
+    "test_index": 18523,
+    "flow_id": "scp1_fe800000000000009897a90bafe17058:63592_ff020000000000000000000000010003:5355_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 72,
+    "test_index": 3587,
+    "flow_id": "email1a_131.202.240.87:50916_224.0.0.252:5355_p17_s0",
+    "capture_id": "email1a",
+    "label": 0
+  },
+  {
+    "cohort_index": 73,
+    "test_index": 19324,
+    "flow_id": "scp1_69.16.175.42:80_131.202.240.101:42016_p6_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 74,
+    "test_index": 2875,
+    "flow_id": "email1b_131.202.240.102:55311_224.0.0.252:5355_p17_s0",
+    "capture_id": "email1b",
+    "label": 0
+  },
+  {
+    "cohort_index": 75,
+    "test_index": 7758,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:40850_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 76,
+    "test_index": 17976,
+    "flow_id": "scp1_fe800000000000002c5ae25e653f8c01:53347_ff020000000000000000000000010003:5355_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 77,
+    "test_index": 10044,
+    "flow_id": "vpn_bittorrent_10.8.8.130:51413_184.99.72.237:6881_p17_s0",
+    "capture_id": "vpn_bittorrent",
+    "label": 1
+  },
+  {
+    "cohort_index": 78,
+    "test_index": 9507,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:54852_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 79,
+    "test_index": 2868,
+    "flow_id": "email1b_fe80000000000000d538523385c7aee2:57655_ff020000000000000000000000010003:5355_p17_s0",
+    "capture_id": "email1b",
+    "label": 0
+  },
+  {
+    "cohort_index": 80,
+    "test_index": 8572,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:44306_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 81,
+    "test_index": 8554,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:13191_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 82,
+    "test_index": 5376,
+    "flow_id": "email1a_131.202.240.102:62555_224.0.0.252:5355_p17_s0",
+    "capture_id": "email1a",
+    "label": 0
+  },
+  {
+    "cohort_index": 83,
+    "test_index": 9231,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:24353_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 84,
+    "test_index": 7787,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:26937_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 85,
+    "test_index": 14733,
+    "flow_id": "scp1_131.202.240.185:61207_224.0.0.252:5355_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 86,
+    "test_index": 3815,
+    "flow_id": "email1a_131.202.243.21:59994_224.0.0.252:5355_p17_s0",
+    "capture_id": "email1a",
+    "label": 0
+  },
+  {
+    "cohort_index": 87,
+    "test_index": 8896,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:61071_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 88,
+    "test_index": 8354,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:42399_173.194.123.0:443_p6_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 89,
+    "test_index": 20931,
+    "flow_id": "vpn_netflix_A_10.8.8.138:23079_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_netflix_A",
+    "label": 1
+  },
+  {
+    "cohort_index": 90,
+    "test_index": 669,
+    "flow_id": "email1b_131.202.240.66:59769_224.0.0.252:5355_p17_s0",
+    "capture_id": "email1b",
+    "label": 0
+  },
+  {
+    "cohort_index": 91,
+    "test_index": 16921,
+    "flow_id": "scp1_131.202.6.3:53_131.202.240.101:59716_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 92,
+    "test_index": 13773,
+    "flow_id": "scp1_131.202.243.9:55598_224.0.0.252:5355_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 93,
+    "test_index": 8996,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:54245_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 94,
+    "test_index": 8697,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:20108_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 95,
+    "test_index": 8806,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:47414_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 96,
+    "test_index": 20919,
+    "flow_id": "vpn_netflix_A_10.8.8.138:38033_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_netflix_A",
+    "label": 1
+  },
+  {
+    "cohort_index": 97,
+    "test_index": 17704,
+    "flow_id": "scp1_fe80000000000000649d28f4e2767158:56736_ff020000000000000000000000010003:5355_p17_s0",
+    "capture_id": "scp1",
+    "label": 0
+  },
+  {
+    "cohort_index": 98,
+    "test_index": 8906,
+    "flow_id": "vpn_hangouts_audio2_10.8.0.10:35243_131.202.244.3:53_p17_s0",
+    "capture_id": "vpn_hangouts_audio2",
+    "label": 1
+  },
+  {
+    "cohort_index": 99,
+    "test_index": 9736,
+    "flow_id": "vpn_bittorrent_10.8.8.130:33813_207.241.227.212:80_p6_s0",
+    "capture_id": "vpn_bittorrent",
+    "label": 1
+  }
+]

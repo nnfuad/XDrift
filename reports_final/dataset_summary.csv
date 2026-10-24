@@ -1,0 +1,4 @@
+Split,Total Samples,VPN Samples,Non-VPN Samples,VPN Ratio (%),Tensor Dimensions,Data Type,Missing/NaN Values,Non-Finite (Inf),SHA-256 Verified
+Train,38848,1733,37115,4.46%,2 × 64,float32,0,0,True
+Val,8325,373,7952,4.48%,2 × 64,float32,0,0,True
+Test,8325,373,7952,4.48%,2 × 64,float32,0,0,True

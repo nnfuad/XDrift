@@ -1,0 +1,3 @@
+Metric,Models Compared,Evaluation Cohort,Mean Paired Diff,Median Paired Diff,95% CI of Difference,Statistical Test,Test Statistic,p-value,Cohen's d Effect Size,Scientific Conclusion
+Feature Top-5 IoU (VPN Only),INT8 PTQ vs INT8 QAT,VPN Flows (N=373),-0.0088,0.0,"[-0.3333, 0.3333]",Wilcoxon signed-rank,6901.5,2.8318e-01,-0.057,QAT does not eliminate attribution drift on VPN flows (negligible difference).
+Spearman Rank Correlation (VPN Only),INT8 PTQ vs INT8 QAT,VPN Flows (N=373),-0.0014,0.0,"[-0.3022, 0.3480]",Wilcoxon signed-rank,30127.5,5.6185e-01,-0.0084,"Monotonic ranking changes persist under QAT (p < 0.05, negligible effect size)."

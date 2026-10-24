@@ -1,0 +1,9 @@
+{
+  "seed_42": {
+    "best_epoch": 4,
+    "best_val_loss": 1.7758489817735694,
+    "best_val_pr_auc": 0.34834187464234767,
+    "validation_threshold": 0.9,
+    "training_time_seconds": 666.1
+  }
+}

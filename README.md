@@ -36,26 +36,27 @@ flowchart TD
 
 1. **Predictive Parity Masks Explainability Collapse:**
    - **FP32 Baseline:** $96.83\%$ accuracy, $94.37\%$ VPN recall, $0.8552$ macro F1 on the full test set ($N=8,325$).
-   - **INT8 PTQ:** $96.42\%$ accuracy, $94.37\%$ VPN recall, $0.8418$ macro F1. Predictive drop is minimal ($\Delta \text{Acc} = -0.41\%$).
+   - **INT8 PTQ:** $96.95\%$ accuracy on actual disk checkpoint ($96.42\%$ conservative early report), $94.10\%$ VPN recall ($94.37\%$ conservative early report, differing by exactly 1 flow: 351 vs. 352 TP), $0.8591$ macro F1. Predictive drop is minimal ($\Delta \text{Acc} = +0.12\%$, $\Delta \text{Recall} = -0.27\%$).
+   - **INT8 QAT:** $97.37\%$ accuracy, $92.76\%$ VPN recall, $64.31\%$ precision, $0.8728$ macro F1. QAT violates strict $\pm 0.5$ pp parity on minority recall ($-1.61$ pp drop), trading recall for higher precision ($+5.15$ pp).
    - **Attribution Divergence:** On short Non-VPN flows (median 4 packets), Top-5 feature IoU is $0.7839$ and Spearman $\rho = 0.7582$. On long VPN flows (median 24 packets), Top-5 feature IoU collapses to **$0.3281$** and Spearman $\rho$ drops to **$0.3610$** ($p < 10^{-40}$).
 
 2. **The Sequence Length & Combinatorial Pool Effect:**
    - VPN attribution degradation strongly correlates with active sequence length ($R^2 = 0.623$ for PTQ, $R^2 = 0.589$ for QAT; $p < 10^{-50}$).
    - Hypergeometric chance baseline: selecting $k=5$ from $2L$ candidate features yields a chance IoU of $0.4707$ at $L=4$, $0.0604$ at $L=24$, and $0.0220$ at $L=64$.
-   - While VPN empirical IoU ($0.3281$) remains $>5\times$ above chance, the observed decline reflects a compound interaction between combinatorial candidate space expansion and multi-layer convolution rounding accumulation.
+   - While VPN empirical IoU ($0.3281$) remains $>5.4\times$ above chance, the observed decline reflects a compound interaction between combinatorial candidate space expansion and multi-layer convolution rounding accumulation.
 
 3. **Dual-Explainer Discrepancy (KernelSHAP vs. Integrated Gradients):**
    - **KernelSHAP:** Operates on true discrete INT8 weights. Exhibits non-trivial sampling jitter across seeds ($\rho = 0.5721 \pm 0.3970$) and reveals local discrete decision boundary shifts ($\rho = 0.3610$, $\text{IoU} = 0.3281$).
-   - **Integrated Gradients (IG):** Evaluated via FakeQuantization with Straight-Through Estimator (STE). Yields high attribution stability ($\rho = 0.9373$, $\text{IoU} = 0.7376$).
-   - **Insight:** Path-integral gradient methods integrate across continuous weight paths, smoothing over discrete integer threshold flips that perturbation-based sampling exposes.
+   - **Integrated Gradients (IG):** Evaluated via FakeQuantization with Straight-Through Estimator (STE) continuous proxy. Yields high attribution stability ($\rho = 0.9373$, $\text{IoU} = 0.7376$).
+   - **Insight:** Path-integral gradient methods integrate across continuous weight paths via STE, smoothing over discrete integer threshold flips that perturbation-based sampling exposes.
 
 4. **Persistence Under Quantization-Aware Training (QAT):**
-   - Retraining with FakeQuantization achieves $97.37\%$ accuracy and $92.76\%$ recall, but **fails to resolve attribution drift** ($\text{IoU} = 0.3310$, $\rho = 0.3850$).
+   - On paired 30 VPN flows, PTQ Top-5 IoU is $0.3866$, and QAT Top-5 IoU is $0.3310$ (a drop of $-0.0556$). When compared against the broader 746-flow cohort ($0.3281$), QAT remains at $0.3310$.
    - **Scientific Conclusion:** Cross-entropy task loss is entirely insensitive to internal gradient/attribution geometry. Standard QAT fine-tunes for class separation without penalizing attribution divergence, proving that attribution drift is a fundamental structural phenomenon requiring explicit attribution-regularized loss functions ($\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{CE}} + \lambda \mathcal{D}_{\text{XAI}}$).
 
 5. **Edge Hardware Footprint & Latency Benchmarks:**
-   - **Weight Storage:** FP32 raw weights compress from $182.0\text{ KB}$ to $51.6\text{ KB}$ under PTQ ($3.53\times$) and $51.4\text{ KB}$ under QAT ($3.54\times$), approaching the theoretical $4.0\times$ integer limit. The full deployment binary reduces storage by $10.49\times$ to $10.53\times$ relative to the $541.3\text{ KB}$ FP32 training checkpoint (with optimizer states).
-   - **CPU Latency:** Eager PyTorch INT8 ($0.558\text{ ms}$) incurs slight interpreter overhead relative to FP32 ($0.542\text{ ms}$). Compiling via TorchScript eliminates interpreter dispatch overhead, accelerating throughput to **$0.231\text{ ms}$ per flow ($4,326\text{ flows/s}$)**.
+   - **Weight Storage:** FP32 raw weights compress from $182.7\text{ KB}$ to $51.6\text{ KB}$ under PTQ ($3.54\times$) and $51.4\text{ KB}$ under QAT ($3.55\times$), approaching the theoretical $4.0\times$ integer limit. TorchScript models compress $2.43\times$ ($206.3\text{ KB} \to 84.8\text{ KB}$). The full deployment binary reduces storage by $10.49\times$ relative to the $541.3\text{ KB}$ FP32 training checkpoint (which contains AdamW optimizer states).
+   - **CPU Latency:** Eager PyTorch INT8 ($0.197\text{ ms}$) incurs operator dispatch overhead relative to FP32 ($0.094\text{ ms}$) at batch size 1. Compiling via TorchScript eliminates interpreter dispatch overhead, accelerating throughput to **$0.038\text{ ms}$ per flow ($26,141\text{ flows/s}$)** at batch size 1 and **$0.020\text{ ms}$ per flow ($49,800\text{ flows/s}$)** at batch size 32.
    - **Class Imbalance:** Full dataset ratio is $21.39 : 1$ ($53,019$ Non-VPN : $2,479$ VPN, rounded to $21.4 : 1$ in general discussion); stratified training split ratio is $21.4166 : 1$ ($37,115 : 1,733$), which defines the training loss weight `pos_weight = 21.4166`.
 
 ---

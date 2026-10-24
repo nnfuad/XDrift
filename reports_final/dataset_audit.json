@@ -1,0 +1,103 @@
+{
+  "checksum_audit": {
+    "train": {
+      "file": "train_data.npz",
+      "actual_sha256": "5f25966a11cebb7a50b231050e6ff63cad61e9e8479c0669af7172499a5dfabb",
+      "expected_sha256": "5f25966a11cebb7a50b231050e6ff63cad61e9e8479c0669af7172499a5dfabb",
+      "verified": true
+    },
+    "val": {
+      "file": "val_data.npz",
+      "actual_sha256": "7cfe67fbd6cb886ca58ea8c8ea199aa0a549309acf76839afa89165dd058a50d",
+      "expected_sha256": "7cfe67fbd6cb886ca58ea8c8ea199aa0a549309acf76839afa89165dd058a50d",
+      "verified": true
+    },
+    "test": {
+      "file": "test_data.npz",
+      "actual_sha256": "487b3b28ed6b7a58d596a33a27e85f9d6efcd45deb2f65405ed32804078579a5",
+      "expected_sha256": "487b3b28ed6b7a58d596a33a27e85f9d6efcd45deb2f65405ed32804078579a5",
+      "verified": true
+    }
+  },
+  "leakage_audit": {
+    "train_val_duplicates": 26,
+    "train_test_duplicates": 34,
+    "val_test_duplicates": 16,
+    "partition_type": "Stratified flow-level split (70/15/15)",
+    "leakage_risk_assessment": "Low exact duplication; flow-level independence maintained."
+  },
+  "split_statistics": {
+    "train": {
+      "file_size_mb": 1.28,
+      "total_samples": 38848,
+      "input_shape": [
+        38848,
+        2,
+        64
+      ],
+      "dtype": "float32",
+      "vpn_count": 1733,
+      "nonvpn_count": 37115,
+      "vpn_percentage": 4.46,
+      "has_nan": false,
+      "has_inf": false,
+      "ch0_min": -1.0,
+      "ch0_max": 1.0,
+      "ch0_mean": 0.0008666862268000841,
+      "ch0_std": 0.09946704655885696,
+      "ch1_min": 0.0,
+      "ch1_max": 0.778151273727417,
+      "ch1_mean": 0.029572375118732452,
+      "ch1_std": 0.13384142518043518,
+      "num_apps": 25
+    },
+    "val": {
+      "file_size_mb": 0.27,
+      "total_samples": 8325,
+      "input_shape": [
+        8325,
+        2,
+        64
+      ],
+      "dtype": "float32",
+      "vpn_count": 373,
+      "nonvpn_count": 7952,
+      "vpn_percentage": 4.48,
+      "has_nan": false,
+      "has_inf": false,
+      "ch0_min": -1.0,
+      "ch0_max": 1.0,
+      "ch0_mean": 0.0013559460639953613,
+      "ch0_std": 0.09758391231298447,
+      "ch1_min": 0.0,
+      "ch1_max": 0.778151273727417,
+      "ch1_mean": 0.029571622610092163,
+      "ch1_std": 0.13382326066493988,
+      "num_apps": 24
+    },
+    "test": {
+      "file_size_mb": 0.28,
+      "total_samples": 8325,
+      "input_shape": [
+        8325,
+        2,
+        64
+      ],
+      "dtype": "float32",
+      "vpn_count": 373,
+      "nonvpn_count": 7952,
+      "vpn_percentage": 4.48,
+      "has_nan": false,
+      "has_inf": false,
+      "ch0_min": -1.0,
+      "ch0_max": 1.0,
+      "ch0_mean": 0.0019638240337371826,
+      "ch0_std": 0.09676942974328995,
+      "ch1_min": 0.0,
+      "ch1_max": 0.778151273727417,
+      "ch1_mean": 0.029578035697340965,
+      "ch1_std": 0.13405132293701172,
+      "num_apps": 24
+    }
+  }
+}

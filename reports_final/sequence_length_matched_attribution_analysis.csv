@@ -1,0 +1,3 @@
+Metric,Matched Pairs,Matching Rule,Non-VPN Mean,Non-VPN Median,VPN Mean,VPN Median,Mean Paired Diff (VPN - Non-VPN),95% Paired Bootstrap CI,Wilcoxon Signed-Rank p,Paired Permutation p,Statistical Inference
+Top-5 IoU,120,Exact packet count L without replacement,0.4652,0.4286,0.5312,0.6667,0.066,"[+0.0254, +0.1065]",0.0053,0.0018,"Significant positive difference favoring VPN (paired p = 0.0053, 95% CI [+0.0254, +0.1065]); refutes claim that VPN suffers worse attribution overlap"
+Spearman rho,120,Exact packet count L without replacement,0.4918,0.5718,0.5852,0.6815,0.0934,"[+0.0557, +0.1323]",0.0,0.0,"Significant positive difference favoring VPN (paired p < 0.0001, 95% CI [+0.0557, +0.1323]); refutes claim that VPN suffers worse ranking correlation"

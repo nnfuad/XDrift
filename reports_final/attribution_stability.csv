@@ -1,0 +1,2 @@
+Explainer,Seeds Evaluated,Benchmark Flows,Inter-Seed Spearman rho (Mean ± Std),Inter-Seed Top-5 IoU (Mean ± Std),Interpretation
+KernelSHAP (FP32 Model),"[42, 101, 2024, 777, 999]",20,0.2767 ± 0.2790,0.2625 ± 0.2985,KernelSHAP exhibits non-trivial sampling stochasticity on 128 features.

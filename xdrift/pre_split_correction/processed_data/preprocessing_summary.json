@@ -1,0 +1,1331 @@
+{
+  "train": {
+    "split": "train_data.npz",
+    "files_processed": 99,
+    "files_failed": 0,
+    "total_packets_read": 19449867,
+    "total_packets_rejected": 438004,
+    "total_flows": 264340,
+    "vpn_flows": 7018,
+    "nonvpn_flows": 257322,
+    "vpn_ratio": 0.02654914125747144,
+    "seq_len_mean": 2.5660399485511083,
+    "seq_len_median": 2.0,
+    "seq_len_min": 2,
+    "seq_len_max": 64,
+    "tensor_shape": [
+      264340,
+      2,
+      64
+    ],
+    "duration_seconds": 238.48,
+    "per_file_audits": [
+      {
+        "file": "NonVPN-PCAPs-01/AIMchat1.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 29,
+        "total_packets": 404,
+        "accepted_packets": 384,
+        "rejected_packets": 20
+      },
+      {
+        "file": "NonVPN-PCAPs-01/AIMchat2.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 31,
+        "total_packets": 366,
+        "accepted_packets": 358,
+        "rejected_packets": 8
+      },
+      {
+        "file": "NonVPN-PCAPs-02/ICQchat2.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 34,
+        "total_packets": 280,
+        "accepted_packets": 272,
+        "rejected_packets": 8
+      },
+      {
+        "file": "NonVPN-PCAPs-01/aim_chat_3a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 42,
+        "total_packets": 1243,
+        "accepted_packets": 1225,
+        "rejected_packets": 18
+      },
+      {
+        "file": "NonVPN-PCAPs-01/aim_chat_3b.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 324,
+        "total_packets": 2856,
+        "accepted_packets": 2799,
+        "rejected_packets": 57
+      },
+      {
+        "file": "NonVPN-PCAPs-01/facebook_audio1a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 159,
+        "total_packets": 46061,
+        "accepted_packets": 45973,
+        "rejected_packets": 88
+      },
+      {
+        "file": "NonVPN-PCAPs-01/facebook_audio1b.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 44,
+        "total_packets": 47677,
+        "accepted_packets": 47304,
+        "rejected_packets": 373
+      },
+      {
+        "file": "NonVPN-PCAPs-01/facebook_audio2a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 258,
+        "total_packets": 91815,
+        "accepted_packets": 91650,
+        "rejected_packets": 165
+      },
+      {
+        "file": "NonVPN-PCAPs-01/facebook_chat_4a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 70,
+        "total_packets": 2192,
+        "accepted_packets": 2186,
+        "rejected_packets": 6
+      },
+      {
+        "file": "NonVPN-PCAPs-01/facebook_chat_4b.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 319,
+        "total_packets": 5527,
+        "accepted_packets": 5485,
+        "rejected_packets": 42
+      },
+      {
+        "file": "NonVPN-PCAPs-01/facebook_audio2b.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 42,
+        "total_packets": 94092,
+        "accepted_packets": 93365,
+        "rejected_packets": 727
+      },
+      {
+        "file": "NonVPN-PCAPs-01/facebook_video1a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 179,
+        "total_packets": 156989,
+        "accepted_packets": 156900,
+        "rejected_packets": 89
+      },
+      {
+        "file": "NonVPN-PCAPs-01/facebook_audio3.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 305,
+        "total_packets": 643049,
+        "accepted_packets": 642679,
+        "rejected_packets": 370
+      },
+      {
+        "file": "NonVPN-PCAPs-01/facebookchat1.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 35,
+        "total_packets": 1061,
+        "accepted_packets": 1059,
+        "rejected_packets": 2
+      },
+      {
+        "file": "NonVPN-PCAPs-01/facebook_video1b.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 19,
+        "total_packets": 92692,
+        "accepted_packets": 92522,
+        "rejected_packets": 170
+      },
+      {
+        "file": "NonVPN-PCAPs-01/facebook_audio4.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 94491,
+        "total_packets": 1040037,
+        "accepted_packets": 930796,
+        "rejected_packets": 109241
+      },
+      {
+        "file": "NonVPN-PCAPs-02/ftps_up_2a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 131,
+        "total_packets": 93433,
+        "accepted_packets": 93423,
+        "rejected_packets": 10
+      },
+      {
+        "file": "NonVPN-PCAPs-02/gmailchat2.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 129,
+        "total_packets": 3143,
+        "accepted_packets": 3141,
+        "rejected_packets": 2
+      },
+      {
+        "file": "NonVPN-PCAPs-02/gmailchat3.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 252,
+        "total_packets": 7329,
+        "accepted_packets": 7300,
+        "rejected_packets": 29
+      },
+      {
+        "file": "NonVPN-PCAPs-02/hangout_chat_4b.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 342,
+        "total_packets": 7587,
+        "accepted_packets": 7533,
+        "rejected_packets": 54
+      },
+      {
+        "file": "NonVPN-PCAPs-02/ftps_up_2b.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 62,
+        "total_packets": 93191,
+        "accepted_packets": 93177,
+        "rejected_packets": 14
+      },
+      {
+        "file": "NonVPN-PCAPs-02/hangouts_audio1a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 885,
+        "total_packets": 87334,
+        "accepted_packets": 87220,
+        "rejected_packets": 114
+      },
+      {
+        "file": "NonVPN-PCAPs-02/hangouts_audio1b.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 68,
+        "total_packets": 82393,
+        "accepted_packets": 82371,
+        "rejected_packets": 22
+      },
+      {
+        "file": "NonVPN-PCAPs-02/hangouts_audio2a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 856,
+        "total_packets": 85281,
+        "accepted_packets": 85161,
+        "rejected_packets": 120
+      },
+      {
+        "file": "NonVPN-PCAPs-02/hangouts_audio2b.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 74,
+        "total_packets": 75008,
+        "accepted_packets": 74986,
+        "rejected_packets": 22
+      },
+      {
+        "file": "NonVPN-PCAPs-02/hangouts_audio3.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 263,
+        "total_packets": 609720,
+        "accepted_packets": 609084,
+        "rejected_packets": 636
+      },
+      {
+        "file": "NonVPN-PCAPs-02/ftps_down_1b.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 67,
+        "total_packets": 1942866,
+        "accepted_packets": 1942799,
+        "rejected_packets": 67
+      },
+      {
+        "file": "NonVPN-PCAPs-02/hangouts_audio4.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 88628,
+        "total_packets": 1019454,
+        "accepted_packets": 913993,
+        "rejected_packets": 105461
+      },
+      {
+        "file": "NonVPN-PCAPs-02/netflix2.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 88,
+        "total_packets": 51826,
+        "accepted_packets": 51811,
+        "rejected_packets": 15
+      },
+      {
+        "file": "NonVPN-PCAPs-02/ftps_down_1a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 514,
+        "total_packets": 5743493,
+        "accepted_packets": 5743422,
+        "rejected_packets": 71
+      },
+      {
+        "file": "NonVPN-PCAPs-02/netflix3.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 41,
+        "total_packets": 122380,
+        "accepted_packets": 122333,
+        "rejected_packets": 47
+      },
+      {
+        "file": "NonVPN-PCAPs-02/hangouts_video1b.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 74,
+        "total_packets": 439402,
+        "accepted_packets": 439376,
+        "rejected_packets": 26
+      },
+      {
+        "file": "NonVPN-PCAPs-03/scpDown1.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 14,
+        "total_packets": 1931,
+        "accepted_packets": 1930,
+        "rejected_packets": 1
+      },
+      {
+        "file": "NonVPN-PCAPs-03/scpDown2.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 11,
+        "total_packets": 3576,
+        "accepted_packets": 3576,
+        "rejected_packets": 0
+      },
+      {
+        "file": "NonVPN-PCAPs-03/scpDown4.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 15,
+        "total_packets": 166,
+        "accepted_packets": 166,
+        "rejected_packets": 0
+      },
+      {
+        "file": "NonVPN-PCAPs-02/netflix4.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 77,
+        "total_packets": 73147,
+        "accepted_packets": 73101,
+        "rejected_packets": 46
+      },
+      {
+        "file": "NonVPN-PCAPs-03/scpDown3.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 14,
+        "total_packets": 15390,
+        "accepted_packets": 15388,
+        "rejected_packets": 2
+      },
+      {
+        "file": "NonVPN-PCAPs-03/scpDown5.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 16,
+        "total_packets": 85018,
+        "accepted_packets": 85018,
+        "rejected_packets": 0
+      },
+      {
+        "file": "NonVPN-PCAPs-03/scpUp3.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 17,
+        "total_packets": 144,
+        "accepted_packets": 143,
+        "rejected_packets": 1
+      },
+      {
+        "file": "NonVPN-PCAPs-03/scpDown6.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 17,
+        "total_packets": 82941,
+        "accepted_packets": 82940,
+        "rejected_packets": 1
+      },
+      {
+        "file": "NonVPN-PCAPs-03/scpUp5.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 15,
+        "total_packets": 198,
+        "accepted_packets": 198,
+        "rejected_packets": 0
+      },
+      {
+        "file": "NonVPN-PCAPs-03/scpUp1.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 17,
+        "total_packets": 71326,
+        "accepted_packets": 71307,
+        "rejected_packets": 19
+      },
+      {
+        "file": "NonVPN-PCAPs-03/sftpDown1.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 25,
+        "total_packets": 1995,
+        "accepted_packets": 1981,
+        "rejected_packets": 14
+      },
+      {
+        "file": "NonVPN-PCAPs-03/scpUp2.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 18,
+        "total_packets": 130938,
+        "accepted_packets": 130925,
+        "rejected_packets": 13
+      },
+      {
+        "file": "NonVPN-PCAPs-03/sftp1.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 33,
+        "total_packets": 446947,
+        "accepted_packets": 446923,
+        "rejected_packets": 24
+      },
+      {
+        "file": "NonVPN-PCAPs-03/scpUp6.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 17,
+        "total_packets": 56508,
+        "accepted_packets": 56507,
+        "rejected_packets": 1
+      },
+      {
+        "file": "NonVPN-PCAPs-03/sftpUp1.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 16,
+        "total_packets": 62966,
+        "accepted_packets": 62952,
+        "rejected_packets": 14
+      },
+      {
+        "file": "NonVPN-PCAPs-03/sftp_down_3a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 14,
+        "total_packets": 95868,
+        "accepted_packets": 95864,
+        "rejected_packets": 4
+      },
+      {
+        "file": "NonVPN-PCAPs-03/sftp_down_3b.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 33,
+        "total_packets": 49526,
+        "accepted_packets": 49514,
+        "rejected_packets": 12
+      },
+      {
+        "file": "NonVPN-PCAPs-03/sftp_up_2a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 27,
+        "total_packets": 107234,
+        "accepted_packets": 107231,
+        "rejected_packets": 3
+      },
+      {
+        "file": "NonVPN-PCAPs-03/sftp_up_2b.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 32,
+        "total_packets": 95785,
+        "accepted_packets": 95775,
+        "rejected_packets": 10
+      },
+      {
+        "file": "NonVPN-PCAPs-03/skype_file1.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 39,
+        "total_packets": 780,
+        "accepted_packets": 774,
+        "rejected_packets": 6
+      },
+      {
+        "file": "NonVPN-PCAPs-03/skype_file4.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 16,
+        "total_packets": 455,
+        "accepted_packets": 443,
+        "rejected_packets": 12
+      },
+      {
+        "file": "NonVPN-PCAPs-03/skype_file2.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 54,
+        "total_packets": 4607,
+        "accepted_packets": 4594,
+        "rejected_packets": 13
+      },
+      {
+        "file": "NonVPN-PCAPs-03/skype_file5.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 17,
+        "total_packets": 1236,
+        "accepted_packets": 1206,
+        "rejected_packets": 30
+      },
+      {
+        "file": "NonVPN-PCAPs-03/skype_audio4.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 151,
+        "total_packets": 256641,
+        "accepted_packets": 256411,
+        "rejected_packets": 230
+      },
+      {
+        "file": "NonVPN-PCAPs-03/skype_file3.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 13,
+        "total_packets": 65323,
+        "accepted_packets": 65268,
+        "rejected_packets": 55
+      },
+      {
+        "file": "NonVPN-PCAPs-03/skype_file6.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 106,
+        "total_packets": 66566,
+        "accepted_packets": 66458,
+        "rejected_packets": 108
+      },
+      {
+        "file": "NonVPN-PCAPs-03/skype_video1a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 25,
+        "total_packets": 140569,
+        "accepted_packets": 140421,
+        "rejected_packets": 148
+      },
+      {
+        "file": "NonVPN-PCAPs-03/skype_file8.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 63807,
+        "total_packets": 777401,
+        "accepted_packets": 712347,
+        "rejected_packets": 65054
+      },
+      {
+        "file": "NonVPN-PCAPs-03/skype_video1b.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 334,
+        "total_packets": 255533,
+        "accepted_packets": 255377,
+        "rejected_packets": 156
+      },
+      {
+        "file": "NonVPN-PCAPs-03/skype_video2a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 49,
+        "total_packets": 283356,
+        "accepted_packets": 283184,
+        "rejected_packets": 172
+      },
+      {
+        "file": "NonVPN-PCAPs-03/spotify3.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 30,
+        "total_packets": 3320,
+        "accepted_packets": 3207,
+        "rejected_packets": 113
+      },
+      {
+        "file": "NonVPN-PCAPs-03/spotify1.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 92,
+        "total_packets": 14442,
+        "accepted_packets": 14332,
+        "rejected_packets": 110
+      },
+      {
+        "file": "NonVPN-PCAPs-03/spotify4.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 74,
+        "total_packets": 22755,
+        "accepted_packets": 22613,
+        "rejected_packets": 142
+      },
+      {
+        "file": "NonVPN-PCAPs-03/skype_video2b.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 184,
+        "total_packets": 842212,
+        "accepted_packets": 841908,
+        "rejected_packets": 304
+      },
+      {
+        "file": "NonVPN-PCAPs-03/voipbuster1b.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 398,
+        "total_packets": 35469,
+        "accepted_packets": 35387,
+        "rejected_packets": 82
+      },
+      {
+        "file": "NonVPN-PCAPs-03/vimeo3.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 115,
+        "total_packets": 31903,
+        "accepted_packets": 31875,
+        "rejected_packets": 28
+      },
+      {
+        "file": "NonVPN-PCAPs-03/vimeo1.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 124,
+        "total_packets": 92705,
+        "accepted_packets": 92659,
+        "rejected_packets": 46
+      },
+      {
+        "file": "VPN-PCAPS-01/vpn_aim_chat1a.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 30,
+        "total_packets": 1168,
+        "accepted_packets": 1121,
+        "rejected_packets": 47
+      },
+      {
+        "file": "NonVPN-PCAPs-03/voipbuster3b.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 290,
+        "total_packets": 34510,
+        "accepted_packets": 34433,
+        "rejected_packets": 77
+      },
+      {
+        "file": "VPN-PCAPS-01/vpn_aim_chat1b.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 13,
+        "total_packets": 1287,
+        "accepted_packets": 1212,
+        "rejected_packets": 75
+      },
+      {
+        "file": "VPN-PCAPS-01/vpn_email2a.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 141,
+        "total_packets": 2707,
+        "accepted_packets": 2573,
+        "rejected_packets": 134
+      },
+      {
+        "file": "VPN-PCAPS-01/vpn_email2b.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 146,
+        "total_packets": 18874,
+        "accepted_packets": 17975,
+        "rejected_packets": 899
+      },
+      {
+        "file": "VPN-PCAPS-01/vpn_facebook_audio2.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 831,
+        "total_packets": 15094,
+        "accepted_packets": 14046,
+        "rejected_packets": 1048
+      },
+      {
+        "file": "VPN-PCAPS-01/vpn_facebook_chat1a.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 504,
+        "total_packets": 8801,
+        "accepted_packets": 8628,
+        "rejected_packets": 173
+      },
+      {
+        "file": "VPN-PCAPS-01/vpn_facebook_chat1b.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 439,
+        "total_packets": 7567,
+        "accepted_packets": 7389,
+        "rejected_packets": 178
+      },
+      {
+        "file": "VPN-PCAPS-01/vpn_ftps_A.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 69,
+        "total_packets": 102569,
+        "accepted_packets": 98670,
+        "rejected_packets": 3899
+      },
+      {
+        "file": "NonVPN-PCAPs-03/voipbuster_4a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 211,
+        "total_packets": 370043,
+        "accepted_packets": 369309,
+        "rejected_packets": 734
+      },
+      {
+        "file": "NonVPN-PCAPs-03/voipbuster_4b.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 1640,
+        "total_packets": 369820,
+        "accepted_packets": 368795,
+        "rejected_packets": 1025
+      },
+      {
+        "file": "VPN-PCAPS-01/vpn_ftps_B.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 47,
+        "total_packets": 88685,
+        "accepted_packets": 78416,
+        "rejected_packets": 10269
+      },
+      {
+        "file": "VPN-PCAPs-02/vpn_icq_chat1a.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 41,
+        "total_packets": 4196,
+        "accepted_packets": 3987,
+        "rejected_packets": 209
+      },
+      {
+        "file": "VPN-PCAPs-02/vpn_icq_chat1b.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 5,
+        "total_packets": 3681,
+        "accepted_packets": 3526,
+        "rejected_packets": 155
+      },
+      {
+        "file": "VPN-PCAPS-01/vpn_hangouts_chat1b.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 1219,
+        "total_packets": 17543,
+        "accepted_packets": 16654,
+        "rejected_packets": 889
+      },
+      {
+        "file": "VPN-PCAPS-01/vpn_hangouts_chat1a.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 1195,
+        "total_packets": 27408,
+        "accepted_packets": 25443,
+        "rejected_packets": 1965
+      },
+      {
+        "file": "VPN-PCAPs-02/vpn_sftp_B.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 11,
+        "total_packets": 20177,
+        "accepted_packets": 18679,
+        "rejected_packets": 1498
+      },
+      {
+        "file": "VPN-PCAPs-02/vpn_skype_chat1a.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 31,
+        "total_packets": 6973,
+        "accepted_packets": 6547,
+        "rejected_packets": 426
+      },
+      {
+        "file": "VPN-PCAPs-02/vpn_sftp_A.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 13,
+        "total_packets": 90905,
+        "accepted_packets": 82101,
+        "rejected_packets": 8804
+      },
+      {
+        "file": "VPN-PCAPs-02/vpn_skype_chat1b.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 24,
+        "total_packets": 7602,
+        "accepted_packets": 7277,
+        "rejected_packets": 325
+      },
+      {
+        "file": "VPN-PCAPs-02/vpn_skype_files1b.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 498,
+        "total_packets": 32817,
+        "accepted_packets": 29883,
+        "rejected_packets": 2934
+      },
+      {
+        "file": "VPN-PCAPs-02/vpn_skype_files1a.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 351,
+        "total_packets": 42936,
+        "accepted_packets": 37508,
+        "rejected_packets": 5428
+      },
+      {
+        "file": "VPN-PCAPs-02/vpn_spotify_A.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 126,
+        "total_packets": 115939,
+        "accepted_packets": 103775,
+        "rejected_packets": 12164
+      },
+      {
+        "file": "VPN-PCAPs-02/vpn_skype_audio1.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 780,
+        "total_packets": 375980,
+        "accepted_packets": 342171,
+        "rejected_packets": 33809
+      },
+      {
+        "file": "VPN-PCAPs-02/vpn_vimeo_A.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 56,
+        "total_packets": 104874,
+        "accepted_packets": 95008,
+        "rejected_packets": 9866
+      },
+      {
+        "file": "VPN-PCAPs-02/vpn_skype_audio2.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 383,
+        "total_packets": 372383,
+        "accepted_packets": 339166,
+        "rejected_packets": 33217
+      },
+      {
+        "file": "NonVPN-PCAPs-03/youtube1.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 154,
+        "total_packets": 7932,
+        "accepted_packets": 7896,
+        "rejected_packets": 36
+      },
+      {
+        "file": "NonVPN-PCAPs-03/youtube3.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 75,
+        "total_packets": 7288,
+        "accepted_packets": 7264,
+        "rejected_packets": 24
+      },
+      {
+        "file": "VPN-PCAPs-02/vpn_vimeo_B.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 65,
+        "total_packets": 215102,
+        "accepted_packets": 192483,
+        "rejected_packets": 22619
+      },
+      {
+        "file": "NonVPN-PCAPs-03/youtube6.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 41,
+        "total_packets": 7948,
+        "accepted_packets": 7938,
+        "rejected_packets": 10
+      }
+    ]
+  },
+  "val": {
+    "split": "val_data.npz",
+    "files_processed": 20,
+    "files_failed": 0,
+    "total_packets_read": 4360857,
+    "total_packets_rejected": 142260,
+    "total_flows": 53698,
+    "vpn_flows": 4328,
+    "nonvpn_flows": 49370,
+    "vpn_ratio": 0.08059890498715036,
+    "seq_len_mean": 2.973239226786845,
+    "seq_len_median": 2.0,
+    "seq_len_min": 2,
+    "seq_len_max": 64,
+    "tensor_shape": [
+      53698,
+      2,
+      64
+    ],
+    "duration_seconds": 30.88,
+    "per_file_audits": [
+      {
+        "file": "NonVPN-PCAPs-02/ICQchat1.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 43,
+        "total_packets": 487,
+        "accepted_packets": 465,
+        "rejected_packets": 22
+      },
+      {
+        "file": "NonVPN-PCAPs-02/hangouts_chat_4a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 108,
+        "total_packets": 5675,
+        "accepted_packets": 5669,
+        "rejected_packets": 6
+      },
+      {
+        "file": "NonVPN-PCAPs-03/sftpDown2.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 30,
+        "total_packets": 4729,
+        "accepted_packets": 4719,
+        "rejected_packets": 10
+      },
+      {
+        "file": "NonVPN-PCAPs-03/skype_audio1a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 92,
+        "total_packets": 60207,
+        "accepted_packets": 60104,
+        "rejected_packets": 103
+      },
+      {
+        "file": "NonVPN-PCAPs-03/skype_audio1b.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 260,
+        "total_packets": 65212,
+        "accepted_packets": 65005,
+        "rejected_packets": 207
+      },
+      {
+        "file": "NonVPN-PCAPs-02/hangouts_video2b.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 97,
+        "total_packets": 742988,
+        "accepted_packets": 742956,
+        "rejected_packets": 32
+      },
+      {
+        "file": "NonVPN-PCAPs-02/hangouts_video2a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 1370,
+        "total_packets": 808344,
+        "accepted_packets": 808125,
+        "rejected_packets": 219
+      },
+      {
+        "file": "NonVPN-PCAPs-03/skype_chat1a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 3469,
+        "total_packets": 53996,
+        "accepted_packets": 33989,
+        "rejected_packets": 20007
+      },
+      {
+        "file": "NonVPN-PCAPs-03/skype_chat1b.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 3480,
+        "total_packets": 53869,
+        "accepted_packets": 34837,
+        "rejected_packets": 19032
+      },
+      {
+        "file": "NonVPN-PCAPs-03/skype_audio3.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 39179,
+        "total_packets": 420634,
+        "accepted_packets": 376199,
+        "rejected_packets": 44435
+      },
+      {
+        "file": "NonVPN-PCAPs-03/vimeo2.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 63,
+        "total_packets": 3038,
+        "accepted_packets": 3031,
+        "rejected_packets": 7
+      },
+      {
+        "file": "NonVPN-PCAPs-03/voipbuster2b.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 322,
+        "total_packets": 34667,
+        "accepted_packets": 34571,
+        "rejected_packets": 96
+      },
+      {
+        "file": "NonVPN-PCAPs-03/skype_file7.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 320,
+        "total_packets": 511268,
+        "accepted_packets": 511006,
+        "rejected_packets": 262
+      },
+      {
+        "file": "VPN-PCAPs-02/vpn_voipbuster1a.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 690,
+        "total_packets": 361469,
+        "accepted_packets": 360956,
+        "rejected_packets": 513
+      },
+      {
+        "file": "VPN-PCAPs-02/vpn_voipbuster1b.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 1037,
+        "total_packets": 363041,
+        "accepted_packets": 362613,
+        "rejected_packets": 428
+      },
+      {
+        "file": "VPN-PCAPs-02/vpn_youtube_A.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 188,
+        "total_packets": 208355,
+        "accepted_packets": 190015,
+        "rejected_packets": 18340
+      },
+      {
+        "file": "NonVPN-PCAPs-03/youtube4.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 243,
+        "total_packets": 39742,
+        "accepted_packets": 39688,
+        "rejected_packets": 54
+      },
+      {
+        "file": "VPN-PCAPS-01/vpn_hangouts_audio1.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 2413,
+        "total_packets": 446669,
+        "accepted_packets": 408300,
+        "rejected_packets": 38369
+      },
+      {
+        "file": "NonVPN-PCAPs-03/youtubeHTML5_1.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 182,
+        "total_packets": 41380,
+        "accepted_packets": 41315,
+        "rejected_packets": 65
+      },
+      {
+        "file": "NonVPN-PCAPs-03/youtube5.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 112,
+        "total_packets": 135087,
+        "accepted_packets": 135034,
+        "rejected_packets": 53
+      }
+    ]
+  },
+  "test": {
+    "split": "test_data.npz",
+    "files_processed": 21,
+    "files_failed": 0,
+    "total_packets_read": 2944365,
+    "total_packets_rejected": 202165,
+    "total_flows": 20971,
+    "vpn_flows": 2693,
+    "nonvpn_flows": 18278,
+    "vpn_ratio": 0.12841543083305518,
+    "seq_len_mean": 5.067283391349959,
+    "seq_len_median": 2.0,
+    "seq_len_min": 2,
+    "seq_len_max": 64,
+    "tensor_shape": [
+      20971,
+      2,
+      64
+    ],
+    "duration_seconds": 63.12,
+    "per_file_audits": [
+      {
+        "file": "NonVPN-PCAPs-01/email2a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 317,
+        "total_packets": 4417,
+        "accepted_packets": 4327,
+        "rejected_packets": 90
+      },
+      {
+        "file": "NonVPN-PCAPs-01/email2b.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 264,
+        "total_packets": 7686,
+        "accepted_packets": 7599,
+        "rejected_packets": 87
+      },
+      {
+        "file": "NonVPN-PCAPs-01/email1b.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 2870,
+        "total_packets": 32566,
+        "accepted_packets": 18661,
+        "rejected_packets": 13905
+      },
+      {
+        "file": "NonVPN-PCAPs-01/facebookchat2.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 27,
+        "total_packets": 434,
+        "accepted_packets": 434,
+        "rejected_packets": 0
+      },
+      {
+        "file": "NonVPN-PCAPs-01/email1a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 2857,
+        "total_packets": 30410,
+        "accepted_packets": 14354,
+        "rejected_packets": 16056
+      },
+      {
+        "file": "NonVPN-PCAPs-01/facebookchat3.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 68,
+        "total_packets": 1726,
+        "accepted_packets": 1718,
+        "rejected_packets": 8
+      },
+      {
+        "file": "NonVPN-PCAPs-02/gmailchat1.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 79,
+        "total_packets": 1800,
+        "accepted_packets": 1798,
+        "rejected_packets": 2
+      },
+      {
+        "file": "NonVPN-PCAPs-02/icq_chat_3a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 63,
+        "total_packets": 755,
+        "accepted_packets": 731,
+        "rejected_packets": 24
+      },
+      {
+        "file": "NonVPN-PCAPs-02/icq_chat_3b.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 301,
+        "total_packets": 2721,
+        "accepted_packets": 2650,
+        "rejected_packets": 71
+      },
+      {
+        "file": "NonVPN-PCAPs-01/facebook_video2a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 216,
+        "total_packets": 244619,
+        "accepted_packets": 244510,
+        "rejected_packets": 109
+      },
+      {
+        "file": "NonVPN-PCAPs-01/facebook_video2b.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 33,
+        "total_packets": 245777,
+        "accepted_packets": 245277,
+        "rejected_packets": 500
+      },
+      {
+        "file": "NonVPN-PCAPs-02/netflix1.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 118,
+        "total_packets": 51932,
+        "accepted_packets": 51921,
+        "rejected_packets": 11
+      },
+      {
+        "file": "NonVPN-PCAPs-03/skype_audio2a.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 32,
+        "total_packets": 58569,
+        "accepted_packets": 58465,
+        "rejected_packets": 104
+      },
+      {
+        "file": "NonVPN-PCAPs-03/spotify2.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 22,
+        "total_packets": 737,
+        "accepted_packets": 710,
+        "rejected_packets": 27
+      },
+      {
+        "file": "NonVPN-PCAPs-03/skype_audio2b.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 149,
+        "total_packets": 64184,
+        "accepted_packets": 63965,
+        "rejected_packets": 219
+      },
+      {
+        "file": "NonVPN-PCAPs-03/vimeo4.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 119,
+        "total_packets": 18755,
+        "accepted_packets": 18731,
+        "rejected_packets": 24
+      },
+      {
+        "file": "VPN-PCAPS-01/vpn_hangouts_audio2.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 2135,
+        "total_packets": 479063,
+        "accepted_packets": 434051,
+        "rejected_packets": 45012
+      },
+      {
+        "file": "VPN-PCAPS-01/vpn_bittorrent.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 406,
+        "total_packets": 422098,
+        "accepted_packets": 380921,
+        "rejected_packets": 41177
+      },
+      {
+        "file": "NonVPN-PCAPs-03/youtube2.pcap",
+        "format": "pcap",
+        "label": 0,
+        "flows": 56,
+        "total_packets": 12738,
+        "accepted_packets": 12731,
+        "rejected_packets": 7
+      },
+      {
+        "file": "NonVPN-PCAPs-03/scp1.pcapng",
+        "format": "pcapng",
+        "label": 0,
+        "flows": 10687,
+        "total_packets": 393360,
+        "accepted_packets": 386803,
+        "rejected_packets": 6557
+      },
+      {
+        "file": "VPN-PCAPs-02/vpn_netflix_A.pcap",
+        "format": "pcap",
+        "label": 1,
+        "flows": 152,
+        "total_packets": 870018,
+        "accepted_packets": 791843,
+        "rejected_packets": 78175
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+model_variant,execution_mode,batch_size,median_latency_ms,per_flow_latency_ms,latency_iqr_ms,mean_latency_ms,std_latency_ms,throughput_flows_sec,warmup_iterations,measured_repetitions,threads,hardware_cpu,pytorch_version,quant_backend,artifact_size_bytes,artifact_size_formatted,comparable_fp32_size_bytes,fair_compression_ratio,checkpoint_compression_ratio_misleading
+FP32 Baseline,Eager PyTorch,1,0.0950,0.0950,0.0015,0.0971,0.0125,10296.8,50,500,1,Apple M-Series CPU (darwin),2.10.0,qnnpack,186328,181.96 KB,186328,1.00x,2.97x
+FP32 Baseline,TorchScript Traced,1,0.0560,0.0560,0.0015,0.0573,0.0059,17459.3,50,500,1,Apple M-Series CPU (darwin),2.10.0,qnnpack,210296,205.37 KB,210296,1.00x,2.64x
+INT8 PTQ,Eager PyTorch,1,0.1979,0.1979,0.0036,0.2020,0.0113,4950.3,50,500,1,Apple M-Series CPU (darwin),2.10.0,qnnpack,52837,51.60 KB,186328,3.53x,10.49x
+INT8 PTQ,TorchScript Traced,1,0.0383,0.0383,0.0003,0.0390,0.0031,25610.8,50,500,1,Apple M-Series CPU (darwin),2.10.0,qnnpack,86891,84.85 KB,210296,2.42x,6.38x
+INT8 QAT,TorchScript Traced,1,0.0384,0.0384,0.0004,0.0391,0.0032,25578.3,50,500,1,Apple M-Series CPU (darwin),2.10.0,qnnpack,81789,79.87 KB,210296,2.57x,6.78x
+FP32 Baseline,Eager PyTorch,32,9.3466,0.2921,0.6447,9.4522,0.7054,3385.5,50,500,1,Apple M-Series CPU (darwin),2.10.0,qnnpack,186328,181.96 KB,186328,1.00x,2.97x
+FP32 Baseline,TorchScript Traced,32,9.2143,0.2879,0.5313,9.5042,2.7267,3366.9,50,500,1,Apple M-Series CPU (darwin),2.10.0,qnnpack,210296,205.37 KB,210296,1.00x,2.64x
+INT8 PTQ,Eager PyTorch,32,0.8230,0.0257,0.0358,0.8384,0.0638,38170.0,50,500,1,Apple M-Series CPU (darwin),2.10.0,qnnpack,52837,51.60 KB,186328,3.53x,10.49x
+INT8 PTQ,TorchScript Traced,32,0.6292,0.0197,0.0287,0.6438,0.0491,49706.6,50,500,1,Apple M-Series CPU (darwin),2.10.0,qnnpack,86891,84.85 KB,210296,2.42x,6.38x
+INT8 QAT,TorchScript Traced,32,0.6320,0.0197,0.0340,0.6611,0.0893,48406.7,50,500,1,Apple M-Series CPU (darwin),2.10.0,qnnpack,81789,79.87 KB,210296,2.57x,6.78x

@@ -1,0 +1,91 @@
+{
+  "validation_threshold": 0.9,
+  "test_examples": 20971,
+  "fp32_metrics": {
+    "accuracy": 0.8539411568356302,
+    "balanced_accuracy": 0.9147859438867315,
+    "precision": 0.4677588009759498,
+    "recall": 0.9966580022279985,
+    "f1": 0.6366979006049105,
+    "roc_auc": 0.8806200291434916,
+    "pr_auc": 0.3833717779685855,
+    "minority_recall": 0.9966580022279985,
+    "brier_score": 0.4999812841415405,
+    "confusion_matrix": [
+      [
+        15224,
+        3054
+      ],
+      [
+        9,
+        2684
+      ]
+    ]
+  },
+  "ptq_metrics": {
+    "accuracy": 0.18172714701254114,
+    "balanced_accuracy": 0.5293167247747348,
+    "precision": 0.1353531279931441,
+    "recall": 0.9970293353137765,
+    "f1": 0.23834886817576564,
+    "roc_auc": 0.7554218835904297,
+    "pr_auc": 0.334519523153943,
+    "minority_recall": 0.9970293353137765,
+    "brier_score": 0.7746008634567261,
+    "confusion_matrix": [
+      [
+        1126,
+        17152
+      ],
+      [
+        8,
+        2685
+      ]
+    ]
+  },
+  "paired_ptq_diff": {
+    "mean_logit_diff": 1.5109156370162964,
+    "std_logit_diff": 0.75094074010849,
+    "mean_abs_prob_diff": 0.1741999238729477,
+    "prediction_flip_rate": 0.67240474941586,
+    "total_flips": 14101,
+    "errors_introduced": 14099,
+    "errors_corrected": 2,
+    "delta_accuracy": -0.6722140098230891,
+    "delta_f1": -0.3983490324291449,
+    "delta_pr_auc": -0.048852254814642504
+  },
+  "qat_metrics": {
+    "accuracy": 0.8715845691669448,
+    "balanced_accuracy": 0.5,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "roc_auc": 0.9490275148511902,
+    "pr_auc": 0.5932013896540715,
+    "minority_recall": 0.0,
+    "brier_score": 0.06564381718635559,
+    "confusion_matrix": [
+      [
+        18278,
+        0
+      ],
+      [
+        2693,
+        0
+      ]
+    ]
+  },
+  "paired_qat_diff": {
+    "mean_logit_diff": -4.8859124183654785,
+    "std_logit_diff": 1.3397223949432373,
+    "mean_abs_prob_diff": 0.5952082872390747,
+    "prediction_flip_rate": 0.27361594582995563,
+    "total_flips": 5738,
+    "errors_introduced": 2684,
+    "errors_corrected": 3054,
+    "delta_accuracy": 0.017643412331314612,
+    "delta_f1": -0.6366979006049105,
+    "delta_pr_auc": 0.20982961168548603
+  }
+}
