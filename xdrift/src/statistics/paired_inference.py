@@ -53,43 +53,76 @@ def group_cluster_bootstrap_ci(
     capture_ids: np.ndarray,
     n_boot: int = 1000,
     ci: float = 0.95,
-    seed: int = 42
+    seed: int = 42,
+    map_canonical: bool = True
 ) -> Dict[str, float]:
     """Calculate cluster-resampled bootstrap confidence interval by capture/session group.
     
     Per Section 14.1: Resamples capture groups with replacement rather than individual flows.
+    Supports both:
+      - Estimand A: flow-weighted mean across clusters (pooling flows from sampled clusters)
+      - Estimand B: unweighted mean of cluster means (equal weight per session group)
     """
     rng = np.random.RandomState(seed)
     valid_mask = np.isfinite(diffs)
     valid_diffs = diffs[valid_mask]
-    valid_caps = capture_ids[valid_mask]
+    raw_caps = capture_ids[valid_mask]
+
+    if map_canonical:
+        from src.data.leakage_free_split import get_session_group
+        valid_caps = np.array([get_session_group(str(c)) for c in raw_caps])
+    else:
+        valid_caps = raw_caps
 
     unique_groups = np.unique(valid_caps)
     G = len(unique_groups)
 
     if G < 2:
-        return {'mean': float(np.mean(valid_diffs)), 'ci_lower': float('nan'), 'ci_upper': float('nan'), 'groups': G}
+        pt = float(np.mean(valid_diffs))
+        return {
+            'mean': pt, 'ci_lower': float('nan'), 'ci_upper': float('nan'),
+            'mean_flow_weighted': pt, 'ci_lower_flow_weighted': float('nan'), 'ci_upper_flow_weighted': float('nan'),
+            'mean_group_unweighted': pt, 'ci_lower_group_unweighted': float('nan'), 'ci_upper_group_unweighted': float('nan'),
+            'groups': G, 'sample_size': int(len(valid_diffs))
+        }
 
-    # Group index mapping
+    # Group index mapping and precomputed group means/counts
     group_map = {g: np.where(valid_caps == g)[0] for g in unique_groups}
+    group_means = {g: np.mean(valid_diffs[group_map[g]]) for g in unique_groups}
+    group_counts = {g: len(group_map[g]) for g in unique_groups}
 
-    boot_means = []
+    boot_means_flow = []
+    boot_means_unw = []
+
     for _ in range(n_boot):
         resampled_groups = rng.choice(unique_groups, size=G, replace=True)
-        sample_indices = []
-        for g in resampled_groups:
-            sample_indices.extend(group_map[g])
-        if len(sample_indices) > 0:
-            boot_means.append(np.mean(valid_diffs[sample_indices]))
+        # Estimand A: pooled flow-weighted
+        tot_sum = sum(group_means[g] * group_counts[g] for g in resampled_groups)
+        tot_cnt = sum(group_counts[g] for g in resampled_groups)
+        if tot_cnt > 0:
+            boot_means_flow.append(tot_sum / tot_cnt)
+        # Estimand B: unweighted group means
+        boot_means_unw.append(np.mean([group_means[g] for g in resampled_groups]))
 
     alpha = (1.0 - ci) / 2.0
-    lower = float(np.percentile(boot_means, 100.0 * alpha))
-    upper = float(np.percentile(boot_means, 100.0 * (1.0 - alpha)))
+    lower_flow = float(np.percentile(boot_means_flow, 100.0 * alpha))
+    upper_flow = float(np.percentile(boot_means_flow, 100.0 * (1.0 - alpha)))
+    lower_unw = float(np.percentile(boot_means_unw, 100.0 * alpha))
+    upper_unw = float(np.percentile(boot_means_unw, 100.0 * (1.0 - alpha)))
+
+    pt_flow = float(np.mean(valid_diffs))
+    pt_unw = float(np.mean([group_means[g] for g in unique_groups]))
 
     return {
-        'mean': float(np.mean(valid_diffs)),
-        'ci_lower': lower,
-        'ci_upper': upper,
+        'mean': pt_flow,
+        'ci_lower': lower_flow,
+        'ci_upper': upper_flow,
+        'mean_flow_weighted': pt_flow,
+        'ci_lower_flow_weighted': lower_flow,
+        'ci_upper_flow_weighted': upper_flow,
+        'mean_group_unweighted': pt_unw,
+        'ci_lower_group_unweighted': lower_unw,
+        'ci_upper_group_unweighted': upper_unw,
         'groups': int(G),
         'sample_size': int(len(valid_diffs))
     }
@@ -110,21 +143,46 @@ def compute_paired_effect_sizes(diffs: np.ndarray) -> Dict[str, float]:
     # Wilcoxon signed-rank test
     try:
         w_res = wilcoxon(valid, alternative='two-sided')
-        # z-approximation: r = z / sqrt(N)
-        # scipy wilcoxon returns statistic and pvalue
+        w_greater = wilcoxon(valid, alternative='greater')
+        w_less = wilcoxon(valid, alternative='less')
         p_val = float(w_res.pvalue)
-        # Approximate z from p-value using normal inverse
+        w_stat = float(w_res.statistic)
+        p_greater = float(w_greater.pvalue)
+        p_less = float(w_less.pvalue)
+
+        # Signed rank sums
+        nonzero = valid[valid != 0]
+        if len(nonzero) > 0:
+            from scipy.stats import rankdata
+            ranks = rankdata(np.abs(nonzero))
+            r_plus = float(np.sum(ranks[nonzero > 0]))
+            r_minus = float(np.sum(ranks[nonzero < 0]))
+        else:
+            r_plus = 0.0
+            r_minus = 0.0
+
+        # z-approximation: r = z / sqrt(N)
         from scipy.stats import norm
         z_stat = norm.ppf(1.0 - p_val / 2.0) if p_val > 0 else 10.0
         r_eff = float(abs(z_stat) / math.sqrt(N))
     except Exception:
         p_val = float('nan')
+        w_stat = float('nan')
+        r_plus = float('nan')
+        r_minus = float('nan')
+        p_greater = float('nan')
+        p_less = float('nan')
         r_eff = float('nan')
 
     return {
         'cohens_d': cohens_d,
         'wilcoxon_r': r_eff,
-        'wilcoxon_pvalue': p_val
+        'wilcoxon_pvalue': p_val,
+        'wilcoxon_stat': w_stat,
+        'wilcoxon_r_plus': r_plus,
+        'wilcoxon_r_minus': r_minus,
+        'wilcoxon_greater_p': p_greater,
+        'wilcoxon_less_p': p_less
     }
 
 

@@ -11,13 +11,18 @@ Features:
 """
 
 import os
+import sys
+# Prevent NumPy 2.x incompatibilities in optional pandas dependencies from breaking shap
+sys.modules['pyarrow'] = None
+sys.modules['numexpr'] = None
+sys.modules['bottleneck'] = None
+
 import time
 import json
 from typing import Dict, List, Tuple, Any, Optional, Callable
 
 import numpy as np
 import torch
-import shap
 
 from src.evaluation.attribution_metrics import (
     compute_topk_jaccard,
@@ -104,6 +109,7 @@ def explain_single_model(
     seed: int = 42
 ) -> Tuple[np.ndarray, float]:
     """Compute KernelSHAP attribution values for a cohort of instances."""
+    import shap
     np.random.seed(seed)
     predict_fn = make_predict_fn(model)
 

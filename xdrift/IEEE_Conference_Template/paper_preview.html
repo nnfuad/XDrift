@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IEEE Paper Live Preview - Nur Nafis Fuad</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  @page { size: letter; margin: 0.75in; }
+  body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 10pt;
+    line-height: 1.25;
+    color: #000;
+    margin: 30px auto;
+    max-width: 8.5in;
+    background: #fff;
+    padding: 0 25px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  .title-block {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  h1.paper-title {
+    font-size: 20pt;
+    font-weight: bold;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .author-block {
+    font-size: 10pt;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+  }
+  .two-column {
+    column-count: 2;
+    column-gap: 0.35in;
+    text-align: justify;
+  }
+  .abstract-box {
+    margin-bottom: 15px;
+    font-size: 9pt;
+  }
+  .abstract-title {
+    font-weight: bold;
+    font-style: italic;
+  }
+  .keywords {
+    font-size: 9pt;
+    font-style: italic;
+    margin-top: 6px;
+    margin-bottom: 15px;
+  }
+  h2.sec-heading {
+    font-size: 10pt;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    break-after: avoid;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 3px;
+  }
+  h3.subsec-heading {
+    font-size: 10pt;
+    font-weight: bold;
+    font-style: italic;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    break-after: avoid;
+  }
+  p {
+    text-indent: 1.2em;
+    margin-top: 0;
+    margin-bottom: 6px;
+  }
+  p.no-indent {
+    text-indent: 0;
+  }
+  .empty-section-notice {
+    font-style: italic;
+    color: #777;
+    text-align: center;
+    margin: 8px 0;
+  }
+  table.ieee-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7.5pt;
+    margin: 12px 0;
+    break-inside: avoid;
+  }
+  table.ieee-table th, table.ieee-table td {
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    padding: 3px 4px;
+    text-align: center;
+  }
+  table.ieee-table th {
+    font-weight: bold;
+    background: #fdfdfd;
+  }
+  .table-caption {
+    font-size: 8pt;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .full-width-container {
+    column-span: all;
+    margin: 15px 0;
+  }
+  .formula {
+    text-align: center;
+    margin: 8px 0;
+  }
+  .figure-box {
+    text-align: center;
+    margin: 14px 0;
+    break-inside: avoid;
+  }
+  .figure-box img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #eaeaea;
+  }
+  .figure-caption {
+    font-size: 8pt;
+    text-align: justify;
+    margin-top: 6px;
+    line-height: 1.2;
+  }
+</style>
+</head>
+<body>
+
+<div class="title-block">
+  <h1 class="paper-title">Preserved Accuracy, Restructured Logic: Attribution Drift and Output Saturation in INT8-Quantized Traffic Classifiers</h1>
+  <div class="author-block">
+    <div>
+      <strong>Nur Nafis Fuad</strong><br>
+      Department of Computer Science and Engineering<br>
+      Independent Researcher / Network Security Specialist<br>
+      Dhaka, Bangladesh<br>
+      fuad@example.com
+    </div>
+  </div>
+</div>
+
+<div class="two-column">
+
+  <div class="abstract-box">
+    <p class="no-indent"><span class="abstract-title">Abstract</span>—Compressing deep neural network classifiers from 32-bit floating-point (FP32) to 8-bit integer (INT8) representations is standard practice for deploying encrypted traffic inspectors on resource-constrained edge hardware. Because post-quantization accuracy losses are typically small and negligible, often below one percentage point, practitioners assume the model's internal decision logic is preserved. We test that assumption directly. Using the ISCX VPN-NonVPN 2016 benchmark (339,009 bidirectional flows from 140 captures, partitioned into 106 leakage-free canonical session groups), we train a compact 1D Convolutional Neural Network (44,129 parameters) and compress it via both static Post-Training Quantization (PTQ) and Quantization Aware Training (QAT) under the PyTorch QNNPACK backend. We then apply KernelSHAP, a perturbation-based, model-agnostic attribution method compatible with discrete INT8 weights to 100 stratified test flows, benchmarking quantization-induced attribution drift against a multi-seed explainer noise floor. PTQ preserves dominant feature rankings almost exactly: 95 of 100 flows share identical Top-5 feature sets (Jaccard = 0.9786, signed cosine similarity = 0.9918). A paired Wilcoxon signed-rank test detects a small positive rank shift, but the median Total Variation displacement is only +0.0049. QAT tells a different story. Cosine similarity between FP32 and QAT attributions collapses to 0.4830 (\(p < 10^{-17}\); vs. 0.9554 for an unquantized fine-tuning control), and unsigned 8-bit output quantization imposes a hard probability ceiling of 0.7338 that causes complete minority-class detection failure (\(F_1 = 0.0000\) on the full 49,251-flow test set) when practitioners reuse the original decision threshold, recoverable only through explicit post-quantization calibration. Batched INT8 inference reaches 76–82 k flows/s which is 12 times over FP32; single-packet streaming yields only 1.05 times. These findings establish that predictive accuracy alone is an insufficient proxy for explainability fidelity after quantization.</p>
+    <div class="keywords">
+      <strong><em>Keywords</em></strong>—Network traffic classification, Explainable AI (XAI), Neural network quantization, Model compression, Model calibration, KernelSHAP, Edge computing.
+    </div>
+  </div>
+
+  <h2 class="sec-heading">I. Introduction</h2>
+  <div class="empty-section-notice">[Section left empty per author request]</div>
+
+  <h2 class="sec-heading">II. Related Work</h2>
+  <div class="empty-section-notice">[Section left empty per author request]</div>
+
+  <h2 class="sec-heading">III. Methodology</h2>
+  <div class="empty-section-notice">[Section left empty per author request]</div>
+
+  <h2 class="sec-heading">IV. Experimental Results</h2>
+
+  <p class="no-indent">In this section, we evaluate the computational efficiency, predictive classification performance, probability calibration dynamics, explainability fidelity, and clustered statistical robustness of 32-bit floating-point (FP32), an unquantized Fine-Tuned control baseline (FP32-FT), static Post-Training Quantized (INT8-PTQ), and Quantization-Aware Trained (INT8-QAT) models under the PyTorch QNNPACK execution engine. All evaluations are conducted on the held-out test partition (\(N = 49,251\) bidirectional flows across 16 canonical capture groups), ensuring zero cross-split session contamination.</p>
+
+  <h3 class="subsec-heading">A. Computational Efficiency and Hardware Benchmarking</h3>
+
+  <p>We evaluate physical execution metrics on edge hardware to determine whether 8-bit integer quantization delivers concrete latency and throughput benefits for network traffic inspection. Profiling was conducted on an Apple Silicon ARM64 processor (macOS 15.1) using the PyTorch QNNPACK execution engine. All benchmarks reflect 500 timed evaluation passes following 50 warm-up runs. Table I summarizes the measured checkpoint footprints, per-flow latencies, and throughput rates across streaming and batched operational modes.</p>
+
+  <div class="table-caption">TABLE I: Hardware Performance and Edge Storage Benchmarks</div>
+  <table class="ieee-table">
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>FP32</th>
+        <th>INT8-PTQ</th>
+        <th>INT8-QAT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align:left;">Model Checkpoint Size</td>
+        <td>184.24 KB</td>
+        <td>51.77 KB</td>
+        <td>51.77 KB</td>
+      </tr>
+      <tr>
+        <td style="text-align:left;">Compression Ratio</td>
+        <td>1.00&times;</td>
+        <td><strong>3.56&times;</strong></td>
+        <td><strong>3.56&times;</strong></td>
+      </tr>
+      <tr>
+        <td style="text-align:left;">L1 Data Cache Residency</td>
+        <td>Exceeds 64 KB</td>
+        <td>Fully Fits</td>
+        <td>Fully Fits</td>
+      </tr>
+      <tr>
+        <td colspan="4" style="text-align:left; font-weight:bold; background:#fafafa;">Single-Flow Streaming Inspection (\(B = 1\))</td>
+      </tr>
+      <tr>
+        <td style="text-align:left;">Median Latency</td>
+        <td>0.267 ms</td>
+        <td>0.255 ms</td>
+        <td>0.242 ms</td>
+      </tr>
+      <tr>
+        <td style="text-align:left;">Latency Speedup</td>
+        <td>1.00&times;</td>
+        <td>1.05&times;</td>
+        <td>1.10&times;</td>
+      </tr>
+      <tr>
+        <td style="text-align:left;">Throughput (flows/s)</td>
+        <td>3,439</td>
+        <td>3,571</td>
+        <td>3,745</td>
+      </tr>
+      <tr>
+        <td colspan="4" style="text-align:left; font-weight:bold; background:#fafafa;">Micro-Batched Execution (\(B = 64\))</td>
+      </tr>
+      <tr>
+        <td style="text-align:left;">Median Latency</td>
+        <td>9.503 ms</td>
+        <td>0.764 ms</td>
+        <td>0.755 ms</td>
+      </tr>
+      <tr>
+        <td style="text-align:left;">Latency Speedup</td>
+        <td>1.00&times;</td>
+        <td><strong>12.44&times;</strong></td>
+        <td><strong>12.59&times;</strong></td>
+      </tr>
+      <tr>
+        <td style="text-align:left;">Throughput (flows/s)</td>
+        <td>6,387</td>
+        <td>76,265</td>
+        <td>81,552</td>
+      </tr>
+      <tr>
+        <td style="text-align:left;">Throughput Speedup</td>
+        <td>1.00&times;</td>
+        <td><strong>11.94&times;</strong></td>
+        <td><strong>12.77&times;</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="figure-box">
+    <img src="figures/figure17_inference_latency.png" alt="Inference Latency Benchmark">
+    <div class="figure-caption"><strong>Fig. 1.</strong> Inference latency across precision formats under single-flow streaming (\(B=1\)) and micro-batched (\(B=64\)) execution on ARM64 hardware (500 timed runs, log scale).</div>
+  </div>
+
+  <p>Quantization compresses the serialized model checkpoint from 184.24 KB to 51.77 KB, yielding a 3.56&times; storage reduction. This size reduction has immediate microarchitectural implications. Many embedded CPU architectures allocate 64 KB for L1 data cache per core. While the 184.24 KB floating-point weights exceed this limit and trigger external memory bus traffic, the 51.77 KB quantized parameter tensor fits entirely within L1 data cache. Memory access stalls during repetitive filter operations are substantially reduced.</p>
+
+  <p>The timing measurements reveal an operational division between streaming packet inspection and batched traffic triage:</p>
+
+  <p><strong>Streaming Inspection (\(B = 1\)):</strong> When classifying isolated flows one by one, integer quantization yields modest latency gains. Median per-flow latency decreases from 0.267 ms in FP32 to 0.255 ms in PTQ (1.05&times; speedup) and 0.242 ms in QAT (1.10&times; speedup). Processing throughput increases only slightly, from 3,439 to 3,745 flows/s.</p>
+
+  <p>This modest gain stems from framework execution limits. The 1D-CNN contains 44,129 parameters, requiring approximately \(8.8 	imes 10^4\) multiply-accumulate operations per flow. On an ARM processor operating at gigahertz clock rates, the theoretical compute time for these operations is under one microsecond. Yet the measured execution time is roughly 250 microseconds. Over 99% of wall-clock time at batch size 1 is absorbed by Python runtime interpretation, tensor memory allocations, operator dispatch, and quantization scale conversions. Because arithmetic execution accounts for less than 1% of latency, replacing floating-point operations with integer math produces negligible savings in streaming mode.</p>
+
+  <p><strong>Micro-Batched Triage (\(B = 64\)):</strong> When traffic can be accumulated into small buffers of 64 flows, framework invocation costs are amortized across the batch, shifting execution into a compute-bound state. In this regime, INT8 quantization accelerates processing substantially. Median batch latency drops from 9.503 ms down to 0.764 ms under PTQ (12.44&times; speedup) and 0.755 ms under QAT (12.59&times; speedup). As shown in Fig. 1, this translates to an order-of-magnitude reduction in execution delay. Batched throughput scales from 6,387 flows/s in FP32 to 76,265 flows/s in PTQ (11.94&times; gain) and 81,552 flows/s in QAT (12.77&times; gain).</p>
+
+  <p>This 12-fold acceleration is driven by ARM NEON SIMD vectorization. ARM64 processors feature 128-bit vector registers. While a single 128-bit register holds four 32-bit floats, it packs sixteen 8-bit integers. With specialized dot-product instructions, the hardware processes four 8-bit integer multiply-accumulates into 32-bit accumulators in a single instruction cycle. In addition, INT8 reduces memory bus traffic by 75%, loading 64 weights per standard 64-byte cache line instead of 16. In streaming per-packet deployments, software overhead dominates; in batched traffic collectors, integer SIMD execution delivers the throughput necessary to inspect high-rate network backbones.</p>
+
+  <h3 class="subsec-heading">B. Predictive Performance and Decision Threshold Dynamics</h3>
+
+  <p>We evaluate predictive classification performance on the full held-out test partition, comprising \(N = 49,251\) bidirectional flows (2,693 true VPN flows and 46,558 true Non-VPN flows). This split reflects the operational class imbalance common in production networks, where tunneling traffic constitutes a 5.47% minority. All test flows originate from 16 canonical capture sessions that share zero session overlap with training or validation splits. Table II reports discrimination metrics across three operational perspectives: threshold-independent ranking (Panel A), validation-calibrated operating points (Panel B), and an uncalibrated scenario where the baseline threshold is transferred directly to quantized models (Panel C).</p>
+
+  <div class="full-width-container">
+    <div class="table-caption">TABLE II: Predictive Performance on Held-Out Test Set (\(N=49,251\))</div>
+    <table class="ieee-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>FP32 Baseline</th>
+          <th>FP32-FT (Control)</th>
+          <th>INT8-PTQ</th>
+          <th>&Delta; (PTQ)</th>
+          <th>INT8-QAT</th>
+          <th>&Delta; (QAT)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="7" style="text-align:left; font-weight:bold; background:#f2f2f2;">Panel A: Threshold-Independent Ranking Performance</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">ROC-AUC</td>
+          <td>0.9796</td>
+          <td>0.9819</td>
+          <td>0.9785</td>
+          <td>-0.0012</td>
+          <td><strong>0.9834</strong></td>
+          <td>+0.0038</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">PR-AUC (Minority VPN)</td>
+          <td>0.5610</td>
+          <td>0.6128</td>
+          <td>0.6102</td>
+          <td>+0.0492</td>
+          <td><strong>0.6478</strong></td>
+          <td>+0.0868</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">Brier Score</td>
+          <td>0.0585</td>
+          <td>0.0248</td>
+          <td>0.0584</td>
+          <td>-0.0000</td>
+          <td><strong>0.0237</strong></td>
+          <td>-0.0347</td>
+        </tr>
+        <tr>
+          <td colspan="7" style="text-align:left; font-weight:bold; background:#f2f2f2;">Panel B: Model-Specific Validation-Calibrated Operating Points</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">Decision Threshold (&tau;)</td>
+          <td>0.900</td>
+          <td>0.830</td>
+          <td>0.900</td>
+          <td>+0.000</td>
+          <td>0.680</td>
+          <td>-0.220</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">Accuracy</td>
+          <td>96.88%</td>
+          <td><strong>97.64%</strong></td>
+          <td>96.79%</td>
+          <td>-0.09%</td>
+          <td>96.90%</td>
+          <td>+0.02%</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">Balanced Accuracy</td>
+          <td>97.41%</td>
+          <td>97.25%</td>
+          <td>97.41%</td>
+          <td>+0.00%</td>
+          <td><strong>97.57%</strong></td>
+          <td>+0.17%</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">Precision (VPN)</td>
+          <td>64.04%</td>
+          <td><strong>70.77%</strong></td>
+          <td>63.33%</td>
+          <td>-0.71%</td>
+          <td>64.12%</td>
+          <td>+0.08%</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">Recall (VPN)</td>
+          <td>97.99%</td>
+          <td>96.81%</td>
+          <td>98.11%</td>
+          <td>+0.11%</td>
+          <td><strong>98.33%</strong></td>
+          <td>+0.33%</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">F<sub>1</sub>-Score</td>
+          <td>0.7746</td>
+          <td><strong>0.8176</strong></td>
+          <td>0.7697</td>
+          <td>-0.0049</td>
+          <td>0.7762</td>
+          <td>+0.0016</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">Positive Calls (Predicted VPN)</td>
+          <td>4,121</td>
+          <td>3,684</td>
+          <td>4,172</td>
+          <td>+51</td>
+          <td>4,130</td>
+          <td>+9</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">True Positives / False Negatives</td>
+          <td>2,639 / 54</td>
+          <td>2,607 / 86</td>
+          <td>2,642 / 51</td>
+          <td>+3 / -3</td>
+          <td><strong>2,648 / 45</strong></td>
+          <td>+9 / -9</td>
+        </tr>
+        <tr>
+          <td colspan="7" style="text-align:left; font-weight:bold; background:#f2f2f2;">Panel C: Reused Baseline Threshold (&tau; = 0.900, Uncalibrated Comparison)</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">Positive Calls (Predicted VPN)</td>
+          <td>4,121</td>
+          <td>1,693</td>
+          <td>4,172</td>
+          <td>+51</td>
+          <td><strong>0</strong></td>
+          <td>-4,121</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">Accuracy</td>
+          <td>96.88%</td>
+          <td>94.45%</td>
+          <td>96.79%</td>
+          <td>-0.09%</td>
+          <td>94.53%</td>
+          <td>-2.35%</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">Balanced Accuracy</td>
+          <td>97.41%</td>
+          <td>64.42%</td>
+          <td>97.41%</td>
+          <td>+0.00%</td>
+          <td><strong>50.00%</strong></td>
+          <td>-47.41%</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">Precision (VPN)</td>
+          <td>64.04%</td>
+          <td>48.85%</td>
+          <td>63.33%</td>
+          <td>-0.71%</td>
+          <td><strong>0.00%</strong></td>
+          <td>-64.04%</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">Recall (VPN)</td>
+          <td>97.99%</td>
+          <td>30.71%</td>
+          <td>98.11%</td>
+          <td>+0.11%</td>
+          <td><strong>0.00%</strong></td>
+          <td>-97.99%</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">F<sub>1</sub>-Score</td>
+          <td>0.7746</td>
+          <td>0.3771</td>
+          <td>0.7697</td>
+          <td>-0.0049</td>
+          <td><strong>0.0000</strong></td>
+          <td><strong>-0.7746</strong></td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">Missed VPN Flows (False Negatives)</td>
+          <td>54</td>
+          <td>1,866</td>
+          <td>51</td>
+          <td>-3</td>
+          <td><strong>2,693 (100%)</strong></td>
+          <td>+2,639</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">Prediction Flips vs. Baseline</td>
+          <td>---</td>
+          <td>5.02%</td>
+          <td>0.12%</td>
+          <td>---</td>
+          <td><strong>8.37%</strong></td>
+          <td>---</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="figure-box">
+    <img src="figures/figure6_pr_curves.png" alt="PR Curves">
+    <div class="figure-caption"><strong>Fig. 2.</strong> Precision-recall curves across classification thresholds on the test partition (\(N=49,251\)). The horizontal dashed line denotes empirical minority class prevalence (5.47%). Integer quantization maintains precision-recall separation well above baseline prevalence.</div>
+  </div>
+
+  <p><strong>Threshold-Independent Ranking (Panel A):</strong> Evaluated across all potential decision thresholds, all models demonstrate strong rank ordering. ROC-AUC values span a narrow band between 0.9785 and 0.9834. However, ROC-AUC is insensitive to minority detection errors in severe class imbalance. With 46,558 true negative flows, false alarm fluctuations alter the false positive rate denominator only marginally, leaving the ROC curve near the top-left boundary.</p>
+
+  <p>Precision-Recall AUC (PR-AUC) provides a more direct measure of minority detection capability. As illustrated in Fig. 2, all models maintain precision well above the 0.0547 random prevalence line. Baseline FP32 scores a PR-AUC of 0.5610. PTQ improves this score to 0.6102 (+0.0492 gain), and QAT attains 0.6478 (+0.0868 gain). The unquantized fine-tuned control (FP32-FT) achieves 0.6128. Training noise introduced by fake-quantization operators during QAT acts as an effective regularizer, improving rank separation on ambiguous flows. Brier calibration scores reflect a parallel trend: QAT achieves the lowest mean squared prediction error (0.0237, compared to 0.0585 for FP32 and 0.0584 for PTQ).</p>
+
+  <div class="full-width-container">
+    <div class="figure-box">
+      <img src="figures/figure4_confusion_matrices.png" alt="Confusion Matrices">
+      <div class="figure-caption"><strong>Fig. 3.</strong> Confusion matrices on the held-out test partition (\(N=49,251\)) under model-specific calibrated operating thresholds (\(	au=0.900\) for FP32, \(	au=0.900\) for PTQ, and \(	au=0.680\) for QAT). Each cell reports the flow count and percentage share of total test traffic.</div>
+    </div>
+  </div>
+
+  <p><strong>Calibrated Operating Performance (Panel B):</strong> In active network deployments, an inspection engine must make hard binary decisions at a fixed threshold \(	au\). When thresholds are calibrated on the independent validation split (\(	au = 0.900\) for FP32, \(	au = 0.900\) for PTQ, \(	au = 0.680\) for QAT, and \(	au = 0.830\) for FP32-FT), all architectures demonstrate viable detection accuracy, as shown in the confusion matrices of Fig. 3.</p>
+
+  <p>INT8-PTQ reproduces the performance of the FP32 baseline with minimal variance. At the identical operating threshold of \(	au = 0.900\), PTQ achieves 96.79% accuracy (a change of \(-0.09\%\)), identical balanced accuracy of 97.41%, and 98.11% VPN recall (+0.11% gain), yielding an \(F_1\)-score of 0.7697 (compared to 0.7746 for baseline). Across the entire 49,251-flow evaluation set, PTQ induces only 57 prediction flips (0.12% of traffic), confirming that post-training quantization preserves the operational decision boundary when evaluated at the calibrated operating point.</p>
+
+  <p>Calibrated QAT achieves the highest balanced accuracy (97.57%) and peak recall (98.33%), correctly identifying 2,648 of 2,693 VPN flows while missing only 45 instances. Its calibrated \(F_1\)-score of 0.7762 slightly exceeds the FP32 baseline. The unquantized fine-tuned control (FP32-FT) attains the highest precision at 70.77% and an \(F_1\)-score of 0.8176, indicating that additional training epochs refine boundary precision.</p>
+
+  <p><strong>The Threshold Transfer Failure (Panel C):</strong> While QAT excels when calibrated, an operational failure occurs if an edge engineer deploys the quantized model while naively reusing the floating-point threshold (\(	au = 0.900\)).</p>
+
+  <p>Under PTQ, threshold reuse remains benign: positive calls increase by only 51 flows (4,172 vs. 4,121), balanced accuracy stays at 97.41%, and the \(F_1\)-score remains 0.7697. For QAT, however, reusing the baseline threshold triggers a complete detection blackout. The uncalibrated QAT model emits zero positive calls across all 49,251 test flows (down from 4,121 positive calls in the baseline).</p>
+
+  <p>VPN recall falls to 0.00%, the \(F_1\)-score drops to 0.0000, and balanced accuracy collapses to 50.00% (the level of random guessing). Every single VPN flow in the test set is missed: 2,693 false negatives out of 2,693 true positive flows. A total of 4,121 flows flip from positive to negative, altering classifications across 8.37% of all monitored traffic.</p>
+
+  <p>This result reveals a practical pitfall. In Panel A, QAT achieved the highest ROC-AUC (0.9834) and the highest PR-AUC (0.6478). Yet under direct threshold transfer in Panel C, it suffers total operational failure. Threshold transferability cannot be assumed when deploying quantized models, and post-quantization threshold calibration on validation data is strictly required.</p>
+
+  <h3 class="subsec-heading">C. Mechanistic Proof of Output Saturation</h3>
+
+  <p>The complete minority-class failure of the QAT model under the uncalibrated baseline threshold (\(	au = 0.900\)) is an arithmetic artifact of integer serialization rather than a failure of representation learning. While threshold-independent evaluations confirm that QAT separates traffic classes effectively (PR-AUC = 0.6478, ROC-AUC = 0.9834), the runtime conversion of the network bounds its dynamic range.</p>
+
+  <p>Under the QNNPACK execution engine on ARM64 hardware, the output linear layer (<code>fc2</code>) serializes into an unsigned 8-bit quantized representation with integer states \(q \in \{0, 1, \dots, 255\}\). The runtime maps these discrete values back to real-valued logits via uniform affine dequantization:</p>
+  
+  <div class="formula">
+    \[ z = s \cdot (q - zp) 	ag{1} \]
+  </div>
+  
+  <p class="no-indent">where the scale factor \(s = 0.02535125\) and zero-point offset \(zp = 215\) are fixed during calibration.</p>
+
+  <p>Because the quantized output cannot exceed the maximum unsigned byte value (\(q_{\max} = 255\)), the reachable pre-sigmoid logit is strictly bounded from above:</p>
+  
+  <div class="formula">
+    \[ z_{\max} = s \cdot (q_{\max} - zp) = 0.02535125 	imes (255 - 215) = +1.014050 	ag{2} \]
+  </div>
+  
+  <p class="no-indent">Passing \(z_{\max}\) through the logistic sigmoid activation \(\sigma(z) = (1 + e^{-z})^{-1}\) establishes an absolute probability ceiling:</p>
+  
+  <div class="formula">
+    \[ p_{\max} = \sigma(+1.014050) = rac{1}{1 + e^{-1.014050}} = 0.733812 	ag{3} \]
+  </div>
+  
+  <p class="no-indent">No network input, regardless of how distinctive its packet features may be, can produce an output probability exceeding 0.733812 under this serialized operator.</p>
+
+  <div class="figure-box">
+    <img src="figures/figure8_qat_probability_saturation.png" alt="Probability Saturation">
+    <div class="figure-caption"><strong>Fig. 4.</strong> Predicted probability distributions of the INT8-QAT model across 49,251 test flows by true class. The unsigned 8-bit quantization ceiling at \(p_{\max} = 0.733812\) clamps 98.11% (2,642 of 2,693) of all test VPN flows to an identical score. Probability bins above 0.74 remain completely empty.</div>
+  </div>
+
+  <p>Evaluating all 49,251 test flows reveals the direct operational consequence of this mathematical bound. Exactly 4,070 flows saturate at \(p_{\max} = 0.73381203\). Of these saturated instances, 2,642 are true VPN flows, representing 98.11% of the entire test VPN population (2,642 of 2,693 flows). Nearly all positive flows in the test partition pile up against this ceiling. As shown in Fig. 4, the probability bins in \((0.74, 1.00]\) are completely vacant. Applying any operational threshold \(	au > 0.7338\) trivially yields zero positive detections, producing an \(F_1\) score of exactly 0.0000.</p>
+
+  <p>Static PTQ avoids this limitation. It maintains an unconstrained output projection spanning pre-sigmoid logits from \(-7.278\) to \(+10.398\), reaching probabilities up to 0.999969 with zero clamped flows. Recalibrating the QAT operating threshold on validation data (\(	au^* = 0.680 < p_{\max}\)) successfully restores peak detection performance (\(F_1 = 0.7762\), recall = 98.33%). Even so, saturation destroys confidence gradation among positive calls: 98.11% of detected VPN flows receive the exact same probability score, preventing network operators from ranking alerts by confidence.</p>
+
+  <h3 class="subsec-heading">D. Feature Attribution Drift and Causal Disentanglement</h3>
+
+  <p>Top-line classification accuracy indicates whether a compressed model reaches the correct label, but it does not reveal how the model reaches that label. If quantization alters the input features that drive classification, an operator inspecting post-hoc explanations may rely on justifications that no longer reflect the true decision path.</p>
+
+  <p>To audit explanation stability, we apply KernelSHAP to pre-sigmoid logits across a stratified evaluation cohort of \(N = 100\) held-out test flows (50 VPN, 50 Non-VPN). The explainer runs with 150 coalition evaluations per flow against 50 background reference flows sampled from the training partition. All zero-padding tokens are masked so that attribution values reflect only active packet bytes.</p>
+
+  <p>Attribution drift is measured across four complementary dimensions: Top-\(k\) Intersection-over-Union (\(IoU_k\)), Total Variation Distance (\(TV\)), Signed Cosine Similarity (\(S_c\)), and Spearman Rank Correlation (\(r_s\)).</p>
+
+  <p>Because sampling-based explainers contain stochastic variance, evaluating drift requires an empirical reference boundary. We establish this Explainer Noise Floor by executing KernelSHAP across three independent random seeds on the unchanged FP32 baseline model. This boundary captures the variance of the estimator itself: \(IoU_5 = 0.9553 \pm 0.1829\), \(IoU_{10} = 0.9648 \pm 0.1592\), \(TV = 0.0553 \pm 0.1588\), \(S_c = 0.9676 \pm 0.1450\), and \(r_s = 0.9516 \pm 0.1666\). Metric shifts within these intervals cannot be distinguished from explainer sampling noise.</p>
+
+  <p>To isolate the cause of attribution changes during quantization-aware training, we also evaluate an unquantized fine-tuning control (FP32-FT). This control model is trained with the exact same 5-epoch AdamW schedule (\(lr = 10^{-4}\)) as QAT, but retains full 32-bit floating-point weights and activations without quantization layers.</p>
+
+  <div class="full-width-container">
+    <div class="table-caption">TABLE III: Feature Attribution Drift and Explainer Repeatability (\(N=100\) Test Cohort)</div>
+    <table class="ieee-table">
+      <thead>
+        <tr>
+          <th>Condition / Comparison</th>
+          <th>Top-5 IoU</th>
+          <th>Top-10 IoU</th>
+          <th>Total Variation (\(TV\))</th>
+          <th>Signed Cosine (\(S_c\))</th>
+          <th>Spearman (\(r_s\))</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align:left;">Combinatorial Random Chance</td>
+          <td>0.0220</td>
+          <td>0.0426</td>
+          <td>---</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">Explainer Noise Floor (FP32 Multi-Seed)</td>
+          <td>\(0.9553 \pm 0.1829\)</td>
+          <td>\(0.9648 \pm 0.1592\)</td>
+          <td>\(0.0553 \pm 0.1588\)</td>
+          <td>\(0.9676 \pm 0.1450\)</td>
+          <td>\(0.9516 \pm 0.1666\)</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">FP32 vs. FP32-FT (Fine-Tuning Control)</td>
+          <td>\(0.9669 \pm 0.1375\)</td>
+          <td>\(0.9762 \pm 0.1169\)</td>
+          <td>\(0.1219 \pm 0.1137\)</td>
+          <td><strong>\(0.9554 \pm 0.0953\)</strong></td>
+          <td>\(0.9687 \pm 0.1092\)</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">FP32 vs. INT8-PTQ</td>
+          <td><strong>\(0.9786 \pm 0.0970\)</strong></td>
+          <td><strong>\(0.9887 \pm 0.0650\)</strong></td>
+          <td><strong>\(0.0369 \pm 0.0620\)</strong></td>
+          <td><strong>\(0.9918 \pm 0.0394\)</strong></td>
+          <td><strong>\(0.9749 \pm 0.0592\)</strong></td>
+        </tr>
+        <tr>
+          <td style="text-align:left;">FP32 vs. INT8-QAT</td>
+          <td>\(0.9553 \pm 0.1841\)</td>
+          <td>\(0.9679 \pm 0.1416\)</td>
+          <td>\(0.2346 \pm 0.1908\)</td>
+          <td><strong>\(0.4830 \pm 0.3449\)</strong></td>
+          <td>\(0.9140 \pm 0.1838\)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="figure-box">
+    <img src="figures/figure12_attribution_stability_comparison.png" alt="Attribution Stability">
+    <div class="figure-caption"><strong>Fig. 5.</strong> Feature attribution stability metrics across the \(N=100\) test cohort. FP32-FT and INT8-PTQ preserve directional alignment with baseline (\(S_c = 0.9554\) and \(0.9918\)), whereas INT8-QAT exhibits directional collapse (\(S_c = 0.4830\)) alongside elevated Total Variation distance (\(TV = 0.2346\)).</div>
+  </div>
+
+  <p>Table III and Fig. 5 report the quantitative attribution comparisons across the test cohort. The measurements establish four primary findings:</p>
+
+  <p><strong>1) PTQ Preserves Baseline Logic:</strong> Static PTQ maintains near-perfect alignment with the uncompressed model. In 95 of the 100 test flows, PTQ selects the exact same Top-5 features as the FP32 baseline (\(IoU_5 = 0.9786 \pm 0.0970\)). Directional similarity remains high at \(S_c = 0.9918 \pm 0.0394\), and attribution redistribution is low (\(TV = 0.0369 \pm 0.0620\)). A paired Wilcoxon signed-rank test against the noise floor detects a small rank displacement (\(W = 1506.0\), \(p = 0.000459\)), but the median change in Total Variation distance is minimal (\(	ext{median } \Delta TV = +0.0049\)). For static quantization, explanations generated from the uncompressed model transfer reliably to the quantized deployment.</p>
+
+  <p><strong>2) Causal Disentanglement via FP32-FT:</strong> A key question is whether attribution changes in QAT originate from parameter fine-tuning or from discrete quantization constraints. The FP32-FT control resolves this question. Without quantization layers, fine-tuning preserves directional alignment (\(S_c = 0.9554 \pm 0.0953\)), tracking the noise floor (0.9676) and PTQ (0.9918). Feature selection stability remains equally high (\(IoU_5 = 0.9669 \pm 0.1375\), \(IoU_{10} = 0.9762 \pm 0.1169\)). Because gradient updates in floating point do not distort directional attributions, retraining alone cannot account for the collapse observed in QAT. The restructuring is caused directly by integer quantization and the gradient approximations of the Straight-Through Estimator (STE).</p>
+
+  <p><strong>3) Directional Collapse Under QAT:</strong> While QAT retains broad feature overlap (\(IoU_5 = 0.9553 \pm 0.1841\), \(IoU_{10} = 0.9679 \pm 0.1416\)) and general rank ordering (\(r_s = 0.9140 \pm 0.1838\)), its directional alignment breaks down completely. Signed cosine similarity plunges to \(S_c = 0.4830 \pm 0.3449\) (\(p < 10^{-17}\) compared to both PTQ and FP32-FT), while Total Variation distance increases to \(TV = 0.2346 \pm 0.1908\). The model still attends to similar token regions, but it redistributes attribution weights and reverses their polarities. An explanation from the FP32 baseline cannot be assumed to describe the reasoning of the QAT model.</p>
+
+  <p><strong>4) Class-Conditional Attribution Asymmetry:</strong> Evaluating drift separately across traffic classes reveals an asymmetric distribution. On Non-VPN flows, QAT shows moderate directional stability (\(S_c = 0.7996\)), with drift concentrated in magnitude scaling (\(TV = 0.3529\)). On VPN flows, directional alignment collapses almost entirely, dropping to \(S_c = 0.1665 \pm 0.2811\) (\(TV = 0.1163\)). A Mann-Whitney \(U\) test confirms that minority VPN flows experience significantly greater directional degradation than Non-VPN traffic (\(U = 278.0\), \(p = 2.12 	imes 10^{-11}\)). For obfuscated tunneling traffic, the quantized model relies on fundamentally altered combinations of features to reach its classifications.</p>
+
+  <h3 class="subsec-heading">E. Clustered Statistical Inference and Non-IID Session Dynamics</h3>
+
+  <p>Network traffic classification datasets do not consist of independent and identically distributed (IID) samples. Flows generated during a single capture session share operating system network stacks, congestion control state, packet fragmentation boundaries, and temporal background noise. Treating each flow as an independent observation commits a pseudo-replication fallacy. When we evaluate the 49,251 held-out test flows with a standard paired \(t\)-test comparing uncompressed FP32 and INT8-PTQ pre-sigmoid logits, the test yields \(t = -38.93\) (\(p < 10^{-300}\)). Such an extreme test statistic appears to indicate that PTQ systematically depresses classification logits. However, that result is an artifact of treating clustered observations as independent trials, which deflates the estimated standard error by a factor of 56.</p>
+
+  <div class="table-caption">TABLE IV: Canonical Test Session Breakdown and Logit Shifts (\(K=16\))</div>
+  <table class="ieee-table">
+    <thead>
+      <tr>
+        <th>Session Group</th>
+        <th>Class</th>
+        <th>Flows (\(n_k\))</th>
+        <th>Share</th>
+        <th>Mean \(\Delta z\)</th>
+        <th>Std (\(\sigma_k\))</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align:left;"><code>skype_audio3</code></td>
+        <td>Non-VPN</td>
+        <td>39,179</td>
+        <td>79.55%</td>
+        <td>-0.1164</td>
+        <td>0.2411</td>
+      </tr>
+      <tr>
+        <td style="text-align:left;"><code>skype_chat1b</code></td>
+        <td>Non-VPN</td>
+        <td>2,752</td>
+        <td>5.59%</td>
+        <td>+0.2942</td>
+        <td>0.2105</td>
+      </tr>
+      <tr>
+        <td style="text-align:left;"><code>vpn_skype_audio2</code></td>
+        <td>VPN</td>
+        <td>1,481</td>
+        <td>3.01%</td>
+        <td>+0.0418</td>
+        <td>0.1582</td>
+      </tr>
+      <tr>
+        <td style="text-align:left;"><code>vpn_aim_chat1b</code></td>
+        <td>VPN</td>
+        <td>785</td>
+        <td>1.59%</td>
+        <td>+0.1891</td>
+        <td>0.1824</td>
+      </tr>
+      <tr>
+        <td style="text-align:left;"><code>youtube3</code></td>
+        <td>Non-VPN</td>
+        <td>763</td>
+        <td>1.55%</td>
+        <td>+0.0812</td>
+        <td>0.1419</td>
+      </tr>
+      <tr>
+        <td style="text-align:left;"><em>11 Remaining Sessions</em></td>
+        <td>Mixed</td>
+        <td>4,291</td>
+        <td>8.71%</td>
+        <td>+0.1200 to +0.4851</td>
+        <td>0.11--0.25</td>
+      </tr>
+      <tr style="font-weight:bold; background:#fafafa;">
+        <td style="text-align:left;">Pooled Test Partition</td>
+        <td>Mixed</td>
+        <td>49,251</td>
+        <td>100.0%</td>
+        <td>-0.0778</td>
+        <td>0.2618</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>To analyze the behavior across independent communication events, we group the test partition into its \(K = 16\) canonical session clusters. Table IV summarizes the sample sizes, traffic proportions, and logit shift distributions across these sessions. The partition exhibits severe volume concentration: a single session, <code>skype_audio3</code>, contains 39,179 flows, or 79.55% of the test cohort. In that session, PTQ reduces logits, producing a mean shift of \(-0.1164\) (\(\sigma = 0.2411\)). In contrast, 13 of the 16 canonical sessions (81.25%) exhibit positive logit shifts, ranging from \(+0.0418\) in <code>vpn_skype_audio2</code> to \(+0.4851\). Only three sessions show negative mean shifts: <code>skype_audio3</code>, <code>email1</code> (\(-0.0543\)), and <code>vpn_bittorrent</code> (\(-0.7204\)).</p>
+
+  <div class="figure-box">
+    <img src="figures/figure14_group_logit_shifts.png" alt="Group Logit Shifts">
+    <div class="figure-caption"><strong>Fig. 6.</strong> Mean PTQ logit shift (\(\Delta z = z_{	ext{PTQ}} - z_{	ext{FP32}}\)) across the 16 canonical test sessions. Although 13 of 16 sessions (81.25%) display positive shifts, the single high-volume session <code>skype_audio3</code> (\(N=39,179\)) shifts negative, pulling the pooled flow average below zero.</div>
+  </div>
+
+  <p>Figure 6 shows this divergence across sessions. Thirteen horizontal bars extend into positive territory. Yet because the top session accounts for nearly four-fifths of the evaluation data, the pooled average is dragged negative to \(-0.0778\). This dynamic represents an ecological reversal and an empirical case of Simpson's Paradox: the directional effect observed in the pooled aggregate directly reverses the effect present across most independent sub-populations.</p>
+
+  <p>To formalize this disparity, we define two distinct statistical estimands:</p>
+  
+  <div class="formula">
+    \[ 	heta_A = rac{\sum_{k=1}^K \sum_{i=1}^{n_k} \Delta z_{k,i}}{\sum_{k=1}^K n_k} = -0.0778 	ag{4} \]
+  </div>
+  <div class="formula">
+    \[ 	heta_B = rac{1}{K} \sum_{k=1}^K \overline{\Delta z}_k = +0.2270 	ag{5} \]
+  </div>
+  
+  <p class="no-indent">where \(\Delta z_{k,i}\) is the logit shift for flow \(i\) in session \(k\), and \(\overline{\Delta z}_k\) is the session mean shift. Estimand A evaluates the flow-weighted pooled mean. It answers an operational question: what is the net logit displacement across all flows in this specific captured dataset? Estimand B evaluates the unweighted macro-mean across sessions. It answers an inductive question: what is the expected logit displacement when deploying the model to a new, unseen network session?</p>
+
+  <div class="figure-box">
+    <img src="figures/figure15_cluster_bootstrap_distribution.png" alt="Cluster Bootstrap">
+    <div class="figure-caption"><strong>Fig. 7.</strong> Empirical distribution of Estimand A across 2,000 cluster bootstrap resamples. The distribution splits into two modes depending on whether <code>skype_audio3</code> is selected, yielding a 95% confidence interval (\([-0.1130, +0.3275]\)) that spans zero.</div>
+  </div>
+
+  <p>Because observations within the same session are statistically dependent, standard confidence intervals fail. We compute confidence intervals using cluster bootstrap resampling with replacement across the 16 canonical sessions (\(B = 2{,}000\) iterations). For Estimand A, the cluster bootstrap produces a 95% confidence interval of \([-0.1130, +0.3275]\). Because this interval spans zero, the pooled negative shift is not statistically distinguishable from zero once session clustering is recognized. For Estimand B, the cluster bootstrap produces a 95% confidence interval of \([+0.0639, +0.3562]\), which is strictly positive and bounded away from zero.</p>
+
+  <p>Figure 7 explains why the confidence interval for Estimand A is wide and asymmetric. The replicate distribution is distinctly bimodal rather than normal. The probability of drawing <code>skype_audio3</code> at least once in a bootstrap sample of \(K = 16\) clusters selected with replacement is:</p>
+  
+  <div class="formula">
+    \[ P(	exttt{skype\_audio3} \in 	ext{sample}) = 1 - \left(1 - rac{1}{16}ight)^{16} pprox 64.39\% 	ag{6} \]
+  </div>
+  
+  <p class="no-indent">In the 64.39% of bootstrap draws where <code>skype_audio3</code> appears, its 39,179 flows anchor the weighted average, centering replicate values between \(-0.11\) and \(-0.07\). In the remaining 35.61% of draws where <code>skype_audio3</code> is omitted, the remaining 15 sessions govern the calculation. Because 13 of those 15 sessions have positive means, the replicate average shifts upward, forming the secondary distribution between \(+0.05\) and \(+0.35\).</p>
+
+  <p>A leave-one-group-out (LOGO) sensitivity analysis confirms this concentration. Removing <code>skype_audio3</code> from the test partition flips the pooled flow-weighted mean from \(-0.0778\) to \(+0.0720\). In contrast, removing any of the other 15 sessions leaves the pooled mean essentially unchanged, between \(-0.0725\) and \(-0.0955\). The apparent negative logit shift is an ecological artifact of one capture file. Treating packet flows as independent observations conceals this dependency, yielding false statistical certainty. Clustered inference is required to reflect session-level dynamics in quantized traffic models.</p>
+
+  <h2 class="sec-heading">V. Discussion</h2>
+  <div class="empty-section-notice">[Section left empty per author request]</div>
+
+  <h2 class="sec-heading">VI. Conclusion</h2>
+  <div class="empty-section-notice">[Section left empty per author request]</div>
+
+</div>
+
+</body>
+</html>

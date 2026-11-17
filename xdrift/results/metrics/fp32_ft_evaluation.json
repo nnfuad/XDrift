@@ -1,0 +1,32 @@
+{
+  "model": "FP32-FineTuned",
+  "predictive_metrics": {
+    "roc_auc": 0.9818740834214875,
+    "pr_auc": 0.6127631494133935,
+    "brier_score": 0.024781558364365665,
+    "calibrated_threshold": 0.83,
+    "calibrated_f1": 0.8176258428728242,
+    "calibrated_recall": 0.968065354623097,
+    "calibrated_precision": 0.7076547231270358,
+    "calibrated_accuracy": 0.9763862662687052,
+    "reused_f1": 0.377108983128135,
+    "reused_recall": 0.3070924619383587,
+    "reused_precision": 0.4884819846426462,
+    "reused_accuracy": 0.944529045095531,
+    "calibrated_balanced_accuracy": 0.9725,
+    "reused_positive_calls": 1693
+  },
+  "attribution_metrics_vs_fp32": {
+    "mean_iou5": 0.9669047619047619,
+    "std_iou5": 0.13750468967471502,
+    "mean_iou10": 0.9761904761904762,
+    "std_iou10": 0.11693361102674929,
+    "mean_tv": 0.12193588165003337,
+    "std_tv": 0.11372276880271902,
+    "median_tv": 0.15067778851201175,
+    "mean_sc": 0.9553541237802211,
+    "std_sc": 0.09526172284259825,
+    "mean_rho": 0.9686749734182533,
+    "std_rho": 0.10923907347496625
+  }
+}
