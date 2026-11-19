@@ -40,11 +40,54 @@ Network traffic classification, Explainable AI (XAI), Neural network quantizatio
 
 \section{Related Work}
 
+Table~\ref{tab:related_work} summarizes representative studies on encrypted network traffic classification, intrusion detection, model compression, and explainability (SHAP/XAI), contrasting their data balancing techniques, classification scopes, architectures, and evaluation dimensions with our study.
+
+\begin{table*}[htbp]
+\caption{Summary of Studies on Encrypted Traffic Classification, Model Compression, and Explainability}
+\label{tab:related_work}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{p{2.2cm}p{2.0cm}p{2.1cm}p{2.4cm}p{2.0cm}p{2.2cm}p{1.9cm}p{1.4cm}c}
+\toprule
+\textbf{Benchmark Dataset} & \textbf{Data Balancing Techniques} & \textbf{Traffic Classification Types} & \textbf{Algorithms Used} & \textbf{Best-Performing Prediction Model} & \textbf{Evaluation Metrics} & \textbf{Model Compression} & \textbf{Use of SHAP} & \textbf{Ref.} \\
+\midrule
+ISCX VPN-NonVPN 2016 & Not used (time-based flow slicing) & Binary (VPN vs. Non-VPN) \& 7 Traffic categories & C4.5 Decision Tree, KNN & C4.5 Decision Tree & Accuracy, Precision, Recall, F-Measure & Not evaluated (FP32) & No & [4] \\
+\addlinespace[2pt]
+USTC-TFC2016 \& ISCX-VPN & Byte truncation (784/1000 B), random split & 12 Application \& protocol classes & 1D-CNN, 2D-CNN & 1D-CNN & Accuracy, Precision, Recall, F1-score & Not evaluated (FP32) & No & [7] \\
+\addlinespace[2pt]
+ISCX VPN-NonVPN 2016 & Majority class downsampling & 12 App classes \& 8 Service classes & 1D-CNN, Stacked Autoencoder (SAE) & 1D-CNN & Accuracy, Precision, Recall, F1-score & Not evaluated (FP32) & No & [8] \\
+\addlinespace[2pt]
+Mirage Mobile Traffic & Session-level grouping, class sampling & 20 Encrypted mobile applications & Multimodal 1D-CNN, 2D-CNN, LSTM, SAE, RF & MIMETIC (CNN+LSTM) & Accuracy, Precision, Recall, F-Measure & Not evaluated (FP32) & No & [9] \\
+\addlinespace[2pt]
+ISP Backbone \& ISCX-VPN & Sequence truncation (first 100 packets) & 18 Application classes & FS-Net (Bi-GRU RNN), RF, SVM, 1D-CNN & FS-Net (Bi-GRU) & TPR, FPR, Accuracy, Macro F1 & Not evaluated (FP32) & No & [10] \\
+\addlinespace[2pt]
+Cross-platform mobile (Android/iOS) & Semi-supervised temporal correlation & 100+ Mobile apps (Known \& Zero-day) & FlowPrint (Graph clustering + Random Forest) & FlowPrint & Precision, Recall, F1-score & Not evaluated (FP32) & No & [11] \\
+\addlinespace[2pt]
+ISCX-VPN, USTC-TFC, CSTNET & Stratified datagram burst sampling & 12 App, 8 Service, 10 Malware classes & ET-BERT, TextCNN, Bi-LSTM, 1D-CNN & ET-BERT & Accuracy, Precision, Recall, Macro F1 & Not evaluated (FP32) & No & [12] \\
+\addlinespace[2pt]
+ISCX-VPN2016 \& CSTNET-TLS 1.3 & Multi-phase attribute partitioning & Protocol \& application categories & MPAF, XGBoost, Random Forest, CNN & MPAF-XGBoost & Precision, Recall, F1-score, Latency & Not evaluated (FP32) & No & [14] \\
+\addlinespace[2pt]
+NF-UNSW-NB15-v2, NF-BoT-IoT-v2 & Standard benchmark split (Not used) & Binary (Attack/Benign) \& Multi-class attacks & Random Forest, Extra Trees, XGBoost, MLP & Random Forest & Accuracy, Precision, Recall, F1-score & Not evaluated (FP32) & Yes (TreeSHAP, KernelSHAP) & [36] \\
+\addlinespace[2pt]
+ISCX VPN-NonVPN 2016 & Feature filtering / standard split & Binary (VPN vs. Non-VPN), Phishing, Botnet & Random Forest, Decision Tree, SVM, Naive Bayes & Random Forest & Accuracy, Precision, Recall, F1-score & Not evaluated (FP32) & Yes (TreeSHAP, LIME) & [37] \\
+\addlinespace[2pt]
+ISCX-VPN2016 \& ACI-IoT-2023 & SMOTE, Random Oversampling (ROS) & VPN vs. Non-VPN \& 12 Application classes & LightGBM, Multi-Head Attention, RF, XGBoost & Multi-Head Attention + LightGBM & Accuracy, Precision, Recall, F1-score & Not evaluated (FP32) & Yes (TreeSHAP) & [49] \\
+\addlinespace[2pt]
+Paddy Doctor (Vision, 10.4k images) & Standard vision data augmentation & 10 Plant disease classes & MobileNetV3-Large, ResNet50, EfficientNetV2-S & ResNet50 (Acc), MobileNetV3 (Comp) & Top-1 Accuracy, Top-$k$ IoU, Spearman $\rho$ & INT8 PTQ \& INT8 QAT & Yes (Grad-CAM, LIME, IG) & [45] \\
+\addlinespace[2pt]
+LAMA, ParaRel, ConceptNet (NLP) & Balanced query prompt sampling & Factual token retrieval & LLaMA-2 (7B/13B), Mistral-7B, Qwen & BitsAndBytes 8-bit / FP16 Baseline & Accuracy (Recall@1), Perplexity, Rank Corr & INT8 \& INT4 (BitsAndBytes, GPTQ, AWQ) & No (Layer Attributions) & [46] \\
+\addlinespace[2pt]
+\textbf{ISCX VPN-NonVPN 2016 (339k flows)} & \textbf{Loss weighting ($\text{pos\_weight} = 30.38$), 106 Canonical session groups} & \textbf{Binary (VPN vs. Non-VPN; 5.47\% minority) across 16 test sessions} & \textbf{1D-CNN (44k params; 3 Conv1D blocks, BatchNorm, AdaptiveAvgPool, Linear)} & \textbf{1D-CNN (FP32-FT F1: 77.64\%, PTQ: 76.97\%, QAT: 77.62\% cal.)} & \textbf{ROC-AUC, PR-AUC, Calibrated F1, Checkpoint size, Latency, Top-5 IoU, TV, Cosine} & \textbf{INT8 PTQ \& INT8 QAT (with FP32-FT control)} & \textbf{Yes (KernelSHAP)} & \textbf{This study} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
 \section{Methodology}
 
 \section{Experimental Results}
 
-In this section, we evaluate the computational efficiency, predictive classification performance, probability calibration dynamics, explainability fidelity, and clustered statistical robustness of 32-bit floating-point (FP32), an unquantized Fine-Tuned control baseline (FP32-FT), static Post-Training Quantized (INT8-PTQ), and Quantization-Aware Trained (INT8-QAT) models under the PyTorch QNNPACK execution engine. All evaluations are conducted on the held-out test partition ($N = 49,251$ bidirectional flows across 16 canonical capture groups), ensuring zero cross-split session contamination.
+In this section, we evaluate the computational efficiency, predictive classification performance, probability calibration dynamics, explainability fidelity, and clustered statistical robustness of 32-bit floating-point (FP32), an unquantized Fine-Tuned control baseline (FP32-FT), static Post-Training Quantized (INT8-PTQ), and Quantization-Aware Trained (INT8-QAT) models under the PyTorch QNNPACK execution engine. Predictive classification and probability calibration dynamics are evaluated across the full held-out test partition ($N = 49,251$ bidirectional flows across 16 canonical capture groups), ensuring zero cross-split session contamination. Owing to the computational cost of perturbation-based Shapley sampling (50 background reference flows $\times$ 150 coalition evaluations per flow), feature attribution drift is rigorously evaluated on a representative, stratified cohort of $N = 100$ test flows (50 VPN and 50 Non-VPN flows).
 
 \subsection{Computational Efficiency and Hardware Benchmarking}
 
@@ -60,13 +103,13 @@ We evaluate physical execution metrics on edge hardware to determine whether 8-b
 \midrule
 Model Checkpoint Size & 184.24 KB & 51.77 KB & 51.77 KB \\
 Compression Ratio & $1.00\times$ & $\mathbf{3.56\times}$ & $\mathbf{3.56\times}$ \\
-L1 Data Cache Residency & Exceeds 64 KB & Fully Fits & Fully Fits \\
+Static Parameter L1-D Fit & Exceeds 64 KB & Fits $\le 64$ KB & Fits $\le 64$ KB \\
 \midrule
 \multicolumn{4}{l}{\textit{Single-Flow Streaming Inspection ($B = 1$)}} \\
 Median Latency & 0.267 ms & 0.255 ms & 0.242 ms \\
 Latency Speedup & $1.00\times$ & $1.05\times$ & $1.10\times$ \\
-Measured Throughput (flows/s) & 3,439 & 3,571 & 3,745 \\
-Throughput Speedup & $1.00\times$ & $1.04\times$ & $1.09\times$ \\
+Measured Throughput (flows/s) & 3,439 & \textbf{3,797} & \textbf{4,005} \\
+Throughput Speedup & $1.00\times$ & $\mathbf{1.10\times}$ & $\mathbf{1.16\times}$ \\
 \midrule
 \multicolumn{4}{l}{\textit{Micro-Batched Execution ($B = 64$)}} \\
 Median Latency & 9.503 ms & 0.764 ms & 0.755 ms \\
@@ -84,11 +127,11 @@ Throughput Speedup & $1.00\times$ & $\mathbf{11.94\times}$ & $\mathbf{12.77\time
 \label{fig:latency}
 \end{figure}
 
-Quantization compresses the serialized model checkpoint from 184.24 KB to 51.77 KB, yielding a $3.56\times$ storage reduction. This size reduction has immediate microarchitectural implications. Many embedded CPU architectures allocate 64 KB for L1 data cache per core. While the 184.24 KB floating-point weights exceed this limit and trigger external memory bus traffic, the 51.77 KB quantized parameter tensor fits entirely within L1 data cache. Memory access stalls during repetitive filter operations are substantially reduced.
+Quantization compresses the serialized model checkpoint from 184.24 KB to 51.77 KB, yielding a $3.56\times$ storage reduction. This reduction provides direct microarchitectural benefits for edge deployments. Typical embedded ARM cores (e.g., ARM Cortex-A efficiency cores) provide a 64 KB per-core L1 data cache allocation. At 184.24 KB, the uncompressed FP32 parameters exceed this threshold by nearly $3\times$, guaranteeing that filter weights cannot remain resident across layer evaluations without triggering cache evictions to slower L2 cache or system DRAM. In contrast, the 51.77 KB INT8 static parameter footprint fits comfortably within a 64 KB L1-D cache budget, enabling persistent weight residency across successive inference cycles. Although the total runtime working set at larger batch sizes also encompasses dynamic intermediate activations and scratchpad buffers that spill into L2 cache, keeping static weights compact substantially alleviates memory bus contention.
 
 The timing measurements reveal an operational division between streaming packet inspection and batched traffic triage:
 
-\textbf{Streaming Inspection ($B = 1$):} When classifying isolated flows one by one, integer quantization yields modest latency gains. Median per-flow latency decreases from 0.267 ms in FP32 to 0.255 ms in PTQ ($1.05\times$ speedup) and 0.242 ms in QAT ($1.10\times$ speedup). Processing throughput increases only slightly, from 3,439 to 3,745 flows/s. 
+\textbf{Streaming Inspection ($B = 1$):} When classifying isolated flows one by one, integer quantization yields modest latency gains. Median per-flow latency decreases from 0.267 ms in FP32 to 0.255 ms in PTQ ($1.05\times$ latency speedup) and 0.242 ms in QAT ($1.10\times$ latency speedup). Processing throughput increases modestly from 3,439 flows/s in FP32 to 3,797 flows/s in PTQ ($1.10\times$ throughput speedup) and 4,005 flows/s in QAT ($1.16\times$ throughput speedup). 
 
 This modest gain stems from framework execution limits. The 1D-CNN contains 44,129 parameters, requiring approximately $8.8 \times 10^4$ multiply-accumulate operations per flow. On an ARM processor operating at gigahertz clock rates, the theoretical compute time for these operations is under one microsecond. Yet the measured execution time is roughly 250 microseconds. Over 99\% of wall-clock time at batch size 1 is absorbed by Python runtime interpretation, tensor memory allocations, operator dispatch, and quantization scale conversions. Because arithmetic execution accounts for less than 1\% of latency, replacing floating-point operations with integer math produces negligible savings in streaming mode.
 
@@ -139,14 +182,14 @@ Prediction Flips vs. Baseline & --- & 5.02\% & 0.12\% & --- & \textbf{8.37\%} & 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\columnwidth]{figures/figure6_pr_curves.png}
-\caption{Precision-recall curves across classification thresholds on the test partition ($N=49,251$). The horizontal dashed line denotes the empirical minority class prevalence ($5.47\%$). Integer quantization maintains precision-recall separation well above baseline prevalence across operating regimes.}
+\caption{Precision-recall curves across classification thresholds on the test partition ($N=49,251$). The horizontal dashed line denotes the empirical minority class prevalence ($5.47\%$). Primary quantization deployments (FP32, PTQ, QAT) are plotted for visual clarity; Table~\ref{tab:predictive} reports full metrics including the unquantized FP32-FT control.}
 \label{fig:pr_curves}
 \end{figure}
 
 \begin{figure*}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/figure4_confusion_matrices.png}
-\caption{Confusion matrices on the held-out test partition ($N=49,251$) under model-specific calibrated operating thresholds ($\tau=0.900$ for FP32, $\tau=0.900$ for PTQ, and $\tau=0.680$ for QAT). Each cell reports the flow count and percentage share of total test traffic.}
+\caption{Confusion matrices on the held-out test partition ($N=49,251$) under model-specific calibrated operating thresholds ($\tau=0.900$ for FP32, $\tau=0.900$ for PTQ, and $\tau=0.680$ for QAT). Each cell reports the flow count and percentage share of total test traffic. Plotted for primary quantization deployments; Table~\ref{tab:predictive} reports complete 4-model performance.}
 \label{fig:confusion_matrices}
 \end{figure*}
 
@@ -200,7 +243,7 @@ No network input, regardless of how distinctive its packet features may be, can 
 
 Evaluating all 49,251 test flows reveals the direct operational consequence of this mathematical bound. Exactly 4,070 flows saturate at $p_{\max} = 0.73381203$. Of these saturated instances, 2,642 are true VPN flows, representing 98.11\% of the entire test VPN population (2,642 of 2,693 flows). Nearly all positive flows in the test partition pile up against this ceiling. As shown in Fig.~\ref{fig:qat_saturation}, the probability bins in $(0.74, 1.00]$ are completely vacant. Applying any operational threshold $\tau > 0.7338$ trivially yields zero positive detections, producing an $F_1$ score of exactly $0.0000$.
 
-Static PTQ avoids this limitation. It maintains an unconstrained output projection spanning pre-sigmoid logits from $-7.278$ to $+10.398$, reaching probabilities up to $0.999969$ with zero clamped flows. Recalibrating the QAT operating threshold on validation data ($\tau^* = 0.680 < p_{\max}$) successfully restores peak detection performance ($F_1 = 0.7762$, recall $= 98.33\%$). Even so, saturation destroys confidence gradation among positive calls: 98.11\% of detected VPN flows receive the exact same probability score, preventing network operators from ranking alerts by confidence.
+Static PTQ avoids this limitation. It maintains an unconstrained output projection spanning pre-sigmoid logits from $-7.278$ to $+10.398$, reaching probabilities up to $0.999969$ with zero clamped flows. Recalibrating the QAT operating threshold on validation data ($\tau^* = 0.680 < p_{\max}$) successfully restores peak detection performance ($F_1 = 0.7762$, recall $= 98.33\%$). Even so, saturation destroys confidence gradation among positive calls: 98.11\% of all true VPN test flows (2,642 of 2,693)---representing 99.77\% of all correctly detected true VPN flows under the calibrated operating threshold (2,642 of 2,648 true positive detections)---receive the exact same maximal probability score ($p_{\max} = 0.733812$), preventing network operators from ranking alerts by confidence.
 
 \subsection{Feature Attribution Drift and Causal Disentanglement}
 
@@ -252,7 +295,7 @@ Table~\ref{tab:attribution} and Fig.~\ref{fig:attribution_stability} report the 
 
 \textbf{3) Directional Collapse Under QAT:} While QAT retains broad feature overlap ($IoU_5 = 0.9553 \pm 0.1841$, $IoU_{10} = 0.9679 \pm 0.1416$) and general rank ordering ($r_s = 0.9140 \pm 0.1838$), its directional alignment breaks down completely. Signed cosine similarity plunges to $S_c = 0.4830 \pm 0.3449$ ($p < 10^{-17}$ compared to both PTQ and FP32-FT), while Total Variation distance increases to $TV = 0.2346 \pm 0.1908$. The model still attends to similar token regions, but it redistributes attribution weights and reverses their polarities. An explanation from the FP32 baseline cannot be assumed to describe the reasoning of the QAT model.
 
-\textbf{4) Class-Conditional Attribution Asymmetry:} Evaluating drift separately across traffic classes reveals an asymmetric distribution. On Non-VPN flows, QAT shows moderate directional stability ($S_c = 0.7996$), with drift concentrated in magnitude scaling ($TV = 0.3529$). On VPN flows, directional alignment collapses almost entirely, dropping to $S_c = 0.1665 \pm 0.2811$ ($TV = 0.1163$). A Mann-Whitney $U$ test confirms that minority VPN flows experience significantly greater directional degradation than Non-VPN traffic ($U = 278.0$, $p = 2.12 \times 10^{-11}$). For obfuscated tunneling traffic, the quantized model relies on fundamentally altered combinations of features to reach its classifications.
+\textbf{4) Class-Conditional Attribution Asymmetry:} Evaluating drift separately across traffic classes reveals an asymmetric distribution. On Non-VPN flows, QAT preserves moderate directional alignment ($S_c = 0.7996 \pm 0.1360$), with drift manifesting primarily as magnitude scaling ($TV = 0.3529 \pm 0.0691$). On VPN flows, directional alignment collapses almost entirely, dropping to $S_c = 0.1665 \pm 0.1406$ (median $0.1341$), while attribution mass remains more concentrated ($TV = 0.1163 \pm 0.2025$). A Mann-Whitney $U$ test on signed cosine similarity confirms that minority VPN flows suffer significantly greater directional degradation than Non-VPN traffic ($U = 89.0$, $p = 1.24 \times 10^{-15}$). Conversely, a separate Mann-Whitney $U$ test on Total Variation distance confirms that Non-VPN flows exhibit significantly higher overall attribution mass redistribution ($U = 278.0$, $p = 2.12 \times 10^{-11}$). For obfuscated tunneling traffic, the quantized model relies on fundamentally rearranged combinations of feature polarities to reach its classifications.
 
 \subsection{Clustered Statistical Inference and Non-IID Session Dynamics}
 
@@ -266,19 +309,20 @@ Network traffic classification datasets do not consist of independent and identi
 \toprule
 \textbf{Session Group} & \textbf{Class} & \textbf{Flows ($n_k$)} & \textbf{Share} & \textbf{Mean $\Delta z$} & \textbf{Std ($\sigma_k$)} \\
 \midrule
-\texttt{skype\_audio3} & Non-VPN & 39,179 & 79.55\% & $-0.1164$ & 0.2411 \\
-\texttt{skype\_chat1b} & Non-VPN & 2,752 & 5.59\% & $+0.2942$ & 0.2105 \\
-\texttt{vpn\_skype\_audio2} & VPN & 1,481 & 3.01\% & $+0.0418$ & 0.1582 \\
-\texttt{vpn\_aim\_chat1b} & VPN & 785 & 1.59\% & $+0.1891$ & 0.1824 \\
-\texttt{youtube3} & Non-VPN & 763 & 1.55\% & $+0.0812$ & 0.1419 \\
-\textit{11 Remaining Sessions} & Mixed & 4,291 & 8.71\% & $+0.1200$ to $+0.4851$ & 0.11--0.25 \\
+\texttt{skype\_audio3} & Non-VPN & 39,179 & 79.55\% & $-0.1164$ & 0.2303 \\
+\texttt{email1} & Non-VPN & 5,727 & 11.63\% & $-0.0543$ & 0.2652 \\
+\texttt{vpn\_hangouts\_audio2} & VPN & 2,135 & 4.33\% & $+0.3124$ & 0.1689 \\
+\texttt{email2} & Non-VPN & 581 & 1.18\% & $+0.4209$ & 0.3210 \\
+\texttt{vpn\_bittorrent} & VPN & 406 & 0.82\% & $-0.7204$ & 3.8659 \\
+\texttt{voipbuster1} & Non-VPN & 398 & 0.81\% & $+0.2785$ & 0.2744 \\
+\textit{10 Remaining Sessions} & Mixed & 825 & 1.68\% & $+0.1037$ to $+0.5262$ & 0.22--0.41 \\
 \midrule
-\textbf{Pooled Test Partition} & Mixed & \textbf{49,251} & \textbf{100.0\%} & \textbf{$-0.0778$} & \textbf{0.2618} \\
+\textbf{Pooled Test Partition} & Mixed & \textbf{49,251} & \textbf{100.0\%} & \textbf{$-0.0778$} & \textbf{0.4437} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-To analyze the behavior across independent communication events, we group the test partition into its $K = 16$ canonical session clusters. Table~\ref{tab:session_shifts} summarizes the sample sizes, traffic proportions, and logit shift distributions across these sessions. The partition exhibits severe volume concentration: a single session, \texttt{skype\_audio3}, contains 39,179 flows, or 79.55\% of the test cohort. In that session, PTQ reduces logits, producing a mean shift of $-0.1164$ ($\sigma = 0.2411$). In contrast, 13 of the 16 canonical sessions (81.25\%) exhibit positive logit shifts, ranging from $+0.0418$ in \texttt{vpn\_skype\_audio2} to $+0.4851$. Only three sessions show negative mean shifts: \texttt{skype\_audio3}, \texttt{email1} ($-0.0543$), and \texttt{vpn\_bittorrent} ($-0.7204$).
+To analyze the behavior across independent communication events, we group the test partition into its $K = 16$ canonical session clusters. Table~\ref{tab:session_shifts} summarizes the sample sizes, traffic proportions, and logit shift distributions across these sessions. The partition exhibits severe volume concentration: a single session, \texttt{skype\_audio3}, contains 39,179 flows, or 79.55\% of the test cohort. In that session, PTQ reduces logits, producing a mean shift of $-0.1164$ ($\sigma = 0.2303$). In contrast, 13 of the 16 canonical sessions (81.25\%) exhibit positive logit shifts, ranging from $+0.1037$ in \texttt{icqchat1} to $+0.5262$ in \texttt{netflix2}. Only three sessions show negative mean shifts: \texttt{skype\_audio3} ($-0.1164$), \texttt{email1} ($-0.0543$), and \texttt{vpn\_bittorrent} ($-0.7204$).
 
 \begin{figure}[htbp]
 \centering
@@ -299,11 +343,11 @@ where $\Delta z_{k,i}$ is the logit shift for flow $i$ in session $k$, and $\ove
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\columnwidth]{figures/figure15_cluster_bootstrap_distribution.png}
-\caption{Empirical distribution of Estimand A across 2,000 cluster bootstrap resamples. The distribution splits into two modes depending on whether \texttt{skype\_audio3} is selected, yielding a 95\% confidence interval ($[-0.1130, +0.3275]$) that spans zero.}
+\caption{Empirical distribution of Estimand A across 2,000 cluster bootstrap resamples. The distribution splits into two modes depending on whether \texttt{skype\_audio3} is selected, yielding a 95\% confidence interval ($[-0.1124, +0.3275]$) that spans zero.}
 \label{fig:cluster_bootstrap}
 \end{figure}
 
-Because observations within the same session are statistically dependent, standard confidence intervals fail. We compute confidence intervals using cluster bootstrap resampling with replacement across the 16 canonical sessions ($B = 2{,}000$ iterations). For Estimand A, the cluster bootstrap produces a 95\% confidence interval of $[-0.1130, +0.3275]$. Because this interval spans zero, the pooled negative shift is not statistically distinguishable from zero once session clustering is recognized. For Estimand B, the cluster bootstrap produces a 95\% confidence interval of $[+0.0639, +0.3562]$, which is strictly positive and bounded away from zero.
+We compute confidence intervals using cluster bootstrap resampling with replacement across the 16 canonical sessions ($B = 2,000$ iterations, seed 42). For Estimand A, the cluster bootstrap produces a 95\% confidence interval of $[-0.1124, +0.3275]$ (and $[-0.1128, +0.3243]$ with 10,000 resamples). Because this interval spans zero, the pooled negative shift is not statistically distinguishable from zero once session clustering is recognized. For Estimand B, the cluster bootstrap produces a 95\% confidence interval of $[+0.0630, +0.3554]$ (and $[+0.0653, +0.3532]$ with 10,000 resamples), which is strictly positive and bounded away from zero.
 
 Figure~\ref{fig:cluster_bootstrap} explains why the confidence interval for Estimand A is wide and asymmetric. The replicate distribution is distinctly bimodal rather than normal. The probability of drawing \texttt{skype\_audio3} at least once in a bootstrap sample of $K = 16$ clusters selected with replacement is:
 \begin{equation}
