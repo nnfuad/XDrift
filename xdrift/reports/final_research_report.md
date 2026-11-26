@@ -219,7 +219,7 @@ KernelSHAP was executed with **three distinct random seeds (42, 43, 44)** on the
 | **Explainer Noise (3-Pair Mean)** | Multi-seed | **0.9553 ± 0.1829** | **0.9648 ± 0.1592** | **0.0553 ± 0.1588** | **0.9676 ± 0.1450** | **0.9516 ± 0.1666** |
 | **FP32 vs INT8-PTQ (Cross-Model)** | 42 vs 42 | **0.9786 ± 0.0970** | **0.9887 ± 0.0650** | **0.0369 ± 0.0620** | **0.9918 ± 0.0394** | **0.9749 ± 0.0592** |
 | **FP32 vs INT8-QAT (Cross-Model)** | 42 vs 42 | **0.9553 ± 0.1841** | **0.9679 ± 0.1416** | **0.2346 ± 0.1908** | **0.4830 ± 0.3449** | **0.9140 ± 0.1838** |
-| **FP32 vs FP32-FT (Ablation Control)** | 42 vs 42 | **0.9481 ± 0.1816** | **0.9681 ± 0.1379** | **0.2214 ± 0.2327** | **0.1166 ± 0.8106** | **0.8949 ± 0.2453** |
+| **FP32 vs FP32-FT (Ablation Control)** | 42 vs 42 | **0.9669 ± 0.1375** | **0.9762 ± 0.1169** | **0.1219 ± 0.1137** | **0.9554 ± 0.0953** | **0.9687 ± 0.1092** |
 
 ---
 
@@ -232,8 +232,8 @@ KernelSHAP was executed with **three distinct random seeds (42, 43, 44)** on the
 | **PTQ vs. Noise** | $\Delta IoU_5 = IoU_{5, \text{PTQ}} - IoU_{5, \text{Noise}}$ | +0.0232 ± 0.1088 | +0.0000 | $[+0.0051, +0.0472]$ | $W = 0.0, p = 0.02771$ (Holm: 0.02771) | Identical Top-5 on 95/100 flows |
 | **QAT vs. Noise** | $\Delta TV = TV_{\text{QAT}} - TV_{\text{Noise}}$ | +0.1793 ± 0.1547 | +0.1975 | $[+0.1500, +0.2071]$ | $W = 129.0, p = 1.7478e-16$ (Holm: 5.2435e-16) | **Significant Drift ($p < 10^{-4}$)** |
 | **QAT vs. PTQ** | $\Delta TV = TV_{\text{QAT}} - TV_{\text{PTQ}}$ | +0.1978 ± 0.1596 | +0.2854 | $[+0.1660, +0.2301]$ | $W = 0.0, p = 3.8966e-18$ (Holm: 1.5586e-17) | QAT restructures attributions ($p < 10^{-4}$) |
-| **FP32-FT vs. Noise** | $\Delta TV = TV_{\text{FT}} - TV_{\text{Noise}}$ | +0.1661 ± 0.1985 | +0.1802 | $[+0.1270, +0.2052]$ | $W = 482.0, p = 8.12 \times 10^{-11}$ | Unquantized SGD also induces massive drift ($p < 10^{-4}$) |
-| **QAT vs. FP32-FT** | $\Delta TV = TV_{\text{QAT}} - TV_{\text{FT}}$ | +0.0132 ± 0.1654 | -0.0047 | $[-0.0195, +0.0460]$ | $W = 2390.0, p = 0.684$ | Drift magnitude statistically indistinguishable |
+| **FP32-FT vs. Noise** | $\Delta TV = TV_{\text{FT}} - TV_{\text{Noise}}$ | +0.0666 ± 0.1188 | +0.0294 | $[+0.0423, +0.0887]$ | $W = 821.0, p = 4.66 \times 10^{-9}$ | Moderate drift from gradient fine-tuning ($p < 10^{-4}$) |
+| **QAT vs. FP32-FT** | $\Delta TV = TV_{\text{QAT}} - TV_{\text{FT}}$ | +0.1127 ± 0.2221 | +0.2016 | $[+0.0684, +0.1555]$ | $W = 1146.0, p = 2.12 \times 10^{-6}$ | QAT drift significantly exceeds FP32-FT ($p < 10^{-4}$) |
 
 ---
 
@@ -249,7 +249,7 @@ KernelSHAP was executed with **three distinct random seeds (42, 43, 44)** on the
 
 
 #### Deconstruction of Attribution Properties:
-1. **Feature Ranking ($IoU_5$ & $IoU_{10}$)**: Feature importance ordering is extremely stable under PTQ ($IoU_5 = 0.9786$, median $1.0000$, identical on 95/100 flows; $IoU_{10} = 0.9887$), whereas QAT alters rankings substantially ($IoU_5 = 0.9553$).
+1. **Feature Ranking ($IoU_5$ & $IoU_{10}$)**: Feature importance ordering is extremely stable under PTQ ($IoU_5 = 0.9786$, median $1.0000$, identical on 95/100 flows; $IoU_{10} = 0.9887$), while QAT also retains high Top-5 feature overlap by absolute magnitude ($IoU_5 = 0.9553$, identical on 94/100 flows) despite rearranging attribution weights and polarities.
 2. **Attribution Direction ($S_C$)**: The orientation of attribution vectors is preserved under PTQ ($S_C = 0.9918$, median $0.9996$, Spearman $\rho = 0.9749$), but undergoes substantial rotation under QAT ($S_C = 0.4830$).
 3. **Magnitude Displacement ($TV$)**: The normalized $L_1$ distribution of attribution weights shifts minimally under PTQ ($TV = 0.0369$, median $0.0196$) compared to massive redistribution under QAT ($TV = 0.2346$).
 
@@ -276,17 +276,16 @@ A critical question arising in peer review and dissertation defense is:
 To isolate this confounder, the unquantized FP32 Fine-Tuning baseline (`FP32-FT`, Option 1) duplicates the exact training regime of QAT without fake-quantization operators. The resulting empirical comparison yields profound scientific clarity:
 
 1. **Attribution Drift Magnitude**:
-   - `FP32-FT` yields a mean Total Variation distance of **$0.2214 \pm 0.2327$** (median **$0.2070$**), with Top-5 Jaccard overlap dropping to **$0.9481$** and signed cosine similarity dropping to **$0.1166$** relative to base FP32.
-   - `INT8-QAT` yields a mean Total Variation distance of **$0.2346 \pm 0.1908$** (median **$0.2023$**), with Top-5 Jaccard of **$0.9553$** and signed cosine similarity of **$0.4830$**.
-   - A paired Wilcoxon test between QAT and FP32-FT reveals no significant difference in Total Variation magnitude ($W = 2390.0, p = 0.684, \text{median } \Delta TV = -0.0047$).
+   - `FP32-FT` yields a mean Total Variation distance of **$0.1219 \pm 0.1137$** (median **$0.1507$**), while maintaining high Top-5 Jaccard overlap (**$0.9669$**, 94/100 identical) and high signed cosine similarity (**$0.9554$** overall, **$0.9187$** on VPN flows) relative to base FP32.
+   - `INT8-QAT` yields a mean Total Variation distance of **$0.2346 \pm 0.1908$**, with Top-5 Jaccard of **$0.9553$** (94/100 identical) and collapsed signed cosine similarity of **$0.4830$** (**$0.1665$** on VPN flows).
+   - A paired Wilcoxon test between QAT and FP32-FT reveals a highly significant increase in attribution displacement ($W = 1146.0, p = 2.12 \times 10^{-6}, \text{median } \Delta TV = +0.2016$).
 2. **Triangulated Causal Attribution**:
-   - **Static PTQ (Quantization without Fine-Tuning)**: Preserves attributions with extreme fidelity ($TV = 0.0369, S_C = 0.9918, IoU_5 = 0.9786$).
-   - **FP32-FT (Fine-Tuning without Quantization)**: Induces substantial attribution reorganization ($TV = 0.2214, S_C = 0.1166, IoU_5 = 0.9481$).
-   - **INT8-QAT (Quantization WITH Fine-Tuning)**: Induces comparable attribution reorganization ($TV = 0.2346, S_C = 0.4830, IoU_5 = 0.9553$).
+   - **Static PTQ (Quantization without Fine-Tuning)**: Preserves attributions with extreme fidelity ($TV = 0.0369, S_C = 0.9918, IoU_5 = 0.9786$, 95/100 identical).
+   - **FP32-FT (Fine-Tuning without Quantization)**: Induces moderate magnitude shift ($TV = 0.1219$) while preserving directional geometry ($S_C = 0.9554, IoU_5 = 0.9669$, 94/100 identical).
+   - **INT8-QAT (Quantization WITH Fine-Tuning)**: Induces severe directional and magnitude reorganization ($TV = 0.2346, S_C = 0.4830, IoU_5 = 0.9553$, 94/100 identical).
 3. **Core Scientific Conclusion**:
-   - **The explanation restructuring observed in QAT is driven primarily by gradient descent optimization across the non-convex loss surface rather than integer quantization noise.**
-   - In overparameterized neural networks, gradient fine-tuning naturally finds alternate weight configurations that achieve equivalent or superior predictive discriminability while relying on alternative, complementary packet features.
-   - Static PTQ proves that integer quantization itself does not destroy feature rankings; QAT proves that fine-tuning under constraints finds an alternate explainability basin.
+   - **While gradient fine-tuning accounts for initial parameter migration across the loss surface, discrete integer quantization constraints and Straight-Through Estimator approximations under QAT drive statistically significant additional representational collapse ($W = 1146.0, p = 2.12 \times 10^{-6}$ vs. FP32-FT).**
+   - Static PTQ proves that post-training integer quantization preserves both feature rankings and directional alignment; QAT proves that retraining under integer grid constraints flips feature polarities on minority tunneling traffic while keeping similar top-magnitude positions.
 
 ---
 

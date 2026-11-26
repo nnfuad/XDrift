@@ -488,12 +488,12 @@ $$\text{Noise}_i = \text{TV}\big(\phi_{\text{FP32, s42}}(x_i), \, \phi_{\text{FP
 
 | Attribution Stability Metric | Explainer Noise Baseline (FP32 Seed Jitter) | FP32 vs INT8-PTQ (Post-Training) | FP32 vs INT8-QAT (Retrained) | FP32 vs FP32-FT (Ablation Control) |
 | :--- | :---: | :---: | :---: | :---: |
-| **Top-5 Jaccard Similarity ($\text{IoU}_5$)** | $0.9850$ | **0.9786** | **0.9553** | **0.9481** |
-| **Top-10 Jaccard Similarity ($\text{IoU}_{10}$)** | $0.9922$ | **0.9887** | **0.7258** | **0.9681** |
-| **Total Variation Distance ($\text{TV}$)** | $0.0553$ | **0.0369** | **0.2346** | **0.2214** |
-| **Signed Cosine Similarity ($\cos \theta$)** | $0.9904$ | **0.9918** | **0.4830** | **0.1166** |
-| **Spearman Rank Correlation ($\rho$)** | $0.9634$ | **0.9749** | **0.7582** | **0.8949** |
-| **Identical Top-5 Features ($5/5$ match)** | $96 / 100$ flows | **95 / 100 flows** | **28 / 100 flows** | **23 / 100 flows** |
+| **Top-5 Jaccard Similarity ($\text{IoU}_5$)** | $0.9553$ | **$0.9786$** | **$0.9553$** | **$0.9669$** |
+| **Top-10 Jaccard Similarity ($\text{IoU}_{10}$)** | $0.9648$ | **$0.9887$** | **$0.9679$** | **$0.9762$** |
+| **Total Variation Distance ($\text{TV}$)** | $0.0553$ | **$0.0369$** | **$0.2346$** | **$0.1219$** |
+| **Signed Cosine Similarity ($\cos \theta$)** | $0.9676$ | **$0.9918$** | **$0.4830$** | **$0.9554$** |
+| **Spearman Rank Correlation ($\rho$)** | $0.9516$ | **$0.9749$** | **$0.9140$** | **$0.9687$** |
+| **Identical Top-5 Features ($5/5$ match)** | $94 / 100$ flows | **$95 / 100$ flows** | **$94 / 100$ flows** | **$94 / 100$ flows** |
 
 ### The Paired Wilcoxon Signed-Rank Test: Resolving Direction and Equivalence
 To test **Hypothesis H2 (PTQ Attribution Invariance)**, we examine the paired difference between PTQ attribution drift and explainer noise for each of the 100 cohort flows:
@@ -519,7 +519,7 @@ We conducted a non-parametric two-sided **Wilcoxon signed-rank test** on $\Delta
 While PTQ preserves top features, Quantization-Aware Training causes **structural reorganization**:
 - Signed Cosine Similarity drops from $0.9918$ (PTQ) to **$0.4830$** (QAT), indicating that feature attribution vectors rotate into completely different geometric quadrants of the 128-dimensional space.
 - Mean Total Variation surges more than six-fold to **$0.2346$**.
-- Top-5 Jaccard similarity drops to **$0.9553$**, with only 28 of 100 flows retaining identical top-5 features.
+- Top-5 Jaccard similarity is **$0.9553$** ($94$ of $100$ flows retain identical top-5 feature sets by absolute magnitude), showing that QAT attends to similar dominant positions while redistributing attribution weights ($TV = 0.2346$) and reversing feature polarities ($S_C = 0.4830$, collapsing to $0.1665$ on VPN flows).
 - **Scientific Takeaway:** QAT updates model weights during simulated quantization training, navigating to an alternative loss basin. While this preserves classification accuracy, it fundamentally rearranges the underlying decision rules.
 
 ### Disentangling the Fine-Tuning Confounder: FP32-FT vs QAT vs PTQ (Option 1 Defense)
@@ -534,15 +534,15 @@ The empirical comparison across all three configurations establishes a definitiv
 1. **Quantization WITHOUT Fine-Tuning (INT8-PTQ)**:
    Attribution drift is virtually negligible: Mean Total Variation is **$0.0369 \pm 0.0620$**, Signed Cosine similarity is **$0.9918$**, Top-5 Jaccard is **$0.9786$**, and $95\%$ of flows retain identical top-5 features.
 2. **Fine-Tuning WITHOUT Quantization (FP32-FT Control)**:
-   Induces massive attribution reorganization: Mean Total Variation surges to **$0.2214 \pm 0.2327$** (median **$0.2070$**), Signed Cosine collapses to **$0.1166 \pm 0.8106$**, Top-5 Jaccard drops to **$0.9481 \pm 0.1816$**, and Spearman rank correlation drops to **$0.8949$**.
+   Induces moderate magnitude shift while preserving directional alignment: Mean Total Variation rises to **$0.1219 \pm 0.1137$** (median **$0.1507$**), Signed Cosine stays high at **$0.9554 \pm 0.0953$**, Top-5 Jaccard is **$0.9669 \pm 0.1375$** ($94/100$ identical), and Spearman rank correlation is **$0.9687$**.
 3. **Quantization WITH Fine-Tuning (INT8-QAT)**:
-   Exhibits comparable attribution restructuring: Mean Total Variation is **$0.2346 \pm 0.1908$** (median **$0.2023$**), Signed Cosine is **$0.4830 \pm 0.5369$**, and Top-5 Jaccard is **$0.9553 \pm 0.1264$**.
+   Induces severe additional directional and magnitude restructuring: Mean Total Variation surges to **$0.2346 \pm 0.1908$**, Signed Cosine collapses to **$0.4830 \pm 0.3449$** ($0.1665$ on minority VPN flows), and Top-5 Jaccard is **$0.9553 \pm 0.1841$** ($94/100$ identical).
 
-#### Paired Non-Parametric Equivalence Testing
+#### Paired Non-Parametric Testing (QAT vs. FP32-FT)
 To statistically test whether QAT induces more attribution drift than unquantized fine-tuning, we conducted a paired Wilcoxon signed-rank test on $\Delta \text{TV}_i = \text{TV}_i(\text{QAT}) - \text{TV}_i(\text{FP32-FT})$ across the 100 cohort flows:
-- **Wilcoxon Test Statistic:** $W = 2390.0$
-- **p-value:** $\mathbf{0.684}$ (statistically indistinguishable from zero)
-- **Median Difference:** $\mathbf{-0.0047}$ ($95\%\text{ CI: } [-0.0195, \, +0.0460]$)
+- **Wilcoxon Test Statistic:** $W = 1146.0$
+- **p-value:** $\mathbf{2.12 \times 10^{-6}}$ (highly significant; QAT drift substantially exceeds FP32-FT)
+- **Median Difference:** $\mathbf{+0.2016}$ ($95\%\text{ CI: } [+0.0684, \, +0.1555]$ for mean delta $+0.1127$)
 - Conversely, comparing FP32-FT to the explainer noise baseline ($\Delta \text{TV} = \text{TV}_{\text{FT}} - \text{TV}_{\text{Noise}}$) confirms massive, highly significant drift ($W = 482.0, p = 8.12 \times 10^{-11}$).
 
 #### Definitive Scientific Conclusion

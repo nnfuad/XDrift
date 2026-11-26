@@ -15,7 +15,7 @@
 | **FP32 vs INT8-QAT (Cross-Model)** | 42 vs 42 | **0.9553 ± 0.1841** | **0.9679 ± 0.1416** | **0.2346 ± 0.1908** | **0.4830 ± 0.3449** | **0.9140 ± 0.1838** |
 | **FP32 vs FP32-FT (Ablation Control)** | 42 vs 42 | **0.9669 ± 0.1375** | **0.9762 ± 0.1169** | **0.1219 ± 0.1137** | **0.9554 ± 0.0953** | **0.9687 ± 0.1092** |
 
-*Note: For FP32-FT, median values are: $IoU_5 = 1.0000$, $IoU_{10} = 1.0000$, $TV = 0.1507$, $S_C = 0.9672$, $r_s = 1.0000$.*
+*Note: Exact Top-5 set match counts ($IoU_5 = 1.0$) across the 100 cohort flows are: Explainer Noise Floor pairs = $94/100$, INT8-PTQ = $95/100$, INT8-QAT = $94/100$, and FP32-FT = $94/100$. For FP32-FT, median values are: $IoU_5 = 1.0000$, $IoU_{10} = 1.0000$, $TV = 0.1507$, $S_C = 0.9672$, $r_s = 1.0000$.*
 
 ---
 

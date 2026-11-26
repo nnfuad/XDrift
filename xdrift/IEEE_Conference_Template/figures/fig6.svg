@@ -1,0 +1,190 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" font-family="Inter, Helvetica, Arial, sans-serif">
+  <title>Model-Agnostic Masked KernelSHAP Audit Protocol and the Multi-Seed Explainer Noise Floor Boundary</title>
+  <style>
+    .m { font-family: 'STIX Two Math','Cambria Math','Times New Roman',Times,serif; font-style: italic; }
+    .r { font-family: 'STIX Two Math','Cambria Math','Times New Roman',Times,serif; font-style: normal; }
+  </style>
+  <defs>
+    <marker id="aSl" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9z" fill="#1E293B" /></marker>
+    <marker id="aIn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9z" fill="#4F46E5" /></marker>
+    <marker id="aEm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1L9 5L1 9z" fill="#059669" /></marker>
+    <marker id="aCr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1L9 5L1 9z" fill="#DC2626" /></marker>
+    <pattern id="dotV" x="40" y="260" width="11.6" height="12" patternUnits="userSpaceOnUse"><circle cx="5.8" cy="6" r="3.8" fill="#1E293B" /></pattern>
+    <pattern id="dotN" x="40" y="310" width="11.6" height="12" patternUnits="userSpaceOnUse"><circle cx="5.8" cy="6" r="3.5" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.2" /></pattern>
+    <pattern id="sess" x="40" y="378" width="18" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" rx="2" fill="#1E293B" fill-opacity=".85" /></pattern>
+    <pattern id="lbar" x="48" y="418" width="22.4" height="16" patternUnits="userSpaceOnUse"><rect width="14" height="16" fill="#1E293B" fill-opacity=".7" /></pattern>
+    <pattern id="mcell" x="520" y="124" width="9" height="9" patternUnits="userSpaceOnUse"><rect x=".5" y=".5" width="8" height="8" fill="#FFFFFF" stroke="#A5B4FC" stroke-width="1" /></pattern>
+    <pattern id="tokA" x="390" y="360" width="19.2" height="20" patternUnits="userSpaceOnUse"><rect width="17.2" height="20" rx="2" fill="#1E293B" /></pattern>
+    <pattern id="tokP" x="562.8" y="360" width="19.2" height="20" patternUnits="userSpaceOnUse">
+      <rect x=".5" y=".5" width="16.2" height="19" rx="2" fill="#E2E8F0" stroke="#94A3B8" stroke-width="1" />
+      <line x1="4" y1="4" x2="13" y2="16" stroke="#EF4444" stroke-width="1.2" /><line x1="13" y1="4" x2="4" y2="16" stroke="#EF4444" stroke-width="1.2" />
+    </pattern>
+  </defs>
+  <rect width="1200" height="500" fill="#FFFFFF" />
+  <text x="600" y="26" font-size="14" font-weight="700" fill="#1E293B" text-anchor="middle">Model-Agnostic Masked KernelSHAP Audit Protocol and the Multi-Seed Explainer Noise Floor Boundary</text>
+  <path d="M355 46 L361 52 L355 58 Z" fill="#1E293B" /><path d="M707 46 L713 52 L707 58 Z" fill="#1E293B" />
+
+  
+  <rect x="12" y="40" width="340" height="448" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.4" />
+  <text x="26" y="62" font-size="13" font-weight="700" fill="#1E293B">(a) Stratified Audit Cohort</text>
+  <text x="26" y="78" font-size="13" font-weight="700" fill="#1E293B">&amp; Computational Triage</text>
+
+  <rect x="26" y="90" width="312" height="104" rx="8" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.6" />
+  <circle cx="318" cy="108" r="9" fill="#FEE2E2" stroke="#EF4444" stroke-width="1.4" />
+  <line x1="313.5" y1="103.5" x2="322.5" y2="112.5" stroke="#EF4444" stroke-width="2" /><line x1="322.5" y1="103.5" x2="313.5" y2="112.5" stroke="#EF4444" stroke-width="2" />
+  <text x="38" y="110" font-size="11" font-weight="700" fill="#1E293B">Exhaustive Audit of All Test Flows</text>
+  <text x="38" y="135" font-size="13" fill="#1E293B" class="r"><tspan class="m">N</tspan><tspan dy="3" font-size="8.5">flows</tspan><tspan dy="-3"> × </tspan><tspan class="m">M</tspan> × <tspan class="m">K</tspan> = 49,251 × 50 × 150</text>
+  <text x="38" y="157" font-size="13" fill="#1E293B" class="r">≈ 3.69 × 10<tspan dy="-6" font-size="9">8</tspan></text>
+  <text x="126" y="157" font-size="9" fill="#475569">model evaluations (369M)</text>
+  <text x="38" y="181" font-size="9" font-weight="700" fill="#EF4444">Computationally intractable on edge hardware</text>
+
+  <line x1="182" y1="194" x2="182" y2="214" stroke="#1E293B" stroke-width="2" marker-end="url(#aSl)" />
+  <text x="192" y="208" font-size="9" fill="#475569">stratified triage</text>
+
+  <rect x="26" y="218" width="312" height="260" rx="8" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.8" />
+  <text x="38" y="238" font-size="11" font-weight="700" fill="#1E293B">Stratified <tspan class="m" font-size="13">N</tspan> = 100 Flow Cohort</text>
+  <text x="38" y="256" font-size="10" font-weight="700" fill="#1E293B">50 VPN flows</text>
+  <rect x="40" y="260" width="290" height="24" fill="url(#dotV)" />
+  <text x="38" y="304" font-size="10" font-weight="700" fill="#1E293B">50 Non-VPN flows</text>
+  <rect x="40" y="310" width="290" height="24" fill="url(#dotN)" />
+  <text x="38" y="356" font-size="9" fill="#475569">Sampled across all 16 held-out canonical test sessions</text>
+  <rect x="40" y="378" width="288" height="14" fill="url(#sess)" />
+  <text x="38" y="408" font-size="10" font-weight="700" fill="#1E293B">Uniform sequence-length span</text>
+  <text x="240" y="408" font-size="12" class="r" fill="#1E293B"><tspan class="m">L</tspan> ∈ [4, 64] packets</text>
+  <rect x="48" y="418" width="268" height="16" fill="url(#lbar)" />
+  <line x1="44" y1="436" x2="322" y2="436" stroke="#1E293B" stroke-width="1.6" />
+  <line x1="48" y1="436" x2="48" y2="441" stroke="#1E293B" stroke-width="1.4" /><line x1="316" y1="436" x2="316" y2="441" stroke="#1E293B" stroke-width="1.4" />
+  <text x="48" y="452" font-size="11" class="r" fill="#1E293B" text-anchor="middle"><tspan class="m">L</tspan> = 4</text>
+  <text x="316" y="452" font-size="11" class="r" fill="#1E293B" text-anchor="middle"><tspan class="m">L</tspan> = 64</text>
+  <text x="182" y="471" font-size="12" class="r" fill="#1E293B" text-anchor="middle"><tspan class="m">n</tspan><tspan dy="3" font-size="8">VPN</tspan><tspan dy="-3"> = </tspan><tspan class="m">n</tspan><tspan dy="3" font-size="8">Non-VPN</tspan><tspan dy="-3"> = 50  (balanced)</tspan></text>
+
+  
+  <rect x="364" y="40" width="340" height="448" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.4" />
+  <text x="378" y="62" font-size="13" font-weight="700" fill="#1E293B">(b) KernelSHAP Perturbation</text>
+  <text x="378" y="78" font-size="13" font-weight="700" fill="#1E293B">&amp; Observational Masking</text>
+
+  <rect x="378" y="90" width="312" height="124" rx="8" fill="#FFFFFF" stroke="#4F46E5" stroke-width="1.6" />
+  <text x="390" y="108" font-size="11" font-weight="700" fill="#4F46E5">Coalition Evaluation</text>
+  <ellipse cx="430" cy="142" rx="46" ry="28" fill="#EEF2FF" stroke="#4F46E5" stroke-width="1.2" stroke-dasharray="4 3" />
+  <g fill="#4F46E5" fill-opacity=".85">
+    <circle cx="402" cy="130" r="5" /><circle cx="416" cy="126" r="5" /><circle cx="430" cy="132" r="5" /><circle cx="444" cy="127" r="5" /><circle cx="458" cy="134" r="5" />
+    <circle cx="406" cy="144" r="5" /><circle cx="421" cy="148" r="5" /><circle cx="436" cy="142" r="5" /><circle cx="451" cy="149" r="5" />
+    <circle cx="414" cy="160" r="5" /><circle cx="430" cy="156" r="5" /><circle cx="446" cy="161" r="5" />
+  </g>
+  <line x1="480" y1="142" x2="514" y2="142" stroke="#4F46E5" stroke-width="2" marker-end="url(#aIn)" />
+  <rect x="520" y="124" width="126" height="18" fill="url(#mcell)" />
+  <g fill="#4F46E5">
+    <rect x="520.5" y="124.5" width="8" height="8" /><rect x="538.5" y="124.5" width="8" height="8" /><rect x="547.5" y="124.5" width="8" height="8" /><rect x="565.5" y="124.5" width="8" height="8" /><rect x="592.5" y="124.5" width="8" height="8" /><rect x="601.5" y="124.5" width="8" height="8" /><rect x="628.5" y="124.5" width="8" height="8" />
+    <rect x="529.5" y="133.5" width="8" height="8" /><rect x="556.5" y="133.5" width="8" height="8" /><rect x="574.5" y="133.5" width="8" height="8" /><rect x="583.5" y="133.5" width="8" height="8" /><rect x="610.5" y="133.5" width="8" height="8" /><rect x="619.5" y="133.5" width="8" height="8" /><rect x="637.5" y="133.5" width="8" height="8" />
+  </g>
+  <text x="520" y="158" font-size="9" fill="#475569">coalition masks</text>
+  <text x="520" y="170" font-size="10" class="r" fill="#1E293B"><tspan class="m">z′</tspan> ∈ {0, 1}<tspan dy="-4" font-size="8">2×64</tspan></text>
+  <text x="390" y="184" font-size="9" fill="#475569"><tspan class="m" font-size="11">M</tspan> = 50 background reference flows</text>
+  <text x="520" y="184" font-size="9" fill="#475569"><tspan class="m" font-size="11">K</tspan> = 150 coalitions</text>
+  <text x="390" y="205" font-size="12" class="r" fill="#4F46E5"><tspan class="m">M</tspan> × <tspan class="m">K</tspan> = 7,500 <tspan font-family="Inter, Helvetica, Arial, sans-serif" font-size="9" fill="#475569">evaluations per audited flow</tspan></text>
+
+  <rect x="378" y="224" width="312" height="90" rx="8" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6" />
+  <text x="390" y="242" font-size="11" font-weight="700" fill="#1E293B">Pre-Sigmoid Logit Querying</text>
+  <text x="390" y="266" font-size="13" class="r" fill="#1E293B"><tspan class="m">f</tspan>(<tspan class="m" font-weight="700">x</tspan>) → <tspan class="m">z</tspan> ∈ ℝ</text>
+  <text x="500" y="266" font-size="9" fill="#475569">scalar logit, pre-sigmoid</text>
+  <text x="390" y="297" font-size="13" class="r" fill="#1E293B"><tspan class="m">g</tspan>(<tspan class="m">z′</tspan>) = <tspan class="m">φ</tspan><tspan dy="3" font-size="9">0</tspan><tspan dy="-3"> +</tspan></text>
+  <text x="458" y="299" font-size="22" class="r" fill="#1E293B">∑</text>
+  <text x="463" y="281" font-size="8" class="r" fill="#1E293B">128</text>
+  <text x="461" y="311" font-size="8" class="r" fill="#1E293B"><tspan class="m">j</tspan> = 1</text>
+  <text x="482" y="297" font-size="13" class="r" fill="#1E293B"><tspan class="m">φ</tspan><tspan dy="3" font-size="9" class="m">j</tspan><tspan dy="-3" class="m"> z′</tspan><tspan dy="3" font-size="9" class="m">j</tspan></text>
+
+  <rect x="378" y="322" width="312" height="156" rx="8" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.8" />
+  <text x="390" y="340" font-size="11" font-weight="700" fill="#1E293B">Active Sequence Masking</text>
+  <text x="390" y="352" font-size="9" fill="#EF4444" font-weight="700">Crucial integrity check</text>
+  <rect x="390" y="360" width="172.8" height="20" fill="url(#tokA)" />
+  <rect x="562.8" y="360" width="115.2" height="20" fill="url(#tokP)" />
+  <path d="M390 384 v4 h172.8 v-4" fill="none" stroke="#1E293B" stroke-width="1.4" />
+  <path d="M562.8 384 v4 h115.2 v-4" fill="none" stroke="#94A3B8" stroke-width="1.4" />
+  <text x="476" y="404" font-size="12" class="r" fill="#1E293B" text-anchor="middle"><tspan class="m">t</tspan> &lt; <tspan class="m">L</tspan></text>
+  <text x="620" y="404" font-size="12" class="r" fill="#475569" text-anchor="middle"><tspan class="m">t</tspan> ≥ <tspan class="m">L</tspan></text>
+  <g font-size="9" fill="#475569" text-anchor="middle">
+    <text x="476" y="416">True packet length</text><text x="476" y="427">&amp; IAT evaluated</text>
+    <text x="620" y="416">Synthetic zeros</text><text x="620" y="427">strictly invalidated</text>
+  </g>
+  <rect x="390" y="435" width="288" height="24" rx="5" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1.2" />
+  <text x="534" y="452" font-size="13" class="r" fill="#1E293B" text-anchor="middle"><tspan class="m">φ</tspan><tspan dy="3" font-size="9">0,<tspan class="m">t</tspan></tspan><tspan dy="-3"> = </tspan><tspan class="m">φ</tspan><tspan dy="3" font-size="9">1,<tspan class="m">t</tspan></tspan><tspan dy="-3"> = 0,   ∀ </tspan><tspan class="m">t</tspan> ≥ <tspan class="m">L</tspan></text>
+  <text x="534" y="472" font-size="9" fill="#EF4444" font-weight="700" text-anchor="middle">Prevents false ranking similarity over zero tokens</text>
+
+  
+  <rect x="716" y="40" width="472" height="448" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.4" />
+  <text x="728" y="62" font-size="13" font-weight="700" fill="#1E293B">(c) Multi-Seed Explainer Noise Floor &amp; Vectorial Geometry</text>
+
+  <rect x="728" y="76" width="192" height="92" rx="8" fill="#FFFFFF" stroke="#D97706" stroke-width="1.6" />
+  <text x="740" y="94" font-size="11" font-weight="700" fill="#D97706">Noise Floor Definition</text>
+  <text x="740" y="110" font-size="9" fill="#475569">3 independent seeds on the</text>
+  <text x="740" y="122" font-size="9" fill="#475569">identical FP32 baseline</text>
+  <g font-size="10" font-weight="700" fill="#D97706" text-anchor="middle">
+    <rect x="740" y="132" width="48" height="24" rx="12" fill="#FEF3C7" stroke="#D97706" stroke-width="1.2" /><text x="764" y="148">42</text>
+    <rect x="796" y="132" width="48" height="24" rx="12" fill="#FEF3C7" stroke="#D97706" stroke-width="1.2" /><text x="820" y="148">43</text>
+    <rect x="852" y="132" width="48" height="24" rx="12" fill="#FEF3C7" stroke="#D97706" stroke-width="1.2" /><text x="876" y="148">44</text>
+  </g>
+
+  <rect x="728" y="178" width="192" height="146" rx="8" fill="#FFFFFF" stroke="#D97706" stroke-width="1.6" />
+  <text x="740" y="196" font-size="11" font-weight="700" fill="#D97706">Empirical Repeatability Boundary</text>
+  <text x="740" y="216" font-size="9" fill="#475569">Signed cosine similarity</text>
+  <line x1="740" y1="222" x2="760" y2="222" stroke="#D97706" stroke-width="2" stroke-dasharray="4 3" />
+  <text x="766" y="226" font-size="13" font-weight="700" class="r" fill="#1E293B"><tspan class="m">S</tspan><tspan dy="3" font-size="9" class="m">c</tspan><tspan dy="-3"> = 0.9676 ± 0.1450</tspan></text>
+  <text x="740" y="250" font-size="9" fill="#475569">Total variation distance</text>
+  <text x="740" y="268" font-size="13" font-weight="700" class="r" fill="#1E293B">TV = 0.0553 ± 0.1588</text>
+  <text x="740" y="292" font-size="9" fill="#475569">Top-5 intersection over union</text>
+  <text x="740" y="310" font-size="13" font-weight="700" class="r" fill="#1E293B">IoU<tspan dy="3" font-size="9">5</tspan><tspan dy="-3"> = 0.9553 ± 0.1829</tspan></text>
+
+  <rect x="728" y="334" width="192" height="144" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.4" />
+  <text x="740" y="352" font-size="11" font-weight="700" fill="#1E293B">Metric Definitions</text>
+  <text x="740" y="383" font-size="13" class="r" fill="#1E293B"><tspan class="m">S</tspan><tspan dy="3" font-size="9" class="m">c</tspan><tspan dy="-3">(</tspan><tspan class="m" font-weight="700">a</tspan>, <tspan class="m" font-weight="700">b</tspan>) =</text>
+  <text x="872" y="377" font-size="12" class="r" fill="#1E293B" text-anchor="middle">⟨<tspan class="m" font-weight="700">a</tspan>, <tspan class="m" font-weight="700">b</tspan>⟩</text>
+  <line x1="840" y1="381" x2="904" y2="381" stroke="#1E293B" stroke-width="1.2" />
+  <text x="872" y="395" font-size="12" class="r" fill="#1E293B" text-anchor="middle">‖<tspan class="m" font-weight="700">a</tspan>‖<tspan dy="3" font-size="8">2</tspan><tspan dy="-3"> ‖</tspan><tspan class="m" font-weight="700">b</tspan>‖<tspan dy="3" font-size="8">2</tspan></text>
+  <text x="740" y="424" font-size="13" class="r" fill="#1E293B">TV = ½ ‖<tspan class="m">p</tspan> − <tspan class="m">q</tspan>‖<tspan dy="3" font-size="9">1</tspan></text>
+  <text x="740" y="441" font-size="11" class="r" fill="#475569"><tspan class="m">p</tspan> = |<tspan class="m" font-weight="700">a</tspan>| / ‖<tspan class="m" font-weight="700">a</tspan>‖<tspan dy="3" font-size="8">1</tspan><tspan dy="-3">,  </tspan><tspan class="m">q</tspan> = |<tspan class="m" font-weight="700">b</tspan>| / ‖<tspan class="m" font-weight="700">b</tspan>‖<tspan dy="3" font-size="8">1</tspan></text>
+  <text x="740" y="462" font-size="9" fill="#475569">IoU<tspan dy="2" font-size="7">5</tspan><tspan dy="-2">: top-5 token-set overlap</tspan></text>
+
+  
+  <rect x="932" y="76" width="244" height="312" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.4" />
+  <text x="1054" y="92" font-size="11" font-weight="700" fill="#1E293B" text-anchor="middle">Attribution-Space Alignment</text>
+  <polygon points="933.5,288.8 956.5,311.2 1106.4,157 1083.4,134.6" fill="#DC2626" fill-opacity=".1" stroke="#DC2626" stroke-width="1.2" stroke-dasharray="4 3" />
+  <text x="1003" y="203" font-size="9" font-weight="700" fill="#DC2626" text-anchor="middle" transform="rotate(-45.8 1003 203)">fine-tuning subspace</text>
+  <path d="M945 300 L1128.8 252 A190 190 0 0 1 1128.8 348 Z" fill="#D97706" fill-opacity=".14" />
+  <path d="M1135 300 A190 190 0 0 0 1040 135.5" fill="none" stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="3 3" />
+  <line x1="938" y1="300" x2="1150" y2="300" stroke="#94A3B8" stroke-width="1" />
+  <line x1="945" y1="300" x2="1128.8" y2="252" stroke="#D97706" stroke-width="1.8" stroke-dasharray="5 3" />
+  <line x1="945" y1="300" x2="1128.8" y2="348" stroke="#D97706" stroke-width="1.8" stroke-dasharray="5 3" />
+  <line x1="1128.8" y1="228" x2="1128.8" y2="366" stroke="#D97706" stroke-width="1.6" stroke-dasharray="5 3" />
+  <text x="1120" y="380" font-size="9" font-weight="700" fill="#D97706" text-anchor="middle">floor 0.9676</text>
+  <text x="1030" y="346" font-size="9" fill="#D97706" text-anchor="middle">noise-floor cone (<tspan class="m" font-size="11">θ</tspan> ≤ 14.6°)</text>
+  <path d="M1005 300 A60 60 0 0 0 986.9 257" fill="none" stroke="#DC2626" stroke-width="1.4" />
+  <text x="1012" y="284" font-size="10" class="r" fill="#DC2626"><tspan class="m">θ</tspan> ≈ 45.8°</text>
+  <line x1="945" y1="300" x2="1077.5" y2="163.9" stroke="#DC2626" stroke-width="3" marker-end="url(#aCr)" />
+  <line x1="945" y1="300" x2="1076.5" y2="162.9" stroke="#DC2626" stroke-width="1.6" stroke-dasharray="5 3" stroke-opacity=".0" />
+  <line x1="945" y1="300" x2="1133.4" y2="275.7" stroke="#059669" stroke-width="3" marker-end="url(#aEm)" />
+  <line x1="945" y1="300" x2="1135" y2="300" stroke="#1E293B" stroke-width="3" marker-end="url(#aSl)" />
+  <circle cx="1076.5" cy="162.9" r="4" fill="#FFFFFF" stroke="#DC2626" stroke-width="1.6" />
+  <circle cx="1077.5" cy="163.9" r="3.2" fill="#DC2626" />
+  <circle cx="1133.4" cy="275.7" r="3.2" fill="#059669" />
+  <circle cx="945" cy="300" r="3" fill="#1E293B" />
+  <text x="1141" y="304" font-size="11" class="r" fill="#1E293B"><tspan class="m" font-weight="700">a</tspan><tspan dy="-4" font-size="7.5">FP32</tspan></text>
+  <text x="1141" y="274" font-size="11" class="r" fill="#059669"><tspan class="m" font-weight="700">a</tspan><tspan dy="-4" font-size="7.5">PTQ</tspan></text>
+  <text x="1056" y="156" font-size="11" class="r" fill="#DC2626" text-anchor="end"><tspan class="m" font-weight="700">a</tspan><tspan dy="-4" font-size="7.5">QAT</tspan></text>
+  <line x1="1079" y1="163" x2="1070" y2="157" stroke="#DC2626" stroke-width=".8" />
+  <line x1="1080" y1="165" x2="1098" y2="178" stroke="#DC2626" stroke-width=".8" stroke-dasharray="2 2" />
+  <text x="1100" y="182" font-size="11" class="r" fill="#DC2626"><tspan class="m" font-weight="700">a</tspan><tspan dy="-4" font-size="7.5">FP32-FT</tspan></text>
+
+  <rect x="932" y="396" width="244" height="82" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.4" />
+  <line x1="942" y1="414" x2="958" y2="414" stroke="#059669" stroke-width="3" />
+  <text x="964" y="418" font-size="11" class="r" fill="#1E293B"><tspan class="m" font-weight="700">a</tspan><tspan dy="-4" font-size="7.5">PTQ</tspan></text>
+  <text x="1018" y="418" font-size="11" class="r" fill="#1E293B"><tspan class="m">S</tspan><tspan dy="3" font-size="8" class="m">c</tspan><tspan dy="-3"> = 0.9918</tspan></text>
+  <text x="1104" y="418" font-size="9" font-weight="700" fill="#059669">Preserved ✓</text>
+  <line x1="942" y1="438" x2="958" y2="438" stroke="#DC2626" stroke-width="3" />
+  <text x="964" y="442" font-size="11" class="r" fill="#1E293B"><tspan class="m" font-weight="700">a</tspan><tspan dy="-4" font-size="7.5">QAT</tspan></text>
+  <text x="1018" y="442" font-size="11" class="r" fill="#1E293B"><tspan class="m">S</tspan><tspan dy="3" font-size="8" class="m">c</tspan><tspan dy="-3"> = 0.6976</tspan></text>
+  <text x="1104" y="442" font-size="9" font-weight="700" fill="#DC2626">Collapse</text>
+  <line x1="942" y1="460" x2="958" y2="460" stroke="#DC2626" stroke-width="2.2" stroke-dasharray="4 2" />
+  <text x="964" y="464" font-size="11" class="r" fill="#1E293B"><tspan class="m" font-weight="700">a</tspan><tspan dy="-4" font-size="7.5">FP32-FT</tspan></text>
+  <text x="1018" y="464" font-size="11" class="r" fill="#1E293B"><tspan class="m">S</tspan><tspan dy="3" font-size="8" class="m">c</tspan><tspan dy="-3"> = 0.6923</tspan></text>
+  <text x="1104" y="464" font-size="9" font-weight="700" fill="#DC2626">Collapse</text>
+</svg>

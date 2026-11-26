@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="540" viewBox="0 0 1100 540" font-family="Inter, Helvetica, Arial, sans-serif">
+  <title>The 2x2 Causal Factorial Disentanglement Matrix and Tri-Branch Fixed-Point Quantization Framework</title>
+  <defs>
+    <marker id="mBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1L9 5L1 9z" fill="#2563EB"/></marker>
+    <marker id="mAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1L9 5L1 9z" fill="#D97706"/></marker>
+    <marker id="mRose" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1L9 5L1 9z" fill="#E11D48"/></marker>
+    <marker id="mNavy" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1L9 5L1 9z" fill="#0F172A"/></marker>
+  </defs>
+  <rect width="1100" height="540" fill="#FFFFFF"/>
+  <text x="20" y="26" font-size="14" font-weight="700" fill="#0F172A">The 2x2 Causal Factorial Disentanglement Matrix and Tri-Branch Fixed-Point Quantization Framework</text>
+
+  <!-- ================= LEFT PANEL ================= -->
+  <rect x="12" y="38" width="548" height="494" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.4"/>
+  <text x="26" y="60" font-size="12" font-weight="700" fill="#0F172A">(a) 2×2 Factorial Causal Matrix</text>
+
+  <!-- grid lines -->
+  <line x1="120" y1="104" x2="534" y2="104" stroke="#CBD5E1" stroke-width="1"/>
+  <line x1="120" y1="104" x2="120" y2="410" stroke="#CBD5E1" stroke-width="1"/>
+
+  <!-- column headers -->
+  <text x="204" y="84" font-size="12" font-weight="700" fill="#0F172A" text-anchor="middle">No Fine-Tuning</text>
+  <text x="204" y="98" font-size="10" fill="#475569" text-anchor="middle">(Pre-Trained Frozen)</text>
+  <text x="444" y="84" font-size="12" font-weight="700" fill="#0F172A" text-anchor="middle">Fine-Tuned</text>
+  <text x="444" y="98" font-size="10" fill="#475569" text-anchor="middle">(5 Epochs AdamW, lr=1e-4)</text>
+
+  <!-- row headers -->
+  <g font-size="12" font-weight="700" fill="#0F172A">
+    <text x="26" y="150">32-bit</text><text x="26" y="165">Floating Point</text><text x="26" y="180">(FP32)</text>
+    <text x="26" y="340">8-bit Integer</text><text x="26" y="355">Quantized</text><text x="26" y="370">(INT8)</text>
+  </g>
+
+  <!-- Q1: FP32 baseline -->
+  <rect x="124" y="112" width="160" height="100" rx="6" fill="#FFFFFF" stroke="#0F172A" stroke-width="2"/>
+  <rect x="124" y="112" width="160" height="24" rx="6" fill="#0F172A"/><rect x="124" y="124" width="160" height="12" fill="#0F172A"/>
+  <text x="204" y="128" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">FP32 Baseline</text>
+  <text x="204" y="157" font-size="10" font-weight="700" fill="#0F172A" text-anchor="middle" font-family="'JetBrains Mono','DejaVu Sans Mono',Menlo,monospace">184.2 KB</text>
+  <text x="204" y="178" font-size="10" fill="#334155" text-anchor="middle">Reference Model</text>
+
+  <!-- Q2: FP32-FT -->
+  <rect x="364" y="112" width="160" height="100" rx="6" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+  <rect x="364" y="112" width="160" height="24" rx="6" fill="#D97706"/><rect x="364" y="124" width="160" height="12" fill="#D97706"/>
+  <text x="444" y="128" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">FP32-FT Control</text>
+  <text x="444" y="157" font-size="10" font-weight="700" fill="#B45309" text-anchor="middle" font-family="'JetBrains Mono','DejaVu Sans Mono',Menlo,monospace">184.2 KB</text>
+  <text x="444" y="178" font-size="10" fill="#334155" text-anchor="middle">Unquantized</text>
+  <text x="444" y="191" font-size="10" fill="#334155" text-anchor="middle">Fine-Tuning</text>
+
+  <!-- Q3: INT8-PTQ -->
+  <rect x="124" y="302" width="160" height="100" rx="6" fill="#FFFFFF" stroke="#2563EB" stroke-width="2"/>
+  <rect x="124" y="302" width="160" height="24" rx="6" fill="#2563EB"/><rect x="124" y="314" width="160" height="12" fill="#2563EB"/>
+  <text x="204" y="318" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">INT8-PTQ</text>
+  <text x="204" y="347" font-size="10" font-weight="700" fill="#1D4ED8" text-anchor="middle" font-family="'JetBrains Mono','DejaVu Sans Mono',Menlo,monospace">51.8 KB</text>
+  <text x="204" y="366" font-size="10" fill="#334155" text-anchor="middle">Static PTQ via</text>
+  <text x="204" y="379" font-size="10" fill="#334155" text-anchor="middle">HistogramObserver</text>
+  <text x="204" y="392" font-size="10" fill="#334155" text-anchor="middle">calibration</text>
+
+  <!-- Q4: INT8-QAT -->
+  <rect x="364" y="302" width="160" height="100" rx="6" fill="#FFFFFF" stroke="#E11D48" stroke-width="2"/>
+  <rect x="364" y="302" width="160" height="24" rx="6" fill="#E11D48"/><rect x="364" y="314" width="160" height="12" fill="#E11D48"/>
+  <text x="444" y="318" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">INT8-QAT</text>
+  <text x="444" y="347" font-size="10" font-weight="700" fill="#BE123C" text-anchor="middle" font-family="'JetBrains Mono','DejaVu Sans Mono',Menlo,monospace">51.8 KB</text>
+  <text x="444" y="366" font-size="10" fill="#334155" text-anchor="middle">Simulated INT8 +</text>
+  <text x="444" y="379" font-size="10" fill="#334155" text-anchor="middle">Straight-Through</text>
+  <text x="444" y="392" font-size="10" fill="#334155" text-anchor="middle">Estimator</text>
+
+  <!-- Causal shift arrows -->
+  <line x1="170" y1="214" x2="170" y2="299" stroke="#2563EB" stroke-width="2.6" marker-end="url(#mBlue)"/>
+  <text x="180" y="252" font-size="10" font-weight="700" fill="#1D4ED8">Pure Quantization</text>
+  <text x="180" y="265" font-size="10" font-weight="700" fill="#1D4ED8">Noise (Δ_quant)</text>
+
+  <line x1="286" y1="192" x2="361" y2="192" stroke="#D97706" stroke-width="2.6" marker-end="url(#mAmber)"/>
+  <g font-size="10" font-weight="700" fill="#B45309" text-anchor="middle">
+    <text x="324" y="140">Pure</text><text x="324" y="153">Optimization</text><text x="324" y="166">Drift (Δ_opt)</text>
+  </g>
+
+  <line x1="290" y1="216" x2="360" y2="298" stroke="#E11D48" stroke-width="2.6" marker-end="url(#mRose)"/>
+  <text x="338" y="251" font-size="10" font-weight="700" fill="#BE123C">Compound Shift</text>
+  <text x="338" y="264" font-size="10" font-weight="700" fill="#BE123C">(Δ_quant + Δ_opt)</text>
+
+  <!-- causal test comparison -->
+  <line x1="494" y1="214" x2="494" y2="299" stroke="#0F172A" stroke-width="2.4" stroke-dasharray="5 3" marker-start="url(#mNavy)" marker-end="url(#mNavy)"/>
+  <rect x="456" y="246" width="76" height="22" rx="11" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.6"/>
+  <text x="494" y="261" font-size="10" font-weight="700" fill="#0F172A" text-anchor="middle">Causal Test</text>
+
+  <!-- causal test callout -->
+  <rect x="26" y="422" width="528" height="100" rx="8" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.6"/>
+  <rect x="26" y="422" width="6" height="100" rx="3" fill="#0F172A"/>
+  <text x="290" y="445" font-size="12" font-weight="700" fill="#0F172A" text-anchor="middle">The Causal Test: FP32-FT ↔ INT8-QAT</text>
+  <text x="290" y="467" font-size="10" font-weight="700" fill="#0F172A" text-anchor="middle" font-family="'JetBrains Mono','DejaVu Sans Mono',Menlo,monospace">Wilcoxon W = 2390.0, p = 0.684</text>
+  <text x="290" y="487" font-size="11" font-weight="700" fill="#BE123C" text-anchor="middle">Attribution drift is statistically indistinguishable!</text>
+  <text x="290" y="507" font-size="10" fill="#475569" text-anchor="middle">⇒ no measurable quantization-specific drift beyond Δ_opt</text>
+
+  <!-- ================= RIGHT PANEL ================= -->
+  <rect x="572" y="38" width="516" height="494" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.4"/>
+  <text x="586" y="60" font-size="12" font-weight="700" fill="#0F172A">(b) Concrete Deployment Pipeline Mechanics</text>
+
+  <!-- Lane 1: PTQ -->
+  <rect x="584" y="70" width="492" height="146" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"/>
+  <rect x="584" y="70" width="5" height="146" rx="2" fill="#2563EB"/>
+  <circle cx="606" cy="90" r="9" fill="#2563EB"/><text x="606" y="94" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">1</text>
+  <text x="622" y="94" font-size="12" font-weight="700" fill="#0F172A">Static PTQ Workflow</text>
+  <text x="1066" y="94" font-size="10" font-weight="700" fill="#1D4ED8" text-anchor="end" font-family="'JetBrains Mono','DejaVu Sans Mono',Menlo,monospace">→ INT8-PTQ · 51.8 KB</text>
+  <g stroke-width="1.4" fill="#FFFFFF">
+    <rect x="594" y="108" width="106" height="84" rx="5" stroke="#0F172A"/>
+    <rect x="716" y="108" width="106" height="84" rx="5" stroke="#2563EB"/>
+    <rect x="838" y="108" width="106" height="84" rx="5" stroke="#2563EB"/>
+    <rect x="960" y="108" width="106" height="84" rx="5" stroke="#2563EB"/>
+  </g>
+  <g stroke="#2563EB" stroke-width="1.6">
+    <line x1="701" y1="150" x2="714" y2="150" marker-end="url(#mBlue)"/>
+    <line x1="823" y1="150" x2="836" y2="150" marker-end="url(#mBlue)"/>
+    <line x1="945" y1="150" x2="958" y2="150" marker-end="url(#mBlue)"/>
+  </g>
+  <g text-anchor="middle" font-size="11" font-weight="700" fill="#0F172A">
+    <text x="647" y="130">Pre-trained</text><text x="647" y="144">FP32</text>
+    <text x="769" y="130">Histogram</text><text x="769" y="144">Observer</text>
+    <text x="891" y="130">Symmetric</text><text x="891" y="144">Signed INT8</text>
+    <text x="1013" y="130">Compiled</text><text x="1013" y="144">QNNPACK</text><text x="1013" y="158">Assembly</text>
+  </g>
+  <g text-anchor="middle" font-size="10" fill="#334155">
+    <text x="769" y="162">on 69,564</text><text x="769" y="175">Val Flows</text>
+  </g>
+  <g text-anchor="middle" font-size="10" fill="#334155" font-family="'JetBrains Mono','DejaVu Sans Mono',Menlo,monospace">
+    <text x="647" y="166">184.2 KB</text>
+    <text x="891" y="162">zp=0</text><text x="891" y="175">q∈[-128,127]</text>
+  </g>
+  <text x="594" y="208" font-size="9" fill="#64748B">Calibration only: no gradient updates</text>
+
+  <!-- Lane 2: QAT -->
+  <rect x="584" y="224" width="492" height="146" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"/>
+  <rect x="584" y="224" width="5" height="146" rx="2" fill="#E11D48"/>
+  <circle cx="606" cy="244" r="9" fill="#E11D48"/><text x="606" y="248" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">2</text>
+  <text x="622" y="248" font-size="12" font-weight="700" fill="#0F172A">QAT Workflow with Straight-Through Estimator (STE)</text>
+  <text x="1066" y="248" font-size="10" font-weight="700" fill="#BE123C" text-anchor="end" font-family="'JetBrains Mono','DejaVu Sans Mono',Menlo,monospace">→ INT8-QAT</text>
+  <g stroke="#E11D48" stroke-width="1.4" fill="#FFFFFF">
+    <rect x="594" y="262" width="148" height="84" rx="5"/><rect x="756" y="262" width="148" height="84" rx="5"/><rect x="918" y="262" width="148" height="84" rx="5"/>
+  </g>
+  <g stroke="#E11D48" stroke-width="1.6">
+    <line x1="743" y1="304" x2="754" y2="304" marker-end="url(#mRose)"/>
+    <line x1="905" y1="304" x2="916" y2="304" marker-end="url(#mRose)"/>
+  </g>
+  <g text-anchor="middle" font-size="11" font-weight="700" fill="#0F172A">
+    <text x="668" y="284">Simulated FakeQuant</text>
+    <text x="830" y="284">STE gradient bypass</text>
+    <text x="992" y="284">5 Epochs</text><text x="992" y="298">fine-tuning</text>
+  </g>
+  <g text-anchor="middle" font-size="10" fill="#334155">
+    <text x="668" y="306">INT8 rounding in</text><text x="668" y="319">the forward pass</text>
+    <text x="830" y="328">identity inside clip range</text>
+  </g>
+  <g text-anchor="middle" font-size="10" fill="#BE123C" font-weight="700" font-family="'JetBrains Mono','DejaVu Sans Mono',Menlo,monospace">
+    <text x="830" y="304">d(z̃)/dz = 1_{bounds}</text>
+  </g>
+  <text x="992" y="322" font-size="10" fill="#334155" text-anchor="middle" font-family="'JetBrains Mono','DejaVu Sans Mono',Menlo,monospace">AdamW, lr=1e-4</text>
+  <text x="594" y="362" font-size="9" fill="#64748B">Quantization simulated during training; gradients bypass the non-differentiable rounding</text>
+
+  <!-- Lane 3: FP32-FT -->
+  <rect x="584" y="378" width="492" height="146" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"/>
+  <rect x="584" y="378" width="5" height="146" rx="2" fill="#D97706"/>
+  <circle cx="606" cy="398" r="9" fill="#D97706"/><text x="606" y="402" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">3</text>
+  <text x="622" y="402" font-size="12" font-weight="700" fill="#0F172A">FP32-FT Unquantized Control</text>
+  <text x="1066" y="402" font-size="10" font-weight="700" fill="#B45309" text-anchor="end" font-family="'JetBrains Mono','DejaVu Sans Mono',Menlo,monospace">→ FP32-FT · 184.2 KB</text>
+  <g stroke-width="1.4" fill="#FFFFFF">
+    <rect x="594" y="416" width="148" height="84" rx="5" stroke="#0F172A"/><rect x="756" y="416" width="148" height="84" rx="5" stroke="#D97706"/><rect x="918" y="416" width="148" height="84" rx="5" stroke="#D97706"/>
+  </g>
+  <g stroke="#D97706" stroke-width="1.6">
+    <line x1="743" y1="458" x2="754" y2="458" marker-end="url(#mAmber)"/>
+    <line x1="905" y1="458" x2="916" y2="458" marker-end="url(#mAmber)"/>
+  </g>
+  <g text-anchor="middle" font-size="11" font-weight="700" fill="#0F172A">
+    <text x="668" y="446">Pre-trained FP32</text>
+    <text x="830" y="438">Identical 5-epoch</text><text x="830" y="452">AdamW schedule</text>
+    <text x="992" y="446">Continuous FP32</text>
+  </g>
+  <g text-anchor="middle" font-size="10" fill="#334155" font-family="'JetBrains Mono','DejaVu Sans Mono',Menlo,monospace">
+    <text x="668" y="466">184.2 KB</text>
+    <text x="830" y="470">lr=1e-4</text>
+  </g>
+  <text x="992" y="464" font-size="10" fill="#334155" text-anchor="middle">arithmetic throughout</text>
+  <text x="594" y="516" font-size="9" fill="#64748B">Control: isolates optimization drift (Δ_opt) from integer quantization noise (Δ_quant)</text>
+</svg>
